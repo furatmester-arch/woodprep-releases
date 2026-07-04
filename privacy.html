@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy – WoodPrep</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0f0f1a; --bg2: #16162a; --accent: #4db8ff;
+            --text: #e8e8f0; --muted: #8888aa; --border: rgba(255,255,255,0.08);
+        }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(15,15,26,0.92); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 60px;
+        }
+        .nav-logo { font-size: 1.3rem; font-weight: 700; color: #fff; text-decoration: none; }
+        .nav-logo span { color: var(--accent); }
+        .doc-wrap { max-width: 760px; margin: 60px auto; padding: 0 24px 80px; }
+        h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+        .updated { font-size: 0.83rem; color: var(--muted); margin-bottom: 48px; }
+        h2 { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin: 36px 0 10px; }
+        p { color: var(--muted); margin-bottom: 12px; font-size: 0.95rem; }
+        ul { color: var(--muted); font-size: 0.95rem; padding-left: 20px; margin-bottom: 12px; }
+        ul li { margin-bottom: 6px; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.9rem; }
+        th { text-align: left; padding: 10px 14px; background: var(--bg2); color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid var(--border); }
+        td { padding: 10px 14px; color: var(--muted); border-bottom: 1px solid var(--border); vertical-align: top; }
+        tr:last-child td { border-bottom: none; }
+        footer {
+            border-top: 1px solid var(--border); padding: 24px;
+            text-align: center; font-size: 0.82rem; color: var(--muted);
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">Wood<span>Prep</span></a>
+</nav>
+
+<div class="doc-wrap">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: July 2026</p>
+
+    <p>This Privacy Policy explains what personal data WoodPrep collects, how it is used, and your rights regarding that data. WoodPrep is operated by <strong>[YOUR NAME]</strong>, individual entrepreneur, Hungary.</p>
+    <p>By using WoodPrep, you agree to the collection and use of data as described in this policy.</p>
+
+    <h2>1. What Data We Collect</h2>
+    <table>
+        <thead>
+            <tr><th>Data</th><th>Why we collect it</th><th>Source</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Name</strong></td>
+                <td>To identify your account and personalize communication</td>
+                <td>Provided by you during registration</td>
+            </tr>
+            <tr>
+                <td><strong>Email address</strong></td>
+                <td>To send license activation, subscription updates, and support responses</td>
+                <td>Provided by you during registration or payment</td>
+            </tr>
+            <tr>
+                <td><strong>Machine ID</strong></td>
+                <td>To bind the license to your machine and verify active subscription on each use</td>
+                <td>Generated automatically from your hardware (hashed MAC address + machine name — not reversible)</td>
+            </tr>
+            <tr>
+                <td><strong>Payment data</strong></td>
+                <td>To process subscription payments</td>
+                <td>Collected and stored by Stripe — we never see or store your card details</td>
+            </tr>
+            <tr>
+                <td><strong>Usage data</strong></td>
+                <td>To monitor service health and prevent abuse (e.g. command type, timestamp)</td>
+                <td>Generated automatically when the plugin connects to our server</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>We do not collect the content of your AutoCAD drawings. Drawing data is processed locally on your machine and is never transmitted to our server.</p>
+
+    <h2>2. How We Use Your Data</h2>
+    <ul>
+        <li>To activate and verify your license on each use</li>
+        <li>To manage your subscription (billing, renewal, cancellation)</li>
+        <li>To send transactional emails (activation confirmation, expiry notice, support replies)</li>
+        <li>To monitor server health and detect misuse</li>
+        <li>To improve the software based on usage patterns (aggregated, not personal)</li>
+    </ul>
+    <p>We do not use your data for advertising and do not sell it to third parties.</p>
+
+    <h2>3. Data Sharing</h2>
+    <p>We share data only with the following trusted service providers, and only to the extent necessary:</p>
+    <ul>
+        <li><strong>Stripe</strong> — payment processing. Stripe is PCI DSS compliant. See <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Stripe's Privacy Policy</a>.</li>
+        <li><strong>Microsoft Azure</strong> — our server infrastructure. Data is stored within the EU. See <a href="https://privacy.microsoft.com" target="_blank" rel="noopener">Microsoft's Privacy Policy</a>.</li>
+    </ul>
+    <p>We do not share your data with any other third parties.</p>
+
+    <h2>4. Data Storage &amp; Security</h2>
+    <ul>
+        <li>Registration data (name, email, Machine ID, subscription status) is stored securely on our Azure server.</li>
+        <li>All communication between the plugin and the server is encrypted via HTTPS (TLS).</li>
+        <li>We retain your data for as long as your account is active, and for up to 12 months after account closure for legal and accounting purposes.</li>
+        <li>Machine IDs are stored as one-way hashes — the original hardware identifiers cannot be reconstructed from stored data.</li>
+    </ul>
+
+    <h2>5. Your Rights (GDPR)</h2>
+    <p>As a resident of the EU/EEA, you have the following rights regarding your personal data:</p>
+    <ul>
+        <li><strong>Access</strong> — request a copy of the data we hold about you</li>
+        <li><strong>Correction</strong> — request correction of inaccurate data</li>
+        <li><strong>Deletion</strong> — request deletion of your data ("right to be forgotten")</li>
+        <li><strong>Portability</strong> — request your data in a machine-readable format</li>
+        <li><strong>Objection</strong> — object to processing of your data</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at <a href="mailto:furatmester@gmail.com">furatmester@gmail.com</a>. We will respond within 30 days.</p>
+    <p>You also have the right to lodge a complaint with the Hungarian data protection authority (NAIH): <a href="https://www.naih.hu" target="_blank" rel="noopener">www.naih.hu</a>.</p>
+
+    <h2>6. Cookies</h2>
+    <p>The WoodPrep website does not use tracking cookies or analytics services. No cookie consent banner is required.</p>
+    <p>The plugin itself does not use cookies. It communicates directly with our API using your Machine ID as an identifier.</p>
+
+    <h2>7. Children's Privacy</h2>
+    <p>WoodPrep is a professional B2B tool intended for adults. We do not knowingly collect data from anyone under the age of 18.</p>
+
+    <h2>8. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated date. We will notify active subscribers of significant changes by email.</p>
+
+    <h2>9. Contact</h2>
+    <p>For any privacy-related questions or requests, contact us at:</p>
+    <p><a href="mailto:furatmester@gmail.com">furatmester@gmail.com</a></p>
+    <p><strong>[YOUR NAME]</strong><br>Individual Entrepreneur<br>Hungary</p>
+
+</div>
+
+<footer>
+    <p>© 2026 WoodPrep &nbsp;·&nbsp; <a href="terms.html">Terms &amp; Conditions</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="index.html">Back to Home</a></p>
+</footer>
+
+</body>
+</html>
