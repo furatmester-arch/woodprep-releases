@@ -196,6 +196,119 @@
         }
         .plan-btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
+        /* ── PLAN SCROLL LIST ────────────────────────────────────────────── */
+        .plan-scroll {
+            max-height: 260px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+        .plan-scroll::-webkit-scrollbar { width: 4px; }
+        .plan-scroll::-webkit-scrollbar-track { background: transparent; }
+        .plan-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+        /* ── PLAN DETAILS (expandable) ───────────────────────────────────── */
+        .plan-details { margin-bottom: 16px; }
+        .plan-details summary {
+            cursor: pointer; font-size: 0.8rem; color: var(--muted);
+            list-style: none; text-align: center; padding: 6px 0;
+            border-top: 1px solid var(--border);
+            transition: color 0.2s;
+        }
+        .plan-details summary::-webkit-details-marker { display: none; }
+        .plan-details summary::after { content: " ▼"; font-size: 0.65rem; }
+        .plan-details[open] summary::after { content: " ▲"; }
+        .plan-details summary:hover { color: var(--accent); }
+        .plan-features-more { margin-top: 8px; border-top: none; }
+
+        /* ── VIDEO SECTION ───────────────────────────────────────────────── */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px; margin-top: 48px;
+        }
+        .video-card { }
+        .video-thumb {
+            position: relative; width: 100%; padding-bottom: 56.25%;
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: 10px; overflow: hidden; cursor: pointer;
+        }
+        .video-thumb iframe {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; border: none; border-radius: 10px;
+        }
+        .video-placeholder {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 12px;
+        }
+        .video-play {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: rgba(77,184,255,0.15);
+            border: 2px solid var(--accent);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--accent);
+        }
+        .video-label { font-size: 0.85rem; color: var(--muted); text-align: center; padding: 0 16px; }
+        .video-card h4 { margin-top: 12px; font-size: 0.95rem; color: var(--text); }
+        .video-card p { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+        /* ── COMPARE TOGGLE ──────────────────────────────────────────────── */
+        .compare-toggle { margin-top: 48px; }
+        .compare-toggle-btn {
+            display: block; width: 100%; text-align: center;
+            cursor: pointer; list-style: none;
+            padding: 14px 24px;
+            border: 1px solid var(--border); border-radius: 8px;
+            color: var(--muted); font-size: 0.9rem; font-weight: 600;
+            letter-spacing: .03em; transition: all 0.2s;
+        }
+        .compare-toggle-btn::-webkit-details-marker { display: none; }
+        .compare-toggle[open] .compare-toggle-btn { border-color: var(--accent); color: var(--accent); }
+        .compare-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ── COMPARE TABLE ───────────────────────────────────────────────── */
+        .compare-wrap { margin-top: 56px; }
+        .compare-heading {
+            text-align: center; font-size: 1rem; color: var(--muted);
+            margin-bottom: 20px; font-weight: 500; letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+        .compare-scroll { overflow-x: auto; }
+        .compare-table {
+            width: 100%; border-collapse: collapse;
+            font-size: 13.5px; min-width: 640px;
+        }
+        .compare-table th, .compare-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+        .compare-table thead th {
+            color: var(--muted); font-size: 0.82rem;
+            font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding-bottom: 14px;
+        }
+        .compare-table thead .ent-col { color: var(--accent); }
+        .compare-table .feat-col {
+            text-align: left; width: 40%; color: var(--text); font-size: 13px;
+        }
+        .compare-table .grp-row td {
+            background: rgba(255,255,255,0.03);
+            text-align: left; font-weight: 700;
+            font-size: 10.5px; color: var(--muted);
+            letter-spacing: .08em; text-transform: uppercase;
+            padding: 9px 14px;
+        }
+        .compare-table .ct-ok  { color: #4ade80; font-weight: 700; }
+        .compare-table .ct-half{ color: var(--accent); font-weight: 700; }
+        .compare-table .ct-no  { color: #3a3a50; }
+        .compare-legend {
+            display: flex; gap: 24px; flex-wrap: wrap;
+            margin-top: 16px; font-size: 12px; color: var(--muted);
+            justify-content: center;
+        }
+
         /* ── ABOUT ───────────────────────────────────────────────────────── */
         .about-box {
             max-width: 700px; margin: 0 auto;
@@ -329,12 +442,12 @@
             <div class="step">
                 <div class="step-num">2</div>
                 <h3>Draw your cabinet</h3>
-                <p>Use CORPUS_CREATION or draw from dimensions — the plugin builds the 3D model.</p>
+                <p>Use the cabinet generator or draw from dimensions — the plugin builds the 3D model.</p>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
-                <h3>Run PP26 or EE26</h3>
-                <p>One command generates the cutting list or full Biesse CNC program.</p>
+                <h3>Run one command</h3>
+                <p>One command generates the Excel cutting list or full Biesse CNC program — your choice.</p>
             </div>
             <div class="step">
                 <div class="step-num">4</div>
@@ -357,14 +470,15 @@
                 <div class="plan-name">Basic</div>
                 <div class="plan-price">€50 <span>/mo</span></div>
                 <div class="plan-vat">+ VAT · per machine</div>
-                <ul class="plan-features">
-                    <li>Cutting list export (PP26)</li>
-                    <li>Bounding size tool</li>
-                    <li>Joint finalization</li>
+                <ul class="plan-features plan-scroll">
+                    <li>Excel cutting list export</li>
+                    <li>Material & hardware list (Excel)</li>
+                    <li>Bounding size + cutting board</li>
+                    <li>Joint finalization (Boolean)</li>
                     <li>Back panel extraction</li>
-                    <li>Material calculator</li>
+                    <li>Show hidden parts</li>
+                    <li class="no">Batch cabinet processing</li>
                     <li class="no">Cabinet drawing</li>
-                    <li class="no">Batch processing</li>
                     <li class="no">CNC program generation</li>
                 </ul>
                 <a href="mailto:furatmester@gmail.com?subject=WoodPrep Basic Trial" class="plan-btn plan-btn-secondary">Start Trial</a>
@@ -376,13 +490,17 @@
                 <div class="plan-name">Standard</div>
                 <div class="plan-price">€75 <span>/mo</span></div>
                 <div class="plan-vat">+ VAT · per machine</div>
-                <ul class="plan-features">
-                    <li>Everything in Basic</li>
+                <ul class="plan-features plan-scroll">
+                    <li>Excel cutting list export</li>
+                    <li>Material & hardware list (Excel)</li>
+                    <li>Bounding size + cutting board</li>
+                    <li>Joint finalization (Boolean)</li>
+                    <li>Back panel extraction</li>
+                    <li>Show hidden parts</li>
                     <li>Batch cabinet processing</li>
-                    <li>Auto categorization</li>
-                    <li>Mirror detection</li>
+                    <li>Find identical parts (in batch)</li>
+                    <li>Mirror pair detection (in batch)</li>
                     <li class="no">Cabinet drawing</li>
-                    <li class="no">Mirror pair production</li>
                     <li class="no">CNC program generation</li>
                 </ul>
                 <a href="mailto:furatmester@gmail.com?subject=WoodPrep Standard Trial" class="plan-btn plan-btn-primary">Start Trial</a>
@@ -393,13 +511,21 @@
                 <div class="plan-name">Professional</div>
                 <div class="plan-price">€100 <span>/mo</span></div>
                 <div class="plan-vat">+ VAT · per machine</div>
-                <ul class="plan-features">
-                    <li>Everything in Standard</li>
-                    <li>Cabinet drawing (CORPUS)</li>
-                    <li>Draw from floor plan</li>
-                    <li>Auto hardware positioning</li>
-                    <li>Mirror pair production</li>
-                    <li>Blum drawer slides</li>
+                <ul class="plan-features plan-scroll">
+                    <li>Excel cutting list export</li>
+                    <li>Material & hardware list (Excel)</li>
+                    <li>Bounding size + cutting board</li>
+                    <li>Joint finalization (Boolean)</li>
+                    <li>Back panel extraction</li>
+                    <li>Show hidden parts</li>
+                    <li>Batch cabinet processing</li>
+                    <li>Find identical parts (in batch)</li>
+                    <li>Mirror pair detection (in batch)</li>
+                    <li>Parametric cabinet generator</li>
+                    <li>Doors — overlay & inset, left & right</li>
+                    <li>Drawer fronts + Blum slide boxes</li>
+                    <li>Auto hinge, shelf pin & minifix positioning</li>
+                    <li>Cabinet from floor plan</li>
                     <li class="no">CNC program generation</li>
                 </ul>
                 <a href="mailto:furatmester@gmail.com?subject=WoodPrep Pro Trial" class="plan-btn plan-btn-secondary">Start Trial</a>
@@ -410,10 +536,22 @@
                 <div class="plan-name">Enterprise</div>
                 <div class="plan-price">€140 <span>/mo</span></div>
                 <div class="plan-vat">+ VAT · per machine</div>
-                <ul class="plan-features">
-                    <li>Everything in Professional</li>
-                    <li>Biesse BPP generation (EE26)</li>
-                    <li>CNC import file (WW26)</li>
+                <ul class="plan-features plan-scroll">
+                    <li>Excel cutting list export</li>
+                    <li>Material & hardware list (Excel)</li>
+                    <li>Bounding size + cutting board</li>
+                    <li>Joint finalization (Boolean)</li>
+                    <li>Back panel extraction</li>
+                    <li>Show hidden parts</li>
+                    <li>Batch cabinet processing</li>
+                    <li>Find identical parts (standalone)</li>
+                    <li>Mirror pair detection (standalone)</li>
+                    <li>Parametric cabinet generator</li>
+                    <li>Doors — overlay & inset, left & right</li>
+                    <li>Drawer fronts + Blum slide boxes</li>
+                    <li>Auto hinge, shelf pin & minifix positioning</li>
+                    <li>Cabinet from floor plan</li>
+                    <li>Biesse BPP program & CNC import file</li>
                     <li>Tested on Rover & Skipper</li>
                     <li>Priority support</li>
                     <li>Custom machine setup</li>
@@ -425,6 +563,123 @@
         <p style="text-align:center; margin-top:28px; font-size:0.82rem; color:var(--muted);">
             Enterprise requires compatibility testing on your machine before activation. <a href="mailto:furatmester@gmail.com" style="color:var(--accent);">Contact us first.</a>
         </p>
+
+        <!-- VIDEO SECTION -->
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-thumb">
+                    <iframe src="https://www.youtube.com/embed/dDNKZhJw8QU" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <h4>WoodPrep – Cabinet from Floor Plan</h4>
+                <p>Generate a complete cabinet directly from a floor plan — panels, doors, drawers and hardware positioning, all automated.</p>
+            </div>
+            <div class="video-card">
+                <div class="video-thumb">
+                    <div class="video-placeholder">
+                        <div class="video-play">▶</div>
+                        <div class="video-label">Demo video coming soon</div>
+                    </div>
+                </div>
+                <h4>Cabinet generator in action</h4>
+                <p>Draw a complete cabinet from dimensions in under a minute.</p>
+            </div>
+            <div class="video-card">
+                <div class="video-thumb">
+                    <div class="video-placeholder">
+                        <div class="video-play">▶</div>
+                        <div class="video-label">Demo video coming soon</div>
+                    </div>
+                </div>
+                <h4>Biesse CNC export</h4>
+                <p>From AutoCAD drawing to BPP program ready for the machine.</p>
+            </div>
+        </div>
+
+        <!-- FULL FEATURE COMPARISON TABLE -->
+        <details class="compare-toggle">
+            <summary class="compare-toggle-btn">Full feature comparison ▼</summary>
+        <div class="compare-wrap">
+            <p class="compare-heading"> </p>
+            <div class="compare-scroll">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th class="feat-col"></th>
+                            <th>Basic</th>
+                            <th>Standard</th>
+                            <th>Professional</th>
+                            <th class="ent-col">Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="grp-row"><td colspan="5">Part processing</td></tr>
+                        <tr>
+                            <td class="feat-col">Excel cutting list export</td>
+                            <td class="ct-ok">✓</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="feat-col">Material & hardware list (Excel)</td>
+                            <td class="ct-ok">✓</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="feat-col">Complete Biesse BPP program & CNC import file (Rover & Skipper)</td>
+                            <td class="ct-no">–</td><td class="ct-no">–</td><td class="ct-no">–</td><td class="ct-ok">✓</td>
+                        </tr>
+
+                        <tr class="grp-row"><td colspan="5">Automation</td></tr>
+                        <tr>
+                            <td class="feat-col">Batch cabinet processing</td>
+                            <td class="ct-no">–</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="feat-col">Find identical parts</td>
+                            <td class="ct-no">–</td><td class="ct-half">◐</td><td class="ct-half">◐</td><td class="ct-ok">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="feat-col">Mirror pair (left–right) detection</td>
+                            <td class="ct-no">–</td><td class="ct-half">◐</td><td class="ct-half">◐</td><td class="ct-ok">✓</td>
+                        </tr>
+
+                        <tr class="grp-row"><td colspan="5">Cabinet design & generation</td></tr>
+                        <tr>
+                            <td class="feat-col">Parametric cabinet generator — doors, drawers, Blum slides, hinges</td>
+                            <td class="ct-no">–</td><td class="ct-no">–</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="feat-col">Cabinet from floor plan (draw from room layout)</td>
+                            <td class="ct-no">–</td><td class="ct-no">–</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td>
+                        </tr>
+
+                        <tr class="grp-row"><td colspan="5">Preparation tools</td></tr>
+                        <tr>
+                            <td class="feat-col">Bounding size + cutting board</td>
+                            <td class="ct-ok">✓</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="feat-col">Joint finalization (Boolean subtract)</td>
+                            <td class="ct-no">–</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="feat-col">Back panel extraction</td>
+                            <td class="ct-no">–</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td>
+                        </tr>
+
+                        <tr class="grp-row"><td colspan="5">Utilities</td></tr>
+                        <tr>
+                            <td class="feat-col">Show all hidden parts</td>
+                            <td class="ct-ok">✓</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td><td class="ct-ok">✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="compare-legend">
+                <span><b class="ct-ok">✓</b> Standalone command</span>
+                <span><b class="ct-half">◐</b> Part of batch processing (not standalone)</span>
+                <span><b class="ct-no" style="color:var(--muted)">–</b> Not included</span>
+            </div>
+        </div>
+        </details>
+
     </div>
 </section>
 
