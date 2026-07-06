@@ -234,21 +234,30 @@
             background: var(--bg3); border: 1px solid var(--border);
             border-radius: 10px; overflow: hidden; cursor: pointer;
         }
-        .video-thumb iframe {
+        .video-thumb iframe,
+        .video-thumb video {
             position: absolute; top: 0; left: 0;
             width: 100%; height: 100%; border: none; border-radius: 10px;
+            object-fit: cover;
         }
-        .video-placeholder {
+        .video-placeholder,
+        .video-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center; gap: 12px;
         }
+        .video-overlay {
+            background: rgba(15,15,26,0.35);
+            transition: opacity 0.3s ease; pointer-events: none;
+        }
+        .video-hover.playing .video-overlay { opacity: 0; }
         .video-play {
             width: 56px; height: 56px; border-radius: 50%;
             background: rgba(77,184,255,0.15);
             border: 2px solid var(--accent);
             display: flex; align-items: center; justify-content: center;
             font-size: 1.4rem; color: var(--accent);
+            backdrop-filter: blur(4px);
         }
         .video-label { font-size: 0.85rem; color: var(--muted); text-align: center; padding: 0 16px; }
         .video-card h4 { margin-top: 12px; font-size: 0.95rem; color: var(--text); }
@@ -573,13 +582,14 @@
         <!-- VIDEO SECTION -->
         <div class="video-grid">
             <div class="video-card">
-                <div class="video-thumb">
-                    <a href="https://youtu.be/dDNKZhJw8QU" target="_blank" rel="noopener" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;">
-                        <div class="video-placeholder">
-                            <div class="video-play">▶</div>
-                            <div class="video-label">Watch on YouTube</div>
-                        </div>
-                    </a>
+                <div class="video-thumb video-hover" data-video>
+                    <video muted loop playsinline preload="metadata">
+                        <source src="cabinet-from-floor-plan.mp4#t=0.1" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <div class="video-play">▶</div>
+                        <div class="video-label">Hover to play</div>
+                    </div>
                 </div>
                 <h4>WoodPrep – Cabinet from Floor Plan</h4>
                 <p>Generate a complete cabinet directly from a floor plan — panels, doors, drawers and hardware positioning, all automated.</p>
@@ -754,6 +764,49 @@
     </p>
     <p>© 2026 WoodPrep &nbsp;·&nbsp; AutoCAD® is a registered trademark of Autodesk, Inc. &nbsp;·&nbsp; Biesse® is a registered trademark of Biesse S.p.A.</p>
 </footer>
+
+<script>
+    // Hover-to-play on desktop, tap-to-play on touch devices
+    (function () {
+        var canHover = window.matchMedia('(hover: hover)').matches;
+        document.querySelectorAll('[data-video]').forEach(function (box) {
+            var video = box.querySelector('video');
+            if (!video) return;
+
+            var label = box.querySelector('.video-label');
+            if (label && !canHover) label.textContent = 'Tap to play';
+
+            function play() {
+                video.play().then(function () {
+                    box.classList.add('playing');
+                }).catch(function () {});
+            }
+            function stop(reset) {
+                video.pause();
+                box.classList.remove('playing');
+                if (reset) video.currentTime = 0;
+            }
+
+            if (canHover) {
+                box.addEventListener('mouseenter', play);
+                box.addEventListener('mouseleave', function () { stop(true); });
+            } else {
+                // Touch: tap toggles play/pause
+                box.addEventListener('click', function () {
+                    if (video.paused) { play(); } else { stop(false); }
+                });
+            }
+
+            // Fullscreen with sound on double-click / long labels handled via native controls fallback
+            box.addEventListener('dblclick', function () {
+                video.muted = false;
+                if (video.requestFullscreen) video.requestFullscreen();
+                else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+                play();
+            });
+        });
+    })();
+</script>
 
 </body>
 </html>
