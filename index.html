@@ -345,6 +345,53 @@
             justify-content: center;
         }
 
+        /* ── PERSONA CARDS ───────────────────────────────────────────────── */
+        .persona-section {
+            display: flex; gap: 16px; justify-content: center;
+            flex-wrap: wrap; margin-top: 36px;
+        }
+        .persona-label {
+            text-align: center; font-size: 0.78rem;
+            color: #444466; letter-spacing: 0.5px;
+            margin-top: 28px; margin-bottom: 4px;
+        }
+        .persona-card {
+            flex: 1; min-width: 240px; max-width: 320px;
+            border-radius: 14px; padding: 26px 22px;
+            text-align: left; border: 1.5px solid transparent;
+        }
+        .persona-card.blue {
+            background: rgba(77,184,255,0.07);
+            border-color: rgba(77,184,255,0.25);
+        }
+        .persona-card.green {
+            background: rgba(30,210,130,0.07);
+            border-color: rgba(30,210,130,0.2);
+        }
+        .persona-icon { font-size: 1.6rem; margin-bottom: 10px; }
+        .persona-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .persona-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+        .persona-flow {
+            font-size: 0.78rem; color: #555577; line-height: 1.9;
+            border-top: 1px solid var(--border); padding-top: 12px;
+        }
+        .persona-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+        .persona-pill {
+            font-size: 0.72rem; padding: 3px 10px;
+            border-radius: 12px; font-weight: 600;
+        }
+        .persona-pill.biesse { background: rgba(77,184,255,0.15); color: #4db8ff; }
+        .persona-pill.scm    { background: rgba(30,210,130,0.15); color: #1ed282; }
+        .persona-btn {
+            display: inline-block; margin-top: 16px;
+            font-size: 0.82rem; font-weight: 700;
+            padding: 9px 20px; border-radius: 8px;
+            text-decoration: none; transition: opacity 0.2s;
+        }
+        .persona-btn:hover { opacity: 0.85; }
+        .persona-btn.blue { background: var(--accent); color: #000; }
+        .persona-btn.green { background: #1ed282; color: #000; }
+
         /* ── ABOUT ───────────────────────────────────────────────────────── */
         .about-box {
             max-width: 700px; margin: 0 auto;
@@ -421,6 +468,39 @@
     <div class="hero-btns">
         <a href="#demo" class="btn-primary">Start Free Trial</a>
         <a href="#pricing" class="btn-secondary">View Pricing</a>
+    </div>
+
+    <p class="persona-label">Who are you?</p>
+    <div class="persona-section">
+        <div class="persona-card blue">
+            <div class="persona-icon">🪚</div>
+            <div class="persona-title">Starter or small shop</div>
+            <div class="persona-desc">You draw, send to a cutting service, and build. No CNC machine needed.</div>
+            <div class="persona-flow">
+                📐 Draw in AutoCAD<br>
+                📋 Get cutting list instantly<br>
+                ✂️ Send to cutting service<br>
+                🪑 Assemble the furniture
+            </div>
+            <a href="#pricing" class="persona-btn blue">See plans from €50/mo</a>
+        </div>
+        <div class="persona-card green">
+            <div class="persona-icon">⚙️</div>
+            <div class="persona-title">CNC workshop</div>
+            <div class="persona-desc">You run a CNC machine and need production programs generated automatically from AutoCAD.</div>
+            <div class="persona-flow">
+                📐 Draw in AutoCAD<br>
+                📋 Get cutting list + CNC program<br>
+                🤖 Load directly to your machine<br>
+                🏭 Run production
+            </div>
+            <div class="persona-pills">
+                <span class="persona-pill biesse">Biesse Rover</span>
+                <span class="persona-pill biesse">Biesse Skipper</span>
+                <span class="persona-pill scm">SCM</span>
+            </div>
+            <a href="#pricing" class="persona-btn green">Enterprise — €140/mo</a>
+        </div>
     </div>
 </section>
 
@@ -592,10 +672,9 @@
                     <li>Drawer fronts + Blum slide boxes</li>
                     <li>Auto hinge, shelf pin & minifix positioning</li>
                     <li>Cabinet from floor plan</li>
-                    <li>Biesse BPP program & CNC import file</li>
-                    <li>Tested on Rover & Skipper</li>
+                    <li>Biesse CNC (Rover & Skipper)</li>
+                    <li>SCM CNC (configured during setup)</li>
                     <li>Priority support</li>
-                    <li>Custom machine setup</li>
                 </ul>
                 <a href="mailto:support@woodprep.eu?subject=WoodPrep Enterprise" class="plan-btn plan-btn-secondary">Contact Us</a>
             </div>
