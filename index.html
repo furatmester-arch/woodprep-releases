@@ -345,6 +345,28 @@
             justify-content: center;
         }
 
+        /* ── QUICK WINS STRIP ───────────────────────────────────────────── */
+        .quickwins {
+            display: flex; justify-content: center;
+            gap: 0; flex-wrap: wrap;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: var(--bg2);
+        }
+        .qw-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 20px 36px;
+            border-right: 1px solid var(--border);
+        }
+        .qw-item:last-child { border-right: none; }
+        .qw-icon { font-size: 1.4rem; flex-shrink: 0; }
+        .qw-text strong { display: block; font-size: 0.92rem; font-weight: 700; color: var(--text); }
+        .qw-text span { font-size: 0.8rem; color: var(--muted); }
+        @media (max-width: 600px) {
+            .qw-item { border-right: none; border-bottom: 1px solid var(--border); width: 100%; }
+            .qw-item:last-child { border-bottom: none; }
+        }
+
         /* ── PERSONA CARDS ───────────────────────────────────────────────── */
         .persona-section {
             display: flex; gap: 16px; justify-content: center;
@@ -464,6 +486,7 @@
 <section class="hero">
     <div class="hero-badge">AutoCAD Plugin</div>
     <h1>From AutoCAD drawing to <span>production</span><br>in minutes</h1>
+    <p style="font-size:0.82rem; color:var(--accent); letter-spacing:0.4px; margin-bottom:4px; margin-top:-12px;">Keep using AutoCAD. WoodPrep simply adds production automation.</p>
     <p>Transform your AutoCAD drawings into production-ready cutting lists, material summaries, hardware summaries, and Biesse CNC programs. No redrawing required—works with both existing AutoCAD drawings and new WoodPrep projects.</p>
     <div class="hero-btns">
         <a href="#demo" class="btn-primary">Start Free Trial</a>
@@ -503,6 +526,31 @@
         </div>
     </div>
 </section>
+
+<!-- QUICK WINS STRIP -->
+<div class="quickwins">
+    <div class="qw-item">
+        <div class="qw-icon">⚡</div>
+        <div class="qw-text">
+            <strong>Installs in minutes</strong>
+            <span>Copy one file — runs inside AutoCAD</span>
+        </div>
+    </div>
+    <div class="qw-item">
+        <div class="qw-icon">📖</div>
+        <div class="qw-text">
+            <strong>No training required</strong>
+            <span>Works in AutoCAD you already know</span>
+        </div>
+    </div>
+    <div class="qw-item">
+        <div class="qw-icon">🔌</div>
+        <div class="qw-text">
+            <strong>No new software</strong>
+            <span>A plugin, not a new system to learn</span>
+        </div>
+    </div>
+</div>
 
 <!-- FEATURES -->
 <section id="features" style="background: var(--bg2);">
