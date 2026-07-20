@@ -197,7 +197,15 @@
             color: #fff; margin-bottom: 4px;
         }
         .plan-price span { font-size: 0.9rem; font-weight: 400; color: var(--muted); }
-        .plan-vat { font-size: 0.75rem; color: var(--muted); margin-bottom: 20px; }
+        .plan-vat { font-size: 0.75rem; color: var(--muted); margin-bottom: 8px; }
+        .plan-trial { font-size: 0.78rem; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+        .plan-contact-badge {
+            display: inline-block; font-size: 0.72rem; font-weight: 600;
+            padding: 3px 10px; border-radius: 10px; margin-bottom: 12px;
+            background: rgba(77,184,255,0.08); color: var(--accent);
+            border: 1px solid rgba(77,184,255,0.2);
+        }
+        .plan-contact-badge.cnc { background: rgba(30,210,130,0.08); color: #1ed282; border-color: rgba(30,210,130,0.2); }
         .plan-features { list-style: none; margin-bottom: 24px; }
         .plan-features li {
             font-size: 0.85rem; padding: 5px 0;
@@ -632,14 +640,14 @@
 <section id="pricing" style="background: var(--bg2);">
     <div class="container">
         <h2 class="section-title">Simple pricing</h2>
-        <p class="section-sub">Per machine license · Monthly subscription · Cancel anytime</p>
+        <p class="section-sub">All plans include a 14-day free trial · No credit card required · Cancel anytime</p>
         <div class="pricing-grid">
 
             <!-- BASIC -->
             <div class="plan">
                 <div class="plan-name">Basic</div>
-                <div class="plan-price">€50 <span>/mo</span></div>
-                <div class="plan-vat">+ VAT · per machine</div>
+                <div class="plan-vat">Per machine · monthly subscription</div>
+                <div class="plan-trial">14 days free trial included</div>
                 <ul class="plan-features plan-scroll">
                     <li>Excel cutting list export</li>
                     <li>Material & hardware list (Excel)</li>
@@ -648,18 +656,18 @@
                     <li>Back panel extraction</li>
                     <li>Show hidden parts</li>
                     <li class="no">Batch cabinet processing</li>
-                    <li class="no">Cabinet drawing</li>
+                    <li class="no">Cabinet design tools</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="mailto:support@woodprep.eu?subject=WoodPrep Basic Trial" class="plan-btn plan-btn-secondary">Start Trial</a>
+                <a href="mailto:support@woodprep.eu?subject=WoodPrep Basic Trial" class="plan-btn plan-btn-secondary">Start 14-day Trial</a>
             </div>
 
-            <!-- STANDARD -->
+            <!-- STARTER -->
             <div class="plan popular">
                 <div class="popular-badge">Most Popular</div>
-                <div class="plan-name">Standard</div>
-                <div class="plan-price">€75 <span>/mo</span></div>
-                <div class="plan-vat">+ VAT · per machine</div>
+                <div class="plan-name">Starter</div>
+                <div class="plan-vat">Per machine · monthly subscription</div>
+                <div class="plan-trial">14 days free trial included</div>
                 <ul class="plan-features plan-scroll">
                     <li>Excel cutting list export</li>
                     <li>Material & hardware list (Excel)</li>
@@ -670,17 +678,18 @@
                     <li>Batch cabinet processing</li>
                     <li>Find identical parts (in batch)</li>
                     <li>Mirror pair detection (in batch)</li>
-                    <li class="no">Cabinet drawing</li>
+                    <li class="no">Cabinet design tools</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="mailto:support@woodprep.eu?subject=WoodPrep Standard Trial" class="plan-btn plan-btn-primary">Start Trial</a>
+                <a href="mailto:support@woodprep.eu?subject=WoodPrep Starter Trial" class="plan-btn plan-btn-primary">Start 14-day Trial</a>
             </div>
 
             <!-- PRO -->
             <div class="plan">
+                <div class="plan-contact-badge">Contact only</div>
                 <div class="plan-name">Professional</div>
-                <div class="plan-price">€100 <span>/mo</span></div>
-                <div class="plan-vat">+ VAT · per machine</div>
+                <div class="plan-vat">Advanced production preparation · no CNC</div>
+                <div class="plan-trial">14 days free trial included</div>
                 <ul class="plan-features plan-scroll">
                     <li>Excel cutting list export</li>
                     <li>Material & hardware list (Excel)</li>
@@ -698,15 +707,15 @@
                     <li>Cabinet from floor plan</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="mailto:support@woodprep.eu?subject=WoodPrep Pro Trial" class="plan-btn plan-btn-secondary">Start Trial</a>
+                <a href="mailto:support@woodprep.eu?subject=WoodPrep Professional" class="plan-btn plan-btn-secondary">Contact us</a>
             </div>
 
             <!-- ENTERPRISE -->
             <div class="plan">
+                <div class="plan-contact-badge cnc">Contact only</div>
                 <div class="plan-name">Enterprise</div>
-                <div class="plan-price">from €140 <span>/mo</span></div>
-                <div class="plan-vat">+ VAT · per machine</div>
-                <div style="font-size:0.78rem; color:var(--accent); margin-bottom:8px;">Volume discounts available</div>
+                <div class="plan-vat">Advanced production preparation · with CNC</div>
+                <div class="plan-trial">14 days free trial · Volume discounts available</div>
                 <ul class="plan-features plan-scroll">
                     <li>Excel cutting list export</li>
                     <li>Material & hardware list (Excel)</li>
@@ -726,7 +735,7 @@
                     <li>SCM CNC (configured during setup)</li>
                     <li>Priority support</li>
                 </ul>
-                <a href="mailto:support@woodprep.eu?subject=WoodPrep Enterprise" class="plan-btn plan-btn-secondary">Contact Us</a>
+                <a href="mailto:support@woodprep.eu?subject=WoodPrep Enterprise" class="plan-btn plan-btn-secondary">Contact us</a>
             </div>
 
         </div>
@@ -866,8 +875,8 @@
 <section id="demo">
     <div class="container">
         <div class="demo-box">
-            <h2>Try it free for 3 days</h2>
-            <p>Download the plugin, install it, and test every feature — no credit card required. If it works for you, subscribe. If not, just don't.</p>
+            <h2>Try it free for 14 days</h2>
+            <p>Download the plugin, install it, and test every feature free for 14 days — no credit card required. If it works for you, subscribe. If not, just don't.</p>
             <div class="demo-steps">
                 <div class="demo-step">
                     <div class="demo-step-num">1</div>
@@ -883,7 +892,7 @@
                 </div>
                 <div class="demo-step">
                     <div class="demo-step-num">4</div>
-                    3 days free
+                    14 days free
                 </div>
             </div>
             <a href="mailto:support@woodprep.eu?subject=WoodPrep Demo Request" class="btn-primary" style="display:inline-block; margin-bottom:14px;">Request Demo Download</a>
