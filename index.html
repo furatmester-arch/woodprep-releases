@@ -353,6 +353,41 @@
             justify-content: center;
         }
 
+        /* ── EMAIL POPUP ─────────────────────────────────────────────────── */
+        .email-popup-overlay {
+            display: none; position: fixed; inset: 0; z-index: 999;
+            background: rgba(0,0,0,0.55); align-items: center; justify-content: center;
+        }
+        .email-popup-overlay.open { display: flex; }
+        .email-popup {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: 14px; padding: 32px 36px; text-align: center;
+            max-width: 360px; width: 90%;
+        }
+        .email-popup h3 { font-size: 1.1rem; margin-bottom: 8px; }
+        .email-popup p { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+        .email-display {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 8px; padding: 12px 16px;
+            font-size: 1rem; font-weight: 700; color: var(--accent);
+            margin-bottom: 16px; word-break: break-all;
+        }
+        .email-popup-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .btn-copy {
+            background: var(--accent); color: #000;
+            padding: 10px 24px; border-radius: 7px;
+            font-size: 0.88rem; font-weight: 700;
+            border: none; cursor: pointer; transition: background 0.2s;
+        }
+        .btn-copy:hover { background: var(--accent2); }
+        .btn-copy.copied { background: #1ed282; color: #000; }
+        .btn-close-popup {
+            background: transparent; border: 1px solid var(--border);
+            color: var(--muted); padding: 10px 20px; border-radius: 7px;
+            font-size: 0.88rem; cursor: pointer;
+        }
+        .btn-close-popup:hover { border-color: var(--accent); color: var(--accent); }
+
         /* ── QUICK WINS STRIP ───────────────────────────────────────────── */
         .quickwins {
             display: flex; justify-content: center;
@@ -659,7 +694,7 @@
                     <li class="no">Cabinet design tools</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="mailto:support@woodprep.eu?subject=WoodPrep Basic Trial" class="plan-btn plan-btn-secondary">Start 14-day Trial</a>
+                <a href="#" onclick="openEmailPopup(); return false;" class="plan-btn plan-btn-secondary">Start 14-day Trial</a>
             </div>
 
             <!-- STARTER -->
@@ -681,7 +716,7 @@
                     <li class="no">Cabinet design tools</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="mailto:support@woodprep.eu?subject=WoodPrep Starter Trial" class="plan-btn plan-btn-primary">Start 14-day Trial</a>
+                <a href="#" onclick="openEmailPopup(); return false;" class="plan-btn plan-btn-primary">Start 14-day Trial</a>
             </div>
 
             <!-- PRO -->
@@ -707,7 +742,7 @@
                     <li>Cabinet from floor plan</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="mailto:support@woodprep.eu?subject=WoodPrep Professional" class="plan-btn plan-btn-secondary">Contact us</a>
+                <a href="#" onclick="openEmailPopup(); return false;" class="plan-btn plan-btn-secondary">Contact us</a>
             </div>
 
             <!-- ENTERPRISE -->
@@ -735,12 +770,12 @@
                     <li>SCM CNC (configured during setup)</li>
                     <li>Priority support</li>
                 </ul>
-                <a href="mailto:support@woodprep.eu?subject=WoodPrep Enterprise" class="plan-btn plan-btn-secondary">Contact us</a>
+                <a href="#" onclick="openEmailPopup(); return false;" class="plan-btn plan-btn-secondary">Contact us</a>
             </div>
 
         </div>
         <p style="text-align:center; margin-top:28px; font-size:0.82rem; color:var(--muted);">
-            Enterprise requires compatibility testing on your machine before activation. <a href="mailto:support@woodprep.eu" style="color:var(--accent);">Contact us first.</a>
+            Enterprise requires compatibility testing on your machine before activation. <a href="#" onclick="openEmailPopup(); return false;" style="color:var(--accent);">Contact us first.</a>
         </p>
 
         <!-- VIDEO SECTION -->
@@ -761,15 +796,15 @@
             <div class="video-card">
                 <div class="video-thumb video-hover" data-video>
                     <video muted loop playsinline preload="metadata">
-                        <source src="cabinet-generator.mp4#t=0.1" type="video/mp4">
+                        <source src="starter.mp4#t=0.1" type="video/mp4">
                     </video>
                     <div class="video-overlay">
                         <div class="video-play">▶</div>
                         <div class="video-label">Hover to play</div>
                     </div>
                 </div>
-                <h4>Cabinet generator in action</h4>
-                <p>Draw a complete cabinet from dimensions in under a minute.</p>
+                <h4>WoodPrep Starter – Complete Kitchen</h4>
+                <p>Cutting list and hardware summary generated from a complete kitchen drawing in AutoCAD.</p>
             </div>
             <div class="video-card">
                 <div class="video-thumb">
@@ -895,7 +930,7 @@
                     14 days free
                 </div>
             </div>
-            <a href="mailto:support@woodprep.eu?subject=WoodPrep Demo Request" class="btn-primary" style="display:inline-block; margin-bottom:14px;">Request Demo Download</a>
+            <a href="#" onclick="openEmailPopup(); return false;" class="btn-primary" style="display:inline-block; margin-bottom:14px;">Request Demo Download</a>
             <br>
             <a href="https://github.com/user-attachments/files/29421087/test443.zip" style="color:var(--accent); font-size:0.85rem;" download>
                 Download port tester first →
@@ -923,7 +958,7 @@
 <!-- FOOTER -->
 <footer>
     <p style="margin-bottom:8px;">
-        <a href="mailto:support@woodprep.eu">support@woodprep.eu</a>
+        <a href="#" onclick="openEmailPopup(); return false;">support@woodprep.eu</a>
         &nbsp;·&nbsp;
         <a href="terms.html">Terms & Conditions</a>
         &nbsp;·&nbsp;
@@ -932,7 +967,39 @@
     <p>© 2026 WoodPrep &nbsp;·&nbsp; AutoCAD® is a registered trademark of Autodesk, Inc. &nbsp;·&nbsp; Biesse® is a registered trademark of Biesse S.p.A.</p>
 </footer>
 
+<!-- EMAIL POPUP -->
+<div class="email-popup-overlay" id="emailPopup">
+    <div class="email-popup">
+        <h3>Contact us</h3>
+        <p>Copy the email address below and send us a message.</p>
+        <div class="email-display">support@woodprep.eu</div>
+        <div class="email-popup-btns">
+            <button class="btn-copy" id="copyBtn" onclick="copyEmail()">Copy email</button>
+            <button class="btn-close-popup" onclick="closeEmailPopup()">Close</button>
+        </div>
+    </div>
+</div>
+
 <script>
+    function openEmailPopup() {
+        document.getElementById('emailPopup').classList.add('open');
+    }
+    function closeEmailPopup() {
+        document.getElementById('emailPopup').classList.remove('open');
+        document.getElementById('copyBtn').textContent = 'Copy email';
+        document.getElementById('copyBtn').classList.remove('copied');
+    }
+    function copyEmail() {
+        navigator.clipboard.writeText('support@woodprep.eu').then(function() {
+            var btn = document.getElementById('copyBtn');
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+        });
+    }
+    document.getElementById('emailPopup').addEventListener('click', function(e) {
+        if (e.target === this) closeEmailPopup();
+    });
+
     // Hover-to-play on desktop, tap-to-play on touch devices
     (function () {
         var canHover = window.matchMedia('(hover: hover)').matches;
