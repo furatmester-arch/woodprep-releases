@@ -994,6 +994,7 @@
 <script>
     function openEmailPopup() {
         document.getElementById('emailPopup').classList.add('open');
+        gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
     }
     function closeEmailPopup() {
         document.getElementById('emailPopup').classList.remove('open');
@@ -1005,6 +1006,7 @@
             var btn = document.getElementById('copyBtn');
             btn.textContent = 'Copied!';
             btn.classList.add('copied');
+            gtag('event', 'conversion', {'send_to': 'AW-18341941007/CIkvCLmcxNYcEI-ej6pE'});
         });
     }
     document.getElementById('emailPopup').addEventListener('click', function(e) {
