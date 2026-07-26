@@ -1042,10 +1042,6 @@
                 <input class="cf-input" id="pro-email" type="email" placeholder="name@company.com">
             </div>
             <div class="cf-field">
-                <label class="cf-label">CNC machine <span class="cf-opt">(if any)</span></label>
-                <input class="cf-input" id="pro-cnc" type="text" placeholder="e.g. Biesse Rover…">
-            </div>
-            <div class="cf-field">
                 <label class="cf-label">Notes <span class="cf-opt">(optional)</span></label>
                 <textarea class="cf-textarea" id="pro-notes" placeholder="Have questions about Excel (.xlsm) or other output formats? Let us know here."></textarea>
             </div>
@@ -1130,20 +1126,20 @@
     function submitProForm() {
         var company = document.getElementById('pro-company').value.trim();
         var email   = document.getElementById('pro-email').value.trim();
-        var cnc     = document.getElementById('pro-cnc').value.trim();
         var notes   = document.getElementById('pro-notes').value.trim();
         if (!company || !email) {
             document.getElementById('pro-company').style.borderColor = company ? '' : 'rgba(255,80,80,0.5)';
             document.getElementById('pro-email').style.borderColor   = email   ? '' : 'rgba(255,80,80,0.5)';
             return;
         }
-        var body = 'Plan: Professional\n\nCompany: ' + company + '\nEmail: ' + email;
-        if (cnc)   body += '\nCNC machine: ' + cnc;
-        if (notes) body += '\n\nNotes:\n' + notes;
-        var subject = 'WoodPrep Professional Trial – ' + company;
-        window.location.href = 'mailto:support@woodprep.eu?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        document.getElementById('proFormBody').innerHTML = '<div class="cf-success"><div class="cf-tick">✓</div><strong>Request sent!</strong><p>We\'ll be in touch within 1–2 business days.</p></div>';
-        gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
+        fetch('https://formspree.io/f/xwvgapqo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ plan: 'Professional', company: company, email: email, notes: notes })
+        }).then(function() {
+            document.getElementById('proFormBody').innerHTML = '<div class="cf-success"><div class="cf-tick">✓</div><strong>Request sent!</strong><p>We\'ll be in touch within 1–2 business days.</p></div>';
+            gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
+        });
     }
     document.getElementById('proForm').addEventListener('click', function(e) {
         if (e.target === this) closeProForm();
@@ -1167,12 +1163,14 @@
             document.getElementById('ent-cnc').style.borderColor     = cnc     ? '' : 'rgba(255,80,80,0.5)';
             return;
         }
-        var body = 'Plan: Enterprise\n\nCompany: ' + company + '\nEmail: ' + email + '\nCNC machine: ' + cnc;
-        if (notes) body += '\n\nNotes:\n' + notes;
-        var subject = 'WoodPrep Enterprise Trial – ' + company;
-        window.location.href = 'mailto:support@woodprep.eu?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        document.getElementById('entFormBody').innerHTML = '<div class="cf-success"><div class="cf-tick">✓</div><strong>Request sent!</strong><p>We\'ll be in touch within 1–2 business days.</p></div>';
-        gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
+        fetch('https://formspree.io/f/xwvgapqo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ plan: 'Enterprise', company: company, email: email, cnc_machine: cnc, notes: notes })
+        }).then(function() {
+            document.getElementById('entFormBody').innerHTML = '<div class="cf-success"><div class="cf-tick">✓</div><strong>Request sent!</strong><p>We\'ll be in touch within 1–2 business days.</p></div>';
+            gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
+        });
     }
     document.getElementById('entForm').addEventListener('click', function(e) {
         if (e.target === this) closeEntForm();
