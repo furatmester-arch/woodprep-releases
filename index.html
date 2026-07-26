@@ -390,6 +390,49 @@
         }
         .btn-close-popup:hover { border-color: var(--accent); color: var(--accent); }
 
+        /* ── CONTACT FORM MODALS ──────────────────────────────────────────── */
+        .cf-overlay {
+            display: none; position: fixed; inset: 0; z-index: 999;
+            background: rgba(0,0,0,0.65); align-items: center; justify-content: center; padding: 20px;
+        }
+        .cf-overlay.open { display: flex; }
+        .cf-box {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: 14px; padding: 32px 36px;
+            max-width: 460px; width: 100%;
+        }
+        .cf-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 22px; }
+        .cf-title { font-size: 1.1rem; font-weight: 700; }
+        .cf-subtitle { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+        .cf-close { background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; line-height: 1; padding: 0 2px; }
+        .cf-close:hover { color: var(--text); }
+        .cf-field { margin-bottom: 14px; }
+        .cf-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.2px; }
+        .cf-req { font-style: normal; }
+        .cf-opt { font-weight: 400; color: var(--muted); opacity: 0.7; }
+        .cf-input, .cf-textarea {
+            width: 100%; background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 8px; padding: 10px 14px; color: var(--text);
+            font-family: inherit; font-size: 0.88rem; transition: border-color 0.15s;
+        }
+        .cf-textarea { min-height: 76px; resize: vertical; }
+        .cf-box.pro .cf-input:focus, .cf-box.pro .cf-textarea:focus { outline: none; border-color: rgba(77,184,255,0.45); }
+        .cf-box.ent .cf-input:focus, .cf-box.ent .cf-textarea:focus { outline: none; border-color: rgba(30,210,130,0.45); }
+        .cf-box.pro .cf-req { color: var(--accent); }
+        .cf-box.ent .cf-req { color: #1ed282; }
+        .cf-submit {
+            width: 100%; padding: 12px; border-radius: 8px; border: none;
+            font-weight: 700; font-size: 0.9rem; cursor: pointer; margin-top: 6px;
+            transition: opacity 0.2s;
+        }
+        .cf-submit:hover { opacity: 0.88; }
+        .cf-box.pro .cf-submit { background: var(--accent); color: #000; }
+        .cf-box.ent .cf-submit { background: #1ed282; color: #000; }
+        .cf-success { text-align: center; padding: 16px 0 8px; }
+        .cf-success .cf-tick { font-size: 2.2rem; margin-bottom: 10px; }
+        .cf-success strong { font-size: 1rem; display: block; margin-bottom: 6px; }
+        .cf-success p { font-size: 0.84rem; color: var(--muted); }
+
         /* ── QUICK WINS STRIP ───────────────────────────────────────────── */
         .quickwins {
             display: flex; justify-content: center;
@@ -753,7 +796,7 @@
                     <li>Cabinet from floor plan</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="#" onclick="openEmailPopup(); return false;" class="plan-btn plan-btn-secondary">Contact us</a>
+                <a href="#" onclick="openProForm(); return false;" class="plan-btn plan-btn-secondary">Contact us</a>
             </div>
 
             <!-- ENTERPRISE -->
@@ -781,7 +824,7 @@
                     <li>SCM CNC (configured during setup)</li>
                     <li>Priority support</li>
                 </ul>
-                <a href="#" onclick="openEmailPopup(); return false;" class="plan-btn plan-btn-secondary">Contact us</a>
+                <a href="#" onclick="openEntForm(); return false;" class="plan-btn plan-btn-secondary">Contact us</a>
             </div>
 
         </div>
@@ -979,6 +1022,70 @@
 </footer>
 
 <!-- EMAIL POPUP -->
+<!-- PROFESSIONAL CONTACT FORM -->
+<div class="cf-overlay" id="proForm">
+    <div class="cf-box pro">
+        <div class="cf-header">
+            <div>
+                <div class="cf-title">WoodPrep Professional</div>
+                <div class="cf-subtitle">Request a 14-day trial</div>
+            </div>
+            <button class="cf-close" onclick="closeProForm()">×</button>
+        </div>
+        <div id="proFormBody">
+            <div class="cf-field">
+                <label class="cf-label">Company name <em class="cf-req">*</em></label>
+                <input class="cf-input" id="pro-company" type="text" placeholder="Furniture Co.">
+            </div>
+            <div class="cf-field">
+                <label class="cf-label">Company email <em class="cf-req">*</em></label>
+                <input class="cf-input" id="pro-email" type="email" placeholder="name@company.com">
+            </div>
+            <div class="cf-field">
+                <label class="cf-label">CNC machine <span class="cf-opt">(if any)</span></label>
+                <input class="cf-input" id="pro-cnc" type="text" placeholder="e.g. Biesse Rover…">
+            </div>
+            <div class="cf-field">
+                <label class="cf-label">Notes <span class="cf-opt">(optional)</span></label>
+                <textarea class="cf-textarea" id="pro-notes" placeholder="Have questions about Excel (.xlsm) or other output formats? Let us know here."></textarea>
+            </div>
+            <button class="cf-submit" onclick="submitProForm()">Request Professional Trial →</button>
+        </div>
+    </div>
+</div>
+
+<!-- ENTERPRISE CONTACT FORM -->
+<div class="cf-overlay" id="entForm">
+    <div class="cf-box ent">
+        <div class="cf-header">
+            <div>
+                <div class="cf-title">WoodPrep Enterprise</div>
+                <div class="cf-subtitle">Request a 14-day trial</div>
+            </div>
+            <button class="cf-close" onclick="closeEntForm()">×</button>
+        </div>
+        <div id="entFormBody">
+            <div class="cf-field">
+                <label class="cf-label">Company name <em class="cf-req">*</em></label>
+                <input class="cf-input" id="ent-company" type="text" placeholder="Furniture Co.">
+            </div>
+            <div class="cf-field">
+                <label class="cf-label">Company email <em class="cf-req">*</em></label>
+                <input class="cf-input" id="ent-email" type="email" placeholder="name@company.com">
+            </div>
+            <div class="cf-field">
+                <label class="cf-label">CNC machine type <em class="cf-req">*</em></label>
+                <input class="cf-input" id="ent-cnc" type="text" placeholder="e.g. Biesse Rover, SCM…">
+            </div>
+            <div class="cf-field">
+                <label class="cf-label">Notes <span class="cf-opt">(optional)</span></label>
+                <textarea class="cf-textarea" id="ent-notes" placeholder="Have questions about BPP, Excel (.xlsm), or other output formats? Let us know here."></textarea>
+            </div>
+            <button class="cf-submit" onclick="submitEntForm()">Request Enterprise Trial →</button>
+        </div>
+    </div>
+</div>
+
 <div class="email-popup-overlay" id="emailPopup">
     <div class="email-popup">
         <h3>Contact us</h3>
@@ -1011,6 +1118,64 @@
     }
     document.getElementById('emailPopup').addEventListener('click', function(e) {
         if (e.target === this) closeEmailPopup();
+    });
+
+    // Professional form
+    function openProForm() {
+        document.getElementById('proForm').classList.add('open');
+    }
+    function closeProForm() {
+        document.getElementById('proForm').classList.remove('open');
+    }
+    function submitProForm() {
+        var company = document.getElementById('pro-company').value.trim();
+        var email   = document.getElementById('pro-email').value.trim();
+        var cnc     = document.getElementById('pro-cnc').value.trim();
+        var notes   = document.getElementById('pro-notes').value.trim();
+        if (!company || !email) {
+            document.getElementById('pro-company').style.borderColor = company ? '' : 'rgba(255,80,80,0.5)';
+            document.getElementById('pro-email').style.borderColor   = email   ? '' : 'rgba(255,80,80,0.5)';
+            return;
+        }
+        var body = 'Plan: Professional\n\nCompany: ' + company + '\nEmail: ' + email;
+        if (cnc)   body += '\nCNC machine: ' + cnc;
+        if (notes) body += '\n\nNotes:\n' + notes;
+        var subject = 'WoodPrep Professional Trial – ' + company;
+        window.location.href = 'mailto:support@woodprep.eu?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        document.getElementById('proFormBody').innerHTML = '<div class="cf-success"><div class="cf-tick">✓</div><strong>Request sent!</strong><p>We\'ll be in touch within 1–2 business days.</p></div>';
+        gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
+    }
+    document.getElementById('proForm').addEventListener('click', function(e) {
+        if (e.target === this) closeProForm();
+    });
+
+    // Enterprise form
+    function openEntForm() {
+        document.getElementById('entForm').classList.add('open');
+    }
+    function closeEntForm() {
+        document.getElementById('entForm').classList.remove('open');
+    }
+    function submitEntForm() {
+        var company = document.getElementById('ent-company').value.trim();
+        var email   = document.getElementById('ent-email').value.trim();
+        var cnc     = document.getElementById('ent-cnc').value.trim();
+        var notes   = document.getElementById('ent-notes').value.trim();
+        if (!company || !email || !cnc) {
+            document.getElementById('ent-company').style.borderColor = company ? '' : 'rgba(255,80,80,0.5)';
+            document.getElementById('ent-email').style.borderColor   = email   ? '' : 'rgba(255,80,80,0.5)';
+            document.getElementById('ent-cnc').style.borderColor     = cnc     ? '' : 'rgba(255,80,80,0.5)';
+            return;
+        }
+        var body = 'Plan: Enterprise\n\nCompany: ' + company + '\nEmail: ' + email + '\nCNC machine: ' + cnc;
+        if (notes) body += '\n\nNotes:\n' + notes;
+        var subject = 'WoodPrep Enterprise Trial – ' + company;
+        window.location.href = 'mailto:support@woodprep.eu?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        document.getElementById('entFormBody').innerHTML = '<div class="cf-success"><div class="cf-tick">✓</div><strong>Request sent!</strong><p>We\'ll be in touch within 1–2 business days.</p></div>';
+        gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
+    }
+    document.getElementById('entForm').addEventListener('click', function(e) {
+        if (e.target === this) closeEntForm();
     });
 
     // Hover-to-play on desktop, tap-to-play on touch devices
