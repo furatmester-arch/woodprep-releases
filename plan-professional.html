@@ -3,203 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WoodPrep Professional – Command Reference</title>
+<title>WoodPrep Professional – Command Guide</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0f0f1a;--bg2:#16162a;--accent:#4db8ff;--text:#e8e8f0;--muted:#8888aa;--border:rgba(255,255,255,0.08);--amber:#f5a623}
-body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
-
-.header{padding:40px 40px 32px;border-bottom:1px solid var(--border)}
-.logo{font-size:1rem;font-weight:800;color:#fff;letter-spacing:-0.3px}
-.logo span{color:var(--accent)}
-.header h1{font-size:1.7rem;font-weight:800;margin-top:16px}
+:root{--bg:#0f0f1a;--bg2:#16162a;--accent:#4db8ff;--text:#e8e8f0;--muted:#8888aa;--border:rgba(255,255,255,0.08);--vbg:#0c0c18;--amber:#f5a623}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.header{padding:36px 48px 28px;border-bottom:1px solid var(--border)}
+.logo{font-size:0.95rem;font-weight:800;color:#fff}.logo span{color:var(--accent)}
+.header h1{font-size:1.6rem;font-weight:800;margin-top:14px;letter-spacing:-0.4px}
 .header h1 em{color:var(--accent);font-style:normal}
-.header p{color:var(--muted);font-size:0.9rem;margin-top:6px}
-
-.container{max-width:860px;padding:40px 40px 80px}
-.group{margin-bottom:44px}
-.group-title{font-size:0.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:16px}
-.cmd-list{display:flex;flex-direction:column;gap:8px}
-.cmd{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 18px;display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:start}
-.cmd-left{}
-.cmd-name{font-family:'Courier New',monospace;font-size:0.88rem;font-weight:700;color:var(--accent)}
-.cmd-badge{display:inline-block;margin-top:6px;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:8px}
-.cmd-badge.yes{background:rgba(77,184,255,0.1);color:var(--accent);border:1px solid rgba(77,184,255,0.2)}
-.cmd-badge.batch{background:rgba(245,166,35,0.1);color:var(--amber);border:1px solid rgba(245,166,35,0.2)}
-.cmd-right strong{color:var(--text);font-size:0.9rem;display:block;margin-bottom:4px}
-.cmd-right p{color:var(--muted);font-size:0.83rem;line-height:1.55}
-
-footer{padding:24px 40px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted)}
+.header p{color:var(--muted);font-size:0.88rem;margin-top:5px}
+.container{max-width:960px;padding:44px 48px 80px}
+.group{margin-bottom:52px}
+.group-label{font-size:0.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:20px}
+.cmd-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px}
+.cmd-card-inner{display:grid;grid-template-columns:1fr 300px;gap:0}
+.cmd-card.simple .cmd-card-inner{grid-template-columns:1fr}
+.cmd-info{padding:22px 24px}
+.cmd-head{display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.cmd-name{font-family:'Courier New',monospace;font-size:0.92rem;font-weight:700;color:var(--accent)}
+.badge{font-size:0.62rem;font-weight:700;padding:2px 9px;border-radius:7px}
+.badge.yes{background:rgba(77,184,255,0.1);color:var(--accent);border:1px solid rgba(77,184,255,0.2)}
+.badge.batch{background:rgba(245,166,35,0.1);color:var(--amber);border:1px solid rgba(245,166,35,0.2)}
+.cmd-title{color:var(--text);font-size:0.95rem;font-weight:600;margin-bottom:6px}
+.cmd-desc{color:var(--muted);font-size:0.83rem;line-height:1.6}
+.cmd-video{border-left:1px solid var(--border);background:var(--vbg);display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:background 0.2s}
+.cmd-video video{width:100%;height:100%;object-fit:cover;display:block}
+.cmd-video:hover{background:#111120}
+.vph{display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0.3;pointer-events:none}
+.vph-icon{width:40px;height:40px;border:2px solid var(--muted);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.vph-icon svg{width:14px;height:14px;fill:var(--muted);margin-left:2px}
+.vph span{font-size:0.66rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+footer{padding:24px 48px;border-top:1px solid var(--border);font-size:0.77rem;color:var(--muted)}
 footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--accent)}
-
-@media(max-width:580px){
+@media(max-width:640px){
   .header,.container,footer{padding-left:20px;padding-right:20px}
-  .cmd{grid-template-columns:1fr;gap:8px}
+  .cmd-card-inner{grid-template-columns:1fr}
+  .cmd-video{border-left:none;border-top:1px solid var(--border);min-height:190px}
 }
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="logo">Wood<span>Prep</span></div>
-  <h1>Professional — <em>Command Reference</em></h1>
-  <p>All commands available in the Professional plan.</p>
+  <h1>Professional — <em>Command Guide</em></h1>
+  <p>Short videos and descriptions for every command in your plan.</p>
 </div>
-
 <div class="container">
 
   <div class="group">
-    <div class="group-title">Production preparation</div>
-    <div class="cmd-list">
+    <div class="group-label">Production preparation</div>
 
-      <div class="cmd">
-        <div class="cmd-left">
-          <div class="cmd-name">CALCE26</div>
-          <span class="cmd-badge yes">Included</span>
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">CALCE26</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Material &amp; Hardware List</div>
+          <div class="cmd-desc">Generates a complete material and hardware summary from the drawing. Output files are Excel-importable: alapanyag.txt (board list) and vasalat.txt (hardware list).</div>
         </div>
-        <div class="cmd-right">
-          <strong>Material &amp; Hardware List</strong>
-          <p>Generates a complete material and hardware summary from the drawing. Output files are Excel-importable: alapanyag.txt (board list) and vasalat.txt (hardware list).</p>
+        <div class="cmd-video">
+          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
         </div>
       </div>
-
-      <div class="cmd">
-        <div class="cmd-left">
-          <div class="cmd-name">PP26</div>
-          <span class="cmd-badge yes">Included</span>
-        </div>
-        <div class="cmd-right">
-          <strong>Part Data Sheet + CNC Import Line</strong>
-          <p>Processes a single selected part. Records size, grain direction, and edgebanding on all four edges. Also writes the CNC import line to the output file.</p>
-        </div>
-      </div>
-
-      <div class="cmd">
-        <div class="cmd-left">
-          <div class="cmd-name">SIZEE26</div>
-          <span class="cmd-badge yes">Included</span>
-        </div>
-        <div class="cmd-right">
-          <strong>Bounding Size</strong>
-          <p>Reads the bounding box of the selected solid — X, Y, and thickness — and copies the values to the clipboard.</p>
-        </div>
-      </div>
-
     </div>
+
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">PP26</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Part Data Sheet + CNC Import Line</div>
+          <div class="cmd-desc">Processes a single selected part. Records size, grain direction, and edgebanding on all four edges. Also writes the CNC import line to the output file.</div>
+        </div>
+        <div class="cmd-video">
+          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card simple">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">SIZEE26</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Bounding Size</div>
+          <div class="cmd-desc">Reads the bounding box of the selected solid — X, Y, and thickness — and copies the values to the clipboard.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="group">
-    <div class="group-title">Part processing &amp; automation</div>
-    <div class="cmd-list">
+    <div class="group-label">Part processing &amp; automation</div>
 
-      <div class="cmd">
-        <div class="cmd-left">
-          <div class="cmd-name">CABINET</div>
-          <span class="cmd-badge yes">Included</span>
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">CABINET</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Batch Carcass Processing</div>
+          <div class="cmd-desc">Processes all parts of a carcass in one operation. Runs PP26 for each part automatically. Identical parts and mirror pairs are detected and highlighted during the batch.</div>
         </div>
-        <div class="cmd-right">
-          <strong>Batch Carcass Processing</strong>
-          <p>Processes all parts of a carcass in one operation. Runs PP26 for each part automatically and collects the full output.</p>
+        <div class="cmd-video">
+          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
         </div>
       </div>
-
-      <div class="cmd">
-        <div class="cmd-left">
-          <div class="cmd-name">IDENTICAL</div>
-          <span class="cmd-badge batch">Batch only</span>
-        </div>
-        <div class="cmd-right">
-          <strong>Find Identical Parts</strong>
-          <p>Detects parts with matching size and hole pattern. Highlights them and marks them as a group. Runs automatically inside CABINET — not available as a standalone command in this plan.</p>
-        </div>
-      </div>
-
-      <div class="cmd">
-        <div class="cmd-left">
-          <div class="cmd-name">MIRRORPAIR</div>
-          <span class="cmd-badge batch">Batch only</span>
-        </div>
-        <div class="cmd-right">
-          <strong>Detect Mirror Pairs</strong>
-          <p>Finds left–right mirrored part pairs to reduce CNC programs and optimise nesting. Runs automatically inside CABINET — not available as a standalone command in this plan.</p>
-        </div>
-      </div>
-
-      <div class="cmd">
-        <div class="cmd-left">
-          <div class="cmd-name">FINALIZEJOINTS</div>
-          <span class="cmd-badge yes">Included</span>
-        </div>
-        <div class="cmd-right">
-          <strong>Finalize Joints</strong>
-          <p>Subtracts all $DIFF_ helper solids from the carcass using Boolean operations. Run this before exporting to ensure accurate geometry.</p>
-        </div>
-      </div>
-
-      <div class="cmd">
-        <div class="cmd-left">
-          <div class="cmd-name">SUBTRACTBACK</div>
-          <span class="cmd-badge yes">Included</span>
-        </div>
-        <div class="cmd-right">
-          <strong>Subtract Back Panel</strong>
-          <p>Subtracts the back panel recess from the carcass body. Run once after designing the back groove.</p>
-        </div>
-      </div>
-
     </div>
+
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">IDENTICAL</span><span class="badge batch">Batch only</span></div>
+          <div class="cmd-title">Find Identical Parts</div>
+          <div class="cmd-desc">Detects parts with matching size and hole pattern. Highlights them and marks them as a group. Runs automatically inside CABINET — not available as a standalone command in this plan.</div>
+        </div>
+        <div class="cmd-video">
+          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">MIRRORPAIR</span><span class="badge batch">Batch only</span></div>
+          <div class="cmd-title">Detect Mirror Pairs</div>
+          <div class="cmd-desc">Finds left–right mirrored part pairs to reduce CNC programs and optimise nesting. Runs automatically inside CABINET — not available as a standalone command in this plan.</div>
+        </div>
+        <div class="cmd-video">
+          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">FINALIZEJOINTS</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Finalize Joints</div>
+          <div class="cmd-desc">Subtracts all $DIFF_ helper solids from the carcass using Boolean operations. Run this before exporting to ensure accurate geometry.</div>
+        </div>
+        <div class="cmd-video">
+          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">SUBTRACTBACK</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Subtract Back Panel</div>
+          <div class="cmd-desc">Subtracts the back panel recess from the carcass body. Run once after designing the back groove.</div>
+        </div>
+        <div class="cmd-video">
+          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card simple">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">SHOWALLE26</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Show All Hidden Parts</div>
+          <div class="cmd-desc">Reveals all hidden objects in the current drawing at once.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="group">
-    <div class="group-title">Cabinet design</div>
-    <div class="cmd-list">
+    <div class="group-label">Cabinet design</div>
 
-      <div class="cmd">
-        <div class="cmd-left">
-          <div class="cmd-name">CORPUS_CREATION</div>
-          <span class="cmd-badge yes">Included</span>
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">CORPUS_CREATION</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Parametric Cabinet Generator</div>
+          <div class="cmd-desc">Generates a complete carcass from parameters: doors (overlay &amp; inset, left &amp; right), drawers with Blum slide boxes, auto-positioned hinges, shelf pins, and minifix connectors.</div>
         </div>
-        <div class="cmd-right">
-          <strong>Parametric Cabinet Generator</strong>
-          <p>Generates a complete carcass from parameters: doors (overlay &amp; inset, left &amp; right), drawers with Blum slide boxes, auto-positioned hinges, shelf pins, and minifix connectors.</p>
+        <div class="cmd-video">
+          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
         </div>
       </div>
-
-      <div class="cmd">
-        <div class="cmd-left">
-          <div class="cmd-name">CORPUS_FROM_PLAN</div>
-          <span class="cmd-badge yes">Included</span>
-        </div>
-        <div class="cmd-right">
-          <strong>Generate from Floor Plan</strong>
-          <p>Reads room dimensions from an existing floor plan drawing and generates the carcass geometry automatically.</p>
-        </div>
-      </div>
-
     </div>
-  </div>
 
-  <div class="group">
-    <div class="group-title">Utilities</div>
-    <div class="cmd-list">
-
-      <div class="cmd">
-        <div class="cmd-left">
-          <div class="cmd-name">SHOWALLE26</div>
-          <span class="cmd-badge yes">Included</span>
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">CORPUS_FROM_PLAN</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Generate from Floor Plan</div>
+          <div class="cmd-desc">Reads room dimensions from an existing floor plan drawing and generates the carcass geometry automatically.</div>
         </div>
-        <div class="cmd-right">
-          <strong>Show All Hidden Parts</strong>
-          <p>Reveals all hidden objects in the current drawing at once.</p>
+        <div class="cmd-video">
+          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
         </div>
       </div>
-
     </div>
-  </div>
 
+  </div>
 </div>
-
 <footer>woodprep.eu &nbsp;·&nbsp; <a href="mailto:support@woodprep.eu">support@woodprep.eu</a></footer>
-
 </body>
 </html>
