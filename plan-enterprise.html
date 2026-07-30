@@ -15,13 +15,20 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .header p{color:var(--muted);font-size:0.88rem;margin-top:5px}
 .cnc-tag{display:inline-flex;gap:14px;margin-top:12px;font-size:0.78rem;color:var(--cnc)}
 .cnc-tag span::before{content:'✔ '}
+
+.plan-nav{display:flex;align-items:center;padding:14px 48px;background:var(--bg2);border-bottom:1px solid var(--border);overflow-x:auto;gap:4px;flex-shrink:0}
+.pn-step{font-size:0.78rem;font-weight:700;padding:5px 14px;border-radius:20px;text-decoration:none;color:var(--muted);white-space:nowrap;transition:color 0.2s;border:1px solid transparent}
+.pn-step:hover{color:var(--text)}
+.pn-step.active{background:rgba(30,210,130,0.12);color:var(--cnc);border-color:rgba(30,210,130,0.25)}
+.pn-arrow{color:var(--border);font-size:0.85rem;padding:0 2px;user-select:none;flex-shrink:0}
+
 .container{max-width:960px;padding:44px 48px 80px}
 .group{margin-bottom:52px}
 .group-label{font-size:0.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:20px}
 .group-label.cnc{color:var(--cnc);border-bottom-color:var(--border-cnc)}
 .cmd-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px}
 .cmd-card.cnc{background:var(--bg-cnc);border-color:var(--border-cnc)}
-.cmd-card-inner{display:grid;grid-template-columns:1fr 300px;gap:0}
+.cmd-card-inner{display:grid;grid-template-columns:1fr 300px}
 .cmd-card.simple .cmd-card-inner{grid-template-columns:1fr}
 .cmd-info{padding:22px 24px}
 .cmd-head{display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap}
@@ -30,21 +37,21 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .badge{font-size:0.62rem;font-weight:700;padding:2px 9px;border-radius:7px}
 .badge.yes{background:rgba(77,184,255,0.1);color:var(--accent);border:1px solid rgba(77,184,255,0.2)}
 .badge.cnc{background:rgba(30,210,130,0.1);color:var(--cnc);border:1px solid rgba(30,210,130,0.2)}
-.badge.dev{background:rgba(160,100,255,0.1);color:#b47fff;border:1px solid rgba(160,100,255,0.2)}
 .cmd-title{color:var(--text);font-size:0.95rem;font-weight:600;margin-bottom:6px}
 .cmd-desc{color:var(--muted);font-size:0.83rem;line-height:1.6}
-.cmd-video{border-left:1px solid var(--border);background:var(--vbg);display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:background 0.2s}
+.cmd-video{border-left:1px solid var(--border);background:var(--vbg);display:flex;align-items:center;justify-content:center;transition:background 0.2s}
 .cmd-card.cnc .cmd-video{background:var(--vbg-cnc);border-left-color:var(--border-cnc)}
-.cmd-video video{width:100%;height:100%;object-fit:cover;display:block}
 .cmd-video:hover{background:#111120}
 .vph{display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0.3;pointer-events:none}
 .vph-icon{width:40px;height:40px;border:2px solid var(--muted);border-radius:50%;display:flex;align-items:center;justify-content:center}
 .vph-icon svg{width:14px;height:14px;fill:var(--muted);margin-left:2px}
 .vph span{font-size:0.66rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+
 footer{padding:24px 48px;border-top:1px solid var(--border);font-size:0.77rem;color:var(--muted)}
 footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--accent)}
 @media(max-width:640px){
   .header,.container,footer{padding-left:20px;padding-right:20px}
+  .plan-nav{padding-left:20px;padding-right:20px}
   .cmd-card-inner{grid-template-columns:1fr}
   .cmd-video{border-left:none;border-top:1px solid var(--border);min-height:190px}
   .cnc-tag{flex-direction:column;gap:4px}
@@ -58,65 +65,75 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
   <p>Short videos and descriptions for every command in your plan.</p>
   <div class="cnc-tag"><span>Biesse Rover</span><span>Biesse Skipper</span><span>SCM CNC</span></div>
 </div>
+
+<div class="plan-nav">
+  <a href="plan-basic.html" class="pn-step">Basic</a>
+  <span class="pn-arrow">›</span>
+  <a href="plan-starter.html" class="pn-step">Starter</a>
+  <span class="pn-arrow">›</span>
+  <a href="plan-professional.html" class="pn-step">Professional</a>
+  <span class="pn-arrow">›</span>
+  <span class="pn-step active">Enterprise</span>
+</div>
+
 <div class="container">
 
   <div class="group">
     <div class="group-label">Production preparation</div>
-
     <div class="cmd-card">
       <div class="cmd-card-inner">
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">CALCE26</span><span class="badge yes">Included</span></div>
-          <div class="cmd-title">Material &amp; Hardware List</div>
-          <div class="cmd-desc">Generates a complete material and hardware summary from the drawing. Output files are Excel-importable: alapanyag.txt (board list) and vasalat.txt (hardware list).</div>
+          <div class="cmd-title">Material List</div>
+          <div class="cmd-desc">Collects all board parts from the drawing and writes the material list file. Open the Excel companion workbook and click <em>Import Parts</em> to load the full cutting list with sizes and quantities.</div>
         </div>
-        <div class="cmd-video">
-          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
-        </div>
+        <div class="cmd-video"><video src="kalk-material.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
       </div>
     </div>
-
-    <div class="cmd-card simple">
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">CALCE26</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Hardware List</div>
+          <div class="cmd-desc">Scans all <code style="font-size:0.8em;color:var(--accent)">VAS_</code> layers in the drawing and builds the complete hardware list. Open the Excel companion workbook and click <em>Import Hardware</em> to insert all items with quantities.</div>
+        </div>
+        <div class="cmd-video"><video src="kalk-hardware-list.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
+      </div>
+    </div>
+    <div class="cmd-card">
       <div class="cmd-card-inner">
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">SIZEE26</span><span class="badge yes">Included</span></div>
           <div class="cmd-title">Bounding Size</div>
           <div class="cmd-desc">Reads the bounding box of the selected solid — X, Y, and thickness — and copies the values to the clipboard.</div>
         </div>
+        <div class="cmd-video"><video src="bounding-size.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
       </div>
     </div>
-
   </div>
 
   <div class="group">
     <div class="group-label">Part processing &amp; automation</div>
-
     <div class="cmd-card">
       <div class="cmd-card-inner">
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">CABINET</span><span class="badge yes">Included</span></div>
-          <div class="cmd-title">Batch Carcass Processing</div>
-          <div class="cmd-desc">Processes all parts of a carcass in one operation. Runs EE26 for each part automatically and collects the full CNC output.</div>
+          <div class="cmd-title">Batch Carcass Processing → cnc_import.txt + CNC files</div>
+          <div class="cmd-desc">Iterates through every part of the carcass and runs EE26 on each one — no part can be missed. Simultaneously writes <strong>cnc_import.txt</strong> (for Excel import) and generates the CNC program file for each part. When all parts are done, open the Excel companion workbook and click <em>Import Parts</em>.</div>
         </div>
-        <div class="cmd-video">
-          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
-        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
     </div>
-
     <div class="cmd-card">
       <div class="cmd-card-inner">
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">IDENTICAL</span><span class="badge yes">Included</span></div>
           <div class="cmd-title">Find Identical Parts</div>
-          <div class="cmd-desc">Detects parts with matching size and hole pattern. Highlights them and marks them as a group. Available standalone and inside CABINET batch.</div>
+          <div class="cmd-desc">Detects parts with matching size and hole pattern, highlights them as a group. Available standalone and inside CABINET batch.</div>
         </div>
-        <div class="cmd-video">
-          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
-        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
     </div>
-
     <div class="cmd-card">
       <div class="cmd-card-inner">
         <div class="cmd-info">
@@ -124,12 +141,9 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
           <div class="cmd-title">Detect Mirror Pairs</div>
           <div class="cmd-desc">Finds left–right mirrored part pairs to reduce CNC programs and optimise nesting. Available standalone and inside CABINET batch.</div>
         </div>
-        <div class="cmd-video">
-          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
-        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
     </div>
-
     <div class="cmd-card">
       <div class="cmd-card-inner">
         <div class="cmd-info">
@@ -137,12 +151,9 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
           <div class="cmd-title">Finalize Joints</div>
           <div class="cmd-desc">Subtracts all $DIFF_ helper solids from the carcass using Boolean operations. Run this before exporting to ensure accurate geometry.</div>
         </div>
-        <div class="cmd-video">
-          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
-        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
     </div>
-
     <div class="cmd-card">
       <div class="cmd-card-inner">
         <div class="cmd-info">
@@ -150,12 +161,9 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
           <div class="cmd-title">Subtract Back Panel</div>
           <div class="cmd-desc">Subtracts the back panel recess from the carcass body. Run once after designing the back groove.</div>
         </div>
-        <div class="cmd-video">
-          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
-        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
     </div>
-
     <div class="cmd-card simple">
       <div class="cmd-card-inner">
         <div class="cmd-info">
@@ -165,7 +173,6 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
         </div>
       </div>
     </div>
-
     <div class="cmd-card simple">
       <div class="cmd-card-inner">
         <div class="cmd-info">
@@ -175,22 +182,20 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
         </div>
       </div>
     </div>
-
-    <div class="cmd-card simple">
+    <div class="cmd-card">
       <div class="cmd-card-inner">
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">SHOWALLE26</span><span class="badge yes">Included</span></div>
           <div class="cmd-title">Show All Hidden Parts</div>
           <div class="cmd-desc">Reveals all hidden objects in the current drawing at once.</div>
         </div>
+        <div class="cmd-video"><video src="showalle26.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
       </div>
     </div>
-
   </div>
 
   <div class="group">
     <div class="group-label">Cabinet design</div>
-
     <div class="cmd-card">
       <div class="cmd-card-inner">
         <div class="cmd-info">
@@ -198,12 +203,9 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
           <div class="cmd-title">Parametric Cabinet Generator</div>
           <div class="cmd-desc">Generates a complete carcass from parameters: doors (overlay &amp; inset, left &amp; right), drawers with Blum slide boxes, auto-positioned hinges, shelf pins, and minifix connectors.</div>
         </div>
-        <div class="cmd-video">
-          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
-        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
     </div>
-
     <div class="cmd-card">
       <div class="cmd-card-inner">
         <div class="cmd-info">
@@ -211,43 +213,23 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
           <div class="cmd-title">Generate from Floor Plan</div>
           <div class="cmd-desc">Reads room dimensions from an existing floor plan drawing and generates the carcass geometry automatically.</div>
         </div>
-        <div class="cmd-video">
-          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
-        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
     </div>
-
   </div>
 
   <div class="group">
     <div class="group-label cnc">CNC machine output</div>
-
     <div class="cmd-card cnc">
       <div class="cmd-card-inner">
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">EE26</span><span class="badge cnc">CNC output</span></div>
-          <div class="cmd-title">Full Part Data + CNC / BPP Output</div>
-          <div class="cmd-desc">Processes a single selected part and generates the complete CNC program file — BPP format for Biesse Skipper/Rover, or SCM format. Includes hole patterns, edgebanding, and grain direction.</div>
+          <div class="cmd-title">Full Part Data → CNC file + cnc_import.txt</div>
+          <div class="cmd-desc">Processes a single selected part: records size, grain direction, edgebanding, and hole pattern — then writes the CNC program file (BPP for Biesse Skipper/Rover, or SCM format) and appends the line to <strong>cnc_import.txt</strong>. Use CABINET to run this on every part automatically.</div>
         </div>
-        <div class="cmd-video">
-          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
-        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
     </div>
-
-    <div class="cmd-card cnc">
-      <div class="cmd-card-inner">
-        <div class="cmd-info">
-          <div class="cmd-head"><span class="cmd-name">WW26</span><span class="badge cnc">CNC output</span></div>
-          <div class="cmd-title">Quick Single-Part BPP Output</div>
-          <div class="cmd-desc">Sends the selected part directly to the CNC machine without opening any dialog. Fastest path from drawing to machine.</div>
-        </div>
-        <div class="cmd-video">
-          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
-        </div>
-      </div>
-    </div>
-
     <div class="cmd-card cnc">
       <div class="cmd-card-inner">
         <div class="cmd-info">
@@ -255,23 +237,11 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
           <div class="cmd-title">Hole Pattern Check</div>
           <div class="cmd-desc">Validates the hole pattern on the selected part and lists all detected holes. Use to verify CNC output before sending to the machine.</div>
         </div>
-        <div class="cmd-video">
-          <div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div>
-        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
     </div>
-
-    <div class="cmd-card cnc simple">
-      <div class="cmd-card-inner">
-        <div class="cmd-info">
-          <div class="cmd-head"><span class="cmd-name">BREP_DEBUG</span><span class="badge dev">Dev / debug</span></div>
-          <div class="cmd-title">Hole Detection Debug</div>
-          <div class="cmd-desc">Developer-level diagnostic tool for inspecting the B-rep solid and troubleshooting hole detection issues.</div>
-        </div>
-      </div>
-    </div>
-
   </div>
+
 </div>
 <footer>woodprep.eu &nbsp;·&nbsp; <a href="mailto:support@woodprep.eu">support@woodprep.eu</a></footer>
 </body>
