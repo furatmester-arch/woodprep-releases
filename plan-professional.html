@@ -107,7 +107,7 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">PP26</span><span class="badge yes">Included</span></div>
           <div class="cmd-title">Part Data Sheet → cnc_import.txt</div>
-          <div class="cmd-desc">Processes a single selected part: records size, grain direction, and edgebanding on all four edges, then appends the line to <strong>cnc_import.txt</strong>. Use CABINET to run this automatically on every part so none are missed.</div>
+          <div class="cmd-desc">Select parts individually in any order — they are exported to the cutting list in exactly the order you picked them. For each part you can define its description, quantity, and edge banding, and choose whether the grain direction may be rotated during cutting optimization.</div>
         </div>
         <div class="cmd-video"><video src="pp26.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)" style="width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;"></video></div>
       </div>
@@ -131,7 +131,7 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">CABINET</span><span class="badge yes">Included</span></div>
           <div class="cmd-title">Batch Carcass Processing → cnc_import.txt</div>
-          <div class="cmd-desc">Iterates through every part of the carcass and runs PP26 on each one — no part can be missed. When the last part is done, <strong>cnc_import.txt</strong> is complete. Open the Excel companion workbook and click <em>Import Parts</em> to load all parts with edgebanding and quantities in one step.</div>
+          <div class="cmd-desc">Process every cabinet part in your drawing with a single command. No manual part selection is required. Parts on Hardware (<code style="font-size:0.8em;color:var(--accent)">VAS_</code>) layers are ignored automatically, while every cabinet part is transferred individually to PP26, allowing you to define edge banding, grain direction, and other production settings before export.</div>
         </div>
         <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
@@ -141,7 +141,7 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">IDENTICAL</span><span class="badge batch">Batch only</span></div>
           <div class="cmd-title">Find Identical Parts</div>
-          <div class="cmd-desc">Detects parts with matching size and hole pattern, highlights them as a group. Runs automatically inside CABINET — not available standalone in this plan.</div>
+          <div class="cmd-desc">Detects identical parts in your drawing based on both dimensions and hole patterns. When enabled, matching parts are grouped automatically and quantities are filled in. When disabled, every part is processed individually, allowing different settings for each part.</div>
         </div>
         <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
@@ -151,7 +151,7 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">MIRRORPAIR</span><span class="badge batch">Batch only</span></div>
           <div class="cmd-title">Detect Mirror Pairs</div>
-          <div class="cmd-desc">Finds left–right mirrored part pairs to reduce CNC programs and optimise nesting. Runs automatically inside CABINET — not available standalone in this plan.</div>
+          <div class="cmd-desc">Detects left and right mirrored parts, such as cabinet side panels, door pairs, and other symmetrical components. Detection is based on both part dimensions and hole patterns, ensuring accurate recognition of mirrored parts. When enabled, mirrored parts are grouped automatically and quantities are filled in. When disabled, every part is processed individually, allowing different settings for each part.</div>
         </div>
         <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
       </div>
