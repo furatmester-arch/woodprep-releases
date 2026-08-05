@@ -1,0 +1,38 @@
+# WoodPrep
+
+> AutoCAD plugin for furniture and cabinet manufacturers. It turns existing AutoCAD 3D drawings into production-ready output: Excel cutting lists, material and hardware summaries, and CNC programs for Biesse (Skipper, Rover) and SCM machines — without redrawing anything in separate CAM software.
+
+WoodPrep runs inside AutoCAD on Windows and is licensed per machine as a monthly subscription. Plans start at €50/month; the Enterprise plan with direct CNC output is €140/month. Every plan includes a 14-day free trial with no credit card required.
+
+The core idea: a furniture maker who already designs in AutoCAD should not have to re-enter part data into a separate cutting-optimization or CAM program. WoodPrep reads the solids in the drawing and writes the production files directly.
+
+## What it does
+
+- **Cutting lists to Excel** — collects every board part from the drawing with sizes and quantities, imported into a companion Excel workbook in one click.
+- **Hardware lists** — scans layers prefixed `VAS_` and builds a complete hardware summary with quantities.
+- **Edge banding and grain direction** — each of the four edges of a part can get its own edge material and thickness; grain direction can be locked or left free for cutting optimization.
+- **Batch processing** — one command walks every cabinet part in the drawing, so no part is missed. Hardware layers are skipped automatically.
+- **Identical part and mirror pair detection** — matches parts by both dimensions and hole pattern, groups them, and fills in quantities. Mirror detection handles left/right pairs such as cabinet sides and door pairs.
+- **Parametric cabinet generation** — builds complete carcasses from parameters: doors (overlay or inset, left or right swing), drawers sized automatically for Blum 560F undermount slides with 16 mm or 18 mm drawer boxes, auto-positioned hinges, shelf pins, minifix connectors, and open shelf units with curved arched sides.
+- **Generate from floor plan** — reads room dimensions from an existing floor plan drawing and generates carcass geometry.
+- **CNC program output (Enterprise)** — writes BPP files for Biesse Skipper and Rover, or SCM format, including the hole pattern, alongside the cutting list.
+- **Geometry helpers** — boolean joint finalization, back panel recess subtraction by layer, bounding size readout, and revealing hidden parts.
+
+## Who it is for
+
+Furniture and cabinet manufacturers, kitchen makers, and shopfitters who already model in AutoCAD and want to skip manual data entry between design and production. Especially relevant for shops running Biesse or SCM CNC machinery, and for anyone currently retyping part lists into cutting-optimization software by hand.
+
+## Plans
+
+- [Basic](https://woodprep.eu/plan-basic.html): Excel cutting and hardware lists, bounding size, joint finalization, back panel extraction. No batch processing.
+- [Starter](https://woodprep.eu/plan-starter.html): adds batch cabinet processing, identical part detection, and mirror pair detection.
+- [Professional](https://woodprep.eu/plan-professional.html): adds parametric cabinet design — door cabinets, Blum 560F drawer cabinets, and generation from floor plans.
+- [Enterprise](https://woodprep.eu/plan-enterprise.html): adds direct CNC machine output for Biesse Rover, Biesse Skipper, and SCM.
+
+## Links
+
+- [Home and pricing](https://woodprep.eu/): overview, feature comparison, plan pricing, free trial signup.
+- [Terms of service](https://woodprep.eu/terms.html)
+- [Privacy policy](https://woodprep.eu/privacy.html)
+
+Each plan page above lists every command included in that plan with a short description and a demonstration video.
