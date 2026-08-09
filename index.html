@@ -389,6 +389,23 @@
             font-size: 0.88rem; cursor: pointer;
         }
         .btn-close-popup:hover { border-color: var(--accent); color: var(--accent); }
+        .dl-block { display: none; }
+        .dl-block.show { display: block; }
+        .btn-dl {
+            display: block; width: 100%; background: #1ed282; color: #04120a;
+            padding: 13px 24px; border-radius: 8px;
+            font-size: 0.92rem; font-weight: 700;
+            text-decoration: none; border: none; cursor: pointer;
+        }
+        .btn-dl:hover { opacity: 0.88; }
+        .dl-note { font-size: 0.73rem; color: var(--muted); margin-top: 9px; }
+        .dl-sep {
+            display: flex; align-items: center; gap: 12px;
+            margin: 20px 0 4px; color: var(--muted); font-size: 0.73rem;
+        }
+        .dl-sep::before, .dl-sep::after {
+            content: ''; flex: 1; height: 1px; background: var(--border);
+        }
 
         /* ── CONTACT FORM MODALS ──────────────────────────────────────────── */
         .cf-overlay {
@@ -770,7 +787,7 @@
                     <li class="no">Cabinet design tools</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="#" onclick="openEmailPopup(); return false;" class="plan-btn plan-btn-primary">Start 14-day Trial</a>
+                <a href="#" onclick="openEmailPopup('WoodPrep_Standard_14nap_v1.1.zip'); return false;" class="plan-btn plan-btn-primary">Start 14-day Trial</a>
             </div>
 
             <!-- PRO -->
@@ -1084,8 +1101,13 @@
 
 <div class="email-popup-overlay" id="emailPopup">
     <div class="email-popup">
-        <h3>Contact us</h3>
-        <p>Copy the email address below and send us a message.</p>
+        <h3 id="popupTitle">Contact us</h3>
+        <div class="dl-block" id="dlBlock">
+            <a href="#" id="dlLink" class="btn-dl" download>Download 14-day trial</a>
+            <div class="dl-note">Windows · AutoCAD · ZIP, 136 KB</div>
+            <div class="dl-sep">or write to us</div>
+        </div>
+        <p id="popupText">Copy the email address below and send us a message.</p>
         <div class="email-display">support@woodprep.eu</div>
         <div class="email-popup-btns">
             <button class="btn-copy" id="copyBtn" onclick="copyEmail()">Copy email</button>
@@ -1095,7 +1117,18 @@
 </div>
 
 <script>
-    function openEmailPopup() {
+    function openEmailPopup(dlFile) {
+        var blk = document.getElementById('dlBlock');
+        if (dlFile) {
+            document.getElementById('dlLink').setAttribute('href', dlFile);
+            blk.classList.add('show');
+            document.getElementById('popupTitle').textContent = 'Start your 14-day trial';
+            document.getElementById('popupText').textContent = 'Questions before you start? Write to us:';
+        } else {
+            blk.classList.remove('show');
+            document.getElementById('popupTitle').textContent = 'Contact us';
+            document.getElementById('popupText').textContent = 'Copy the email address below and send us a message.';
+        }
         document.getElementById('emailPopup').classList.add('open');
         gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
     }
