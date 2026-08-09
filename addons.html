@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="WoodPrep add-on modules: extend any plan with panel cutting optimization, edge banding and full costing. Billed per machine, no plan upgrade required.">
+<link rel="canonical" href="https://woodprep.eu/addons.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://woodprep.eu/addons.html">
+<meta property="og:title" content="Add-on Modules – Extend Any Plan | WoodPrep">
+<meta property="og:description" content="Panel cutting optimization, edge banding and full costing modules for WoodPrep. Attach to any plan, billed per machine.">
+<title>Add-on Modules – Extend Any Plan | WoodPrep</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f0f1a;--bg2:#16162a;--accent:#4db8ff;--amber:#f5a623;--text:#e8e8f0;--muted:#8888aa;--border:rgba(255,255,255,0.08);--border-amber:rgba(245,166,35,0.18);--bg-amber:#1a1509}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.header{padding:36px 48px 28px;border-bottom:1px solid var(--border)}
+.logo{font-size:0.95rem;font-weight:800;color:#fff;text-decoration:none}.logo span{color:var(--accent)}
+.header h1{font-size:1.6rem;font-weight:800;margin-top:14px;letter-spacing:-0.4px}
+.header h1 em{color:var(--amber);font-style:normal}
+.header p{color:var(--muted);font-size:0.88rem;margin-top:5px;max-width:640px}
+
+.plan-nav{display:flex;align-items:center;padding:14px 48px;background:var(--bg2);border-bottom:1px solid var(--border);overflow-x:auto;gap:4px}
+.pn-step{font-size:0.78rem;font-weight:700;padding:5px 14px;border-radius:20px;text-decoration:none;color:var(--muted);white-space:nowrap;border:1px solid transparent}
+.pn-step:hover{color:var(--text)}
+.pn-step.active{background:rgba(245,166,35,0.12);color:var(--amber);border-color:rgba(245,166,35,0.25)}
+.pn-arrow{color:var(--border);font-size:0.85rem;padding:0 2px;user-select:none}
+
+.container{max-width:960px;padding:44px 48px 60px}
+.intro{background:var(--bg-amber);border:1px solid var(--border-amber);border-radius:12px;padding:26px 30px;margin-bottom:40px}
+.intro h2{font-size:1.05rem;font-weight:700;margin-bottom:8px}
+.intro p{color:var(--muted);font-size:0.86rem;max-width:660px}
+
+.group-label{font-size:0.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:20px}
+
+.mod{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-bottom:14px;display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.mod.available{border-color:var(--border-amber)}
+.mod-left{flex:1;min-width:280px}
+.mod-head{display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.mod-name{font-family:'Courier New',monospace;font-size:0.92rem;font-weight:700;color:var(--amber)}
+.mod-badge{font-size:0.62rem;font-weight:700;padding:2px 9px;border-radius:7px;background:rgba(245,166,35,0.1);color:var(--amber);border:1px solid rgba(245,166,35,0.2)}
+.mod-badge.soon{background:rgba(136,136,170,0.1);color:var(--muted);border-color:rgba(136,136,170,0.2)}
+.mod-title{font-size:1rem;font-weight:700;margin-bottom:6px}
+.mod-desc{color:var(--muted);font-size:0.84rem;max-width:560px}
+.mod-list{list-style:none;margin-top:12px}
+.mod-list li{color:var(--muted);font-size:0.82rem;padding-left:18px;position:relative;margin-bottom:3px}
+.mod-list li::before{content:'✔';position:absolute;left:0;color:var(--amber);font-size:0.75rem}
+.mod-right{text-align:right;flex-shrink:0;min-width:150px}
+.mod-price{font-size:1.9rem;font-weight:800;color:var(--amber);line-height:1}
+.mod-price.soon{color:var(--muted);font-size:1.1rem}
+.mod-unit{font-size:0.74rem;color:var(--muted);margin-top:5px}
+.mod-btn{display:inline-block;margin-top:14px;background:var(--amber);color:#1a1509;font-weight:700;font-size:0.82rem;padding:9px 20px;border-radius:8px;text-decoration:none}
+.mod-btn:hover{opacity:0.9}
+.mod-btn.ghost{background:none;border:1px solid var(--border);color:var(--muted);font-weight:600}
+
+.compat{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-top:34px}
+.compat-title{font-size:0.95rem;font-weight:700;margin-bottom:8px}
+.compat-sub{font-size:0.83rem;color:var(--muted);margin-bottom:16px}
+.compat-tags{display:flex;flex-wrap:wrap;gap:8px}
+.compat-tags a{font-size:0.78rem;font-weight:700;padding:5px 14px;border-radius:20px;background:rgba(77,184,255,0.07);color:var(--accent);border:1px solid rgba(77,184,255,0.15);text-decoration:none}
+.compat-tags a:hover{background:rgba(77,184,255,0.14)}
+
+footer{padding:24px 48px;border-top:1px solid var(--border);font-size:0.77rem;color:var(--muted)}
+footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--accent)}
+@media(max-width:640px){
+  .header,.container,footer{padding-left:20px;padding-right:20px}
+  .plan-nav{padding-left:20px;padding-right:20px}
+  .mod{flex-direction:column}
+  .mod-right{text-align:left}
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="index.html" class="logo">Wood<span>Prep</span></a>
+  <h1>Add-on <em>Modules</em></h1>
+  <p>Extend the plan you already have. Modules attach to Basic, Starter, Professional or Enterprise alike — no upgrade needed, billed per machine.</p>
+</div>
+
+<div class="plan-nav">
+  <a href="plan-basic.html" class="pn-step">Basic</a>
+  <span class="pn-arrow">›</span>
+  <a href="plan-starter.html" class="pn-step">Starter</a>
+  <span class="pn-arrow">›</span>
+  <a href="plan-professional.html" class="pn-step">Professional</a>
+  <span class="pn-arrow">›</span>
+  <a href="plan-enterprise.html" class="pn-step">Enterprise</a>
+  <span class="pn-arrow">+</span>
+  <span class="pn-step active">Add-ons</span>
+</div>
+
+<div class="container">
+
+  <div class="intro">
+    <h2>Pay only for what you actually use</h2>
+    <p>Not every workshop needs cutting optimization, and not every workshop needs costing. Instead of pushing everyone up a plan tier, WoodPrep keeps these as separate modules — you attach the one you need to your current subscription, and leave the rest.</p>
+  </div>
+
+  <div class="group-label">Available now</div>
+
+  <div class="mod available">
+    <div class="mod-left">
+      <div class="mod-head"><span class="mod-name">PANELCUT</span><span class="mod-badge">Available</span></div>
+      <div class="mod-title">Panel Cutting Optimization</div>
+      <div class="mod-desc">Generates optimized cutting maps from the parts on a chosen layer of your AutoCAD drawing — with your own board size, saw kerf and trim allowance.</div>
+      <ul class="mod-list">
+        <li>Cutting maps generated straight from the DWG</li>
+        <li>Configurable board size, saw kerf and edge trim</li>
+        <li>Waste and material utilisation figures per board</li>
+        <li>Printable summary and cutting maps for the shop floor</li>
+      </ul>
+    </div>
+    <div class="mod-right">
+      <div class="mod-price">€30</div>
+      <div class="mod-unit">per machine / month</div>
+      <a href="panelcut.html" class="mod-btn">See details</a>
+    </div>
+  </div>
+
+  <div class="group-label" style="margin-top:44px">In development</div>
+
+  <div class="mod">
+    <div class="mod-left">
+      <div class="mod-head"><span class="mod-name">EDGEBAND</span><span class="mod-badge soon">Coming soon</span></div>
+      <div class="mod-title">Edge Banding Module</div>
+      <div class="mod-desc">Extended edge banding handling beyond the built-in per-edge assignment — banding stock consumption, material grouping and dedicated reporting.</div>
+    </div>
+    <div class="mod-right">
+      <div class="mod-price soon">Coming soon</div>
+      <div class="mod-unit">pricing to be announced</div>
+    </div>
+  </div>
+
+  <div class="mod">
+    <div class="mod-left">
+      <div class="mod-head"><span class="mod-name">COSTING</span><span class="mod-badge soon">Coming soon</span></div>
+      <div class="mod-title">Full Costing</div>
+      <div class="mod-desc">Complete job costing on top of the cutting and hardware lists — board, edge banding, hardware and labour combined into one quotable figure.</div>
+    </div>
+    <div class="mod-right">
+      <div class="mod-price soon">Coming soon</div>
+      <div class="mod-unit">pricing to be announced</div>
+    </div>
+  </div>
+
+  <div class="compat">
+    <div class="compat-title">Compatible with every plan</div>
+    <div class="compat-sub">Modules are not a plan tier. Whichever subscription you run, you can attach any available module to it.</div>
+    <div class="compat-tags">
+      <a href="plan-basic.html">Basic</a>
+      <a href="plan-starter.html">Starter</a>
+      <a href="plan-professional.html">Professional</a>
+      <a href="plan-enterprise.html">Enterprise</a>
+    </div>
+  </div>
+
+</div>
+<footer>woodprep.eu &nbsp;·&nbsp; <a href="mailto:support@woodprep.eu">support@woodprep.eu</a></footer>
+</body>
+</html>
