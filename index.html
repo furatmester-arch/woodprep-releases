@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -192,6 +192,13 @@
             text-transform: uppercase; letter-spacing: 1px;
         }
         .plan-name { font-size: 1rem; font-weight: 600; margin-bottom: 6px; color: var(--muted); }
+        .plan-name a {
+            color: inherit; text-decoration: none;
+            border-bottom: 1px dotted rgba(255,255,255,0.28);
+            padding-bottom: 1px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .plan-name a:hover { color: var(--accent); border-bottom-color: var(--accent); }
         .plan-ref-link { display: block; text-align: center; font-size: 0.78rem; color: var(--muted); text-decoration: none; margin-top: 10px; opacity: 0.7; }
         .plan-ref-link:hover { color: var(--accent); opacity: 1; }
         .plan-price {
@@ -379,6 +386,13 @@
             padding-bottom: 14px;
         }
         .compare-table thead .ent-col { color: var(--accent); }
+        .compare-table thead th a {
+            color: inherit; text-decoration: none;
+            border-bottom: 1px dotted rgba(255,255,255,0.28);
+            padding-bottom: 1px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .compare-table thead th a:hover { color: var(--accent); border-bottom-color: var(--accent); }
         .compare-table .feat-col {
             text-align: left; width: 40%; color: var(--text); font-size: 13px;
         }
@@ -794,7 +808,7 @@
 
             <!-- BASIC -->
             <div class="plan">
-                <div class="plan-name"><a href="plan-basic.html" style="color:inherit;text-decoration:none;">Basic</a></div>
+                <div class="plan-name"><a href="plan-basic.html">Basic</a></div>
                 <div class="plan-vat">Per machine · monthly subscription</div>
                 <div class="plan-trial">14 days free trial included</div>
                 <ul class="plan-features plan-scroll">
@@ -814,7 +828,7 @@
             <!-- STARTER -->
             <div class="plan popular">
                 <div class="popular-badge">Most Popular</div>
-                <div class="plan-name"><a href="plan-starter.html" style="color:inherit;text-decoration:none;">Starter</a></div>
+                <div class="plan-name"><a href="plan-starter.html">Starter</a></div>
                 <div class="plan-vat">Per machine · monthly subscription</div>
                 <div class="plan-trial">14 days free trial included</div>
                 <ul class="plan-features plan-scroll">
@@ -836,7 +850,7 @@
             <!-- PRO -->
             <div class="plan">
                 <div class="plan-contact-badge">Contact only</div>
-                <div class="plan-name"><a href="plan-professional.html" style="color:inherit;text-decoration:none;">Professional</a></div>
+                <div class="plan-name"><a href="plan-professional.html">Professional</a></div>
                 <div class="plan-vat">Advanced production preparation · no CNC</div>
                 <div class="plan-trial">14 days free trial included</div>
                 <ul class="plan-features plan-scroll">
@@ -862,7 +876,7 @@
             <!-- ENTERPRISE -->
             <div class="plan">
                 <div class="plan-contact-badge cnc">Contact only</div>
-                <div class="plan-name"><a href="plan-enterprise.html" style="color:inherit;text-decoration:none;">Enterprise</a></div>
+                <div class="plan-name"><a href="plan-enterprise.html">Enterprise</a></div>
                 <div class="plan-vat">Advanced production preparation · with CNC</div>
                 <div class="plan-trial">14 days free trial · Volume discounts available</div>
                 <ul class="plan-features plan-scroll">
@@ -960,10 +974,10 @@
                     <thead>
                         <tr>
                             <th class="feat-col"></th>
-                            <th><a href="plan-basic.html" style="color:inherit;text-decoration:none;">Basic</a></th>
-                            <th><a href="plan-starter.html" style="color:inherit;text-decoration:none;">Starter</a></th>
-                            <th><a href="plan-professional.html" style="color:inherit;text-decoration:none;">Professional</a></th>
-                            <th class="ent-col"><a href="plan-enterprise.html" style="color:inherit;text-decoration:none;">Enterprise</a></th>
+                            <th><a href="plan-basic.html">Basic</a></th>
+                            <th><a href="plan-starter.html">Starter</a></th>
+                            <th><a href="plan-professional.html">Professional</a></th>
+                            <th class="ent-col"><a href="plan-enterprise.html">Enterprise</a></th>
                         </tr>
                     </thead>
                     <tbody>
