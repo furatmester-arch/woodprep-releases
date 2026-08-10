@@ -233,6 +233,49 @@
         }
         .plan-btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
+        /* ── ADD-ON MODULES ──────────────────────────────────────────────── */
+        .addon-section { margin-top: 60px; }
+        .addon-head { text-align: center; }
+        .addon-label {
+            display: inline-block; font-size: 0.66rem; font-weight: 700;
+            letter-spacing: 2.5px; text-transform: uppercase; color: #f5a623;
+            border: 1px solid rgba(245,166,35,0.25); background: rgba(245,166,35,0.07);
+            padding: 5px 16px; border-radius: 20px;
+        }
+        .addon-sub {
+            text-align: center; font-size: 0.85rem; color: var(--muted);
+            margin: 14px 0 24px;
+        }
+        .addon-card {
+            background: rgba(245,166,35,0.04); border: 1px solid rgba(245,166,35,0.18);
+            border-radius: 12px; padding: 26px 30px;
+            max-width: 720px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 28px; flex-wrap: wrap;
+        }
+        .addon-card-left { flex: 1; min-width: 250px; }
+        .addon-name {
+            font-family: 'Courier New', monospace; font-size: 0.86rem;
+            font-weight: 700; color: #f5a623; margin-bottom: 5px;
+        }
+        .addon-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+        .addon-desc { font-size: 0.83rem; color: var(--muted); }
+        .addon-right { text-align: right; flex-shrink: 0; }
+        .addon-price { font-size: 1.8rem; font-weight: 800; color: #f5a623; line-height: 1; }
+        .addon-price span { font-size: 1.1rem; }
+        .addon-unit { font-size: 0.71rem; color: var(--muted); margin-top: 6px; line-height: 1.45; }
+        .addon-btn {
+            display: inline-block; margin-top: 13px;
+            background: #f5a623; color: #1a1509;
+            font-weight: 700; font-size: 0.82rem;
+            padding: 9px 20px; border-radius: 7px; text-decoration: none;
+        }
+        .addon-btn:hover { opacity: 0.88; }
+        @media(max-width:640px){
+            .addon-card { flex-direction: column; align-items: flex-start; }
+            .addon-right { text-align: left; }
+        }
+
         /* ── PLAN SCROLL LIST ────────────────────────────────────────────── */
         .plan-scroll {
             max-height: 260px;
@@ -848,6 +891,24 @@
         <p style="text-align:center; margin-top:28px; font-size:0.82rem; color:var(--muted);">
             Enterprise requires compatibility testing on your machine before activation. <a href="#" onclick="openEmailPopup(); return false;" style="color:var(--accent);">Contact us first.</a>
         </p>
+
+        <!-- ADD-ON MODULES -->
+        <div class="addon-section">
+            <div class="addon-head"><span class="addon-label">Add-ons</span></div>
+            <p class="addon-sub">Not included in any plan — add separately to the subscription you already have.</p>
+            <div class="addon-card">
+                <div class="addon-card-left">
+                    <div class="addon-name">PANELCUT</div>
+                    <div class="addon-title">Panel Cutting Optimization</div>
+                    <div class="addon-desc">Cutting maps generated straight from your drawing — with your own board size, saw kerf and trim allowance, plus waste and material utilisation figures. Works with Basic, Starter, Professional and Enterprise alike.</div>
+                </div>
+                <div class="addon-right">
+                    <div class="addon-price"><span>+</span>€30</div>
+                    <div class="addon-unit">per machine / month<br>on top of your plan</div>
+                    <a href="panelcut.html" class="addon-btn">See details</a>
+                </div>
+            </div>
+        </div>
 
         <!-- VIDEO SECTION -->
         <div class="video-grid">
