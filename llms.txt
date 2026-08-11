@@ -29,6 +29,14 @@ Furniture and cabinet manufacturers, kitchen makers, and shopfitters who already
 - [Professional](https://woodprep.eu/plan-professional.html): adds parametric cabinet design — door cabinets, Blum 560F drawer cabinets, and generation from floor plans.
 - [Enterprise](https://woodprep.eu/plan-enterprise.html): adds direct CNC machine output for Biesse Rover, Biesse Skipper, and SCM.
 
+## Add-on modules
+
+Add-ons are optional modules that attach to any plan — Basic, Starter, Professional or Enterprise alike. They are billed per machine on top of the existing subscription, so no plan upgrade is needed to get them.
+
+- [Panel Cutting Optimization](https://woodprep.eu/panelcut.html) (PANELCUT, €30 per machine per month): generates optimized cutting maps from the parts on a chosen layer of the AutoCAD drawing. Board size, saw blade thickness (kerf) and edge trim allowance are configurable to match the actual saw, and every board is reported with its offcut waste and material utilisation. Both the summary sheet and the cutting maps can be printed for the shop floor.
+
+Two further modules are in development: extended edge banding handling, and full job costing combining board, edge banding, hardware and labour.
+
 ## Links
 
 - [Home and pricing](https://woodprep.eu/): overview, feature comparison, plan pricing, free trial signup.

@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Panel Cutting add-on for WoodPrep: generates optimized cutting maps from your AutoCAD drawing. Set board size, saw kerf and trim, calculate waste and yield, print maps for the shop floor. €30/month with any plan.">
 <link rel="canonical" href="https://woodprep.eu/panelcut.html">
 <meta property="og:type" content="article">
@@ -129,7 +128,7 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
           <div class="cmd-title">Cutting maps from the drawing</div>
           <div class="cmd-desc">Reads every part on the selected layer of your DWG and lays them out into optimized cutting maps. No exporting, no retyping — the parts you already drew become the cutting plan.</div>
         </div>
-        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
+        <div class="cmd-video"><video src="panelcut-maps.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)" style="width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;"></video></div>
       </div>
     </div>
 
@@ -140,7 +139,7 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
           <div class="cmd-title">Set up for your own machine</div>
           <div class="cmd-desc">Define the board size you buy, the saw blade thickness (kerf) and the trim allowance on the board edges. The layout is calculated with your real values, so the map matches what the saw will actually cut.</div>
         </div>
-        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
+        <div class="cmd-video"><video src="panelcut-setup.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)" style="width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;"></video></div>
       </div>
     </div>
 
@@ -151,7 +150,7 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
           <div class="cmd-title">Waste and yield figures</div>
           <div class="cmd-desc">Every board is reported with its offcut waste and material utilisation, so you can see before cutting how much of the sheet actually turns into parts — and quote accordingly.</div>
         </div>
-        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
+        <div class="cmd-video"><img src="panelcut-yield.png" alt="Waste and yield figures" onclick="openLb(this.src)" style="width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;"></div>
       </div>
     </div>
 
@@ -162,7 +161,7 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
           <div class="cmd-title">Printable summary and maps</div>
           <div class="cmd-desc">Print the summary sheet for the office and the cutting maps for the shop floor. The operator gets a drawing of every board with the parts positioned on it.</div>
         </div>
-        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div><span>Coming soon</span></div></div>
+        <div class="cmd-video"><img src="panelcut-print.png" alt="Printable summary and cutting maps" onclick="openLb(this.src)" style="width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;"></div>
       </div>
     </div>
 
@@ -218,6 +217,29 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
   </div>
 
 </div>
+<div id="vlb" onclick="if(event.target===this)closeLb()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;">
+  <button onclick="closeLb()" style="position:absolute;top:16px;right:22px;background:none;border:none;color:#fff;font-size:2.4rem;line-height:1;cursor:pointer;opacity:0.7;" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.7">&times;</button>
+  <video id="vlb-v" controls style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;outline:none;background:#000;"></video>
+  <img id="vlb-i" style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;">
+</div>
+<script>
+function openLb(src){
+  var v=document.getElementById('vlb-v'), i=document.getElementById('vlb-i');
+  if(/\.(png|jpe?g|webp|gif)$/i.test(src)){
+    i.src=src; i.style.display='block'; v.style.display='none';
+  } else {
+    v.src=src; v.style.display='block'; i.style.display='none';
+    try{var pr=v.play(); if(pr) pr.catch(function(){});}catch(e){}
+  }
+  document.getElementById('vlb').style.display='flex';
+}
+function closeLb(){
+  var v=document.getElementById('vlb-v'), i=document.getElementById('vlb-i');
+  document.getElementById('vlb').style.display='none';
+  v.pause(); v.removeAttribute('src'); v.load(); i.removeAttribute('src');
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+</script>
 <footer>woodprep.eu &nbsp;·&nbsp; <a href="mailto:support@woodprep.eu">support@woodprep.eu</a></footer>
 </body>
 </html>
