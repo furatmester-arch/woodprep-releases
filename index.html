@@ -822,7 +822,7 @@
                     <li class="no">Cabinet design tools</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="#" onclick="openEmailPopup(); return false;" class="plan-btn plan-btn-secondary">Start 14-day Trial</a>
+                <a href="#" onclick="openEmailPopup('WoodPrep_Basic_14nap_v1.4.zip','Basic'); return false;" class="plan-btn plan-btn-secondary">Start 14-day Trial</a>
             </div>
 
             <!-- STARTER -->
@@ -844,7 +844,7 @@
                     <li class="no">Cabinet design tools</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="#" onclick="openEmailPopup('WoodPrep_Standard_14nap_v1.2.zip'); return false;" class="plan-btn plan-btn-primary">Start 14-day Trial</a>
+                <a href="#" onclick="openEmailPopup('WoodPrep_Standard_14nap_v1.4.zip','Starter'); return false;" class="plan-btn plan-btn-primary">Start 14-day Trial</a>
             </div>
 
             <!-- PRO -->
@@ -1064,28 +1064,30 @@
             <div class="demo-steps">
                 <div class="demo-step">
                     <div class="demo-step-num">1</div>
-                    Check your port
+                    Download &amp; unzip
                 </div>
                 <div class="demo-step">
                     <div class="demo-step-num">2</div>
-                    Download plugin
+                    Run Install.cmd
                 </div>
                 <div class="demo-step">
                     <div class="demo-step-num">3</div>
-                    Register in AutoCAD
+                    Start AutoCAD
                 </div>
                 <div class="demo-step">
                     <div class="demo-step-num">4</div>
-                    14 days free
+                    Register — 14 days free
                 </div>
             </div>
-            <a href="#" onclick="openEmailPopup(); return false;" class="btn-primary" style="display:inline-block; margin-bottom:14px;">Request Demo Download</a>
-            <br>
-            <a href="https://github.com/user-attachments/files/29421087/test443.zip" style="color:var(--accent); font-size:0.85rem;" download>
-                Download port tester first →
-            </a>
-            <p style="font-size:0.78rem; margin-top:16px; margin-bottom:0;">
-                Requires AutoCAD · Port 443 outbound must be open
+            <a href="#" onclick="openEmailPopup('WoodPrep_Standard_14nap_v1.4.zip','Starter'); return false;" class="btn-primary" style="display:inline-block; margin-bottom:14px;">Download free trial</a>
+            <p style="font-size:0.78rem; margin-top:4px; margin-bottom:0;">
+                Requires AutoCAD 2025 or 2026 · The plugin loads itself — no NETLOAD needed
+            </p>
+            <p style="font-size:0.78rem; margin-top:10px; margin-bottom:0; color:var(--muted);">
+                Prefer not to run an installer? The zip includes manual instructions — it's a single folder copy.
+            </p>
+            <p style="font-size:0.78rem; margin-top:12px; margin-bottom:0;">
+                <a href="test443.zip" style="color:var(--muted); text-decoration:underline;" download>Connection problem? Test port 443 →</a>
             </p>
         </div>
     </div>
@@ -1182,7 +1184,7 @@
         <h3 id="popupTitle">Contact us</h3>
         <div class="dl-block" id="dlBlock">
             <a href="#" id="dlLink" class="btn-dl" download>Download 14-day trial</a>
-            <div class="dl-note">Windows · AutoCAD · ZIP, 136 KB</div>
+            <div class="dl-note">Windows · AutoCAD 2025 or 2026 · ZIP</div>
             <div class="dl-sep">or write to us</div>
         </div>
         <p id="popupText">Copy the email address below and send us a message.</p>
@@ -1195,10 +1197,11 @@
 </div>
 
 <script>
-    function openEmailPopup(dlFile) {
+    function openEmailPopup(dlFile, planName) {
         var blk = document.getElementById('dlBlock');
         if (dlFile) {
             document.getElementById('dlLink').setAttribute('href', dlFile);
+            document.getElementById('dlLink').textContent = planName ? ('Download WoodPrep ' + planName) : 'Download 14-day trial';
             blk.classList.add('show');
             document.getElementById('popupTitle').textContent = 'Start your 14-day trial';
             document.getElementById('popupText').textContent = 'Questions before you start? Write to us:';
