@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How to generate cabinet geometry from an existing floor plan in AutoCAD: room dimensions read from the drawing you already have, turned into a carcass ready for the cutting list.">
+<link rel="canonical" href="https://woodprep.eu/how-to-generate-cabinet-from-floor-plan-autocad.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://woodprep.eu/how-to-generate-cabinet-from-floor-plan-autocad.html">
+<meta property="og:title" content="How to Generate a Cabinet From a Floor Plan in AutoCAD">
+<meta property="og:description" content="Room dimensions read straight from the floor plan and turned into carcass geometry — no re-measuring, no retyping.">
+<title>How to Generate a Cabinet From a Floor Plan in AutoCAD | WoodPrep</title>
+<link rel="stylesheet" href="howto.css">
+</head>
+<body>
+<div class="header">
+  <a href="index.html" class="logo">Wood<span>Prep</span></a>
+  <div class="crumb"><a href="index.html">Home</a> &nbsp;›&nbsp; How to</div>
+  <h1>How to Generate a Cabinet From a Floor Plan in AutoCAD</h1>
+  <p class="sub">Using the room drawing you already have as the starting point for the carcass.</p>
+</div>
+
+<div class="container">
+
+  <p class="lead">The job usually starts with a floor plan: the room measured, the walls drawn, the run marked out. Then the cabinet gets modelled — and the same dimensions get typed in a second time, by hand, into a new drawing.</p>
+
+  <h2>The second entry is where the error creeps in</h2>
+
+  <p>Nothing is wrong with the floor plan; it was measured on site and it is correct. The risk is in the copying. A wall that is 2 840&nbsp;mm on the plan becomes 2 480&nbsp;mm in the cabinet model, and nobody notices until the units are on the van.</p>
+
+  <p>It is also simply slow. Re-entering dimensions you already have is the kind of work that feels like progress but produces nothing new.</p>
+
+  <h2>Read the plan instead of retyping it</h2>
+
+  <p>The <code>CORPUS_FROM_PLAN</code> command takes the room dimensions from the existing floor plan drawing and generates the carcass geometry from them. The plan stays the single source of truth — if the wall is 2 840, the cabinet is built to 2 840, because it was never typed in twice.</p>
+
+  <div class="vid">
+    <video src="cabinet-from-floor-plan.mp4" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)"></video>
+    <div class="vid-cap">A complete cabinet generated directly from a floor plan — panels, doors, drawers and hardware positioning. Hover to play, click to enlarge.</div>
+  </div>
+
+  <h2>Step by step</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Start from the floor plan you already drew</h4>
+        <p>The room layout from the site survey — no special preparation needed.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Run CORPUS_FROM_PLAN</h4>
+        <p>The room dimensions are read from the drawing and the carcass geometry is generated to match.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Adjust as an ordinary model</h4>
+        <p>What comes out is normal AutoCAD geometry. Edit it, add drawers, change a divider — nothing is locked.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Carry on to the cutting list</h4>
+        <p>Run <code>CABINET</code> on the result and the parts go through to Excel like any other drawing.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>What you end up with</h2>
+
+  <ul class="plain check">
+    <li>Cabinet dimensions taken from the measured plan, not re-entered</li>
+    <li>One source of truth for the room size</li>
+    <li>Editable geometry, not a locked block</li>
+    <li>A model that flows straight into the cutting list and the CNC output</li>
+  </ul>
+
+  <div class="cta">
+    <h3>Try it on your own drawing</h3>
+    <p>14-day free trial, no credit card. If it works for you, subscribe — if not, just don't.</p>
+    <a href="index.html#demo">Download the free trial</a>
+  </div>
+
+  <div class="related">
+    <div class="related-label">Related guides</div>
+    <div class="related-grid">
+      <a href="how-to-design-cabinet-blum-560f-autocad.html">How to Design a Cabinet in AutoCAD With Blum 560F Drawers</a>
+      <a href="how-to-create-cutting-list-autocad.html">How to Create a Cutting List From an AutoCAD Drawing</a>
+      <a href="how-to-create-hardware-list-autocad.html">How to Create a Hardware List From an AutoCAD Drawing</a>
+      <a href="how-to-export-autocad-parts-to-excel.html">How to Export AutoCAD Parts to Excel</a>
+    </div>
+  </div>
+
+</div>
+
+<div id="vlb" onclick="if(event.target===this)closeLb()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;">
+  <button onclick="closeLb()" style="position:absolute;top:16px;right:22px;background:none;border:none;color:#fff;font-size:2.4rem;line-height:1;cursor:pointer;opacity:0.7;" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.7">&times;</button>
+  <video id="vlb-v" controls style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;outline:none;background:#000;"></video>
+  <img id="vlb-i" style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;">
+</div>
+<script>
+function openLb(src){var v=document.getElementById('vlb-v'),i=document.getElementById('vlb-i');
+if(/\.(png|jpe?g|webp|gif)$/i.test(src)){i.src=src;i.style.display='block';v.style.display='none';}
+else{v.src=src;v.style.display='block';i.style.display='none';try{var p=v.play();if(p)p.catch(function(){});}catch(e){}}
+document.getElementById('vlb').style.display='flex';}
+function closeLb(){var v=document.getElementById('vlb-v'),i=document.getElementById('vlb-i');
+document.getElementById('vlb').style.display='none';v.pause();v.removeAttribute('src');v.load();i.removeAttribute('src');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+</script>
+<footer>woodprep.eu &nbsp;·&nbsp; <a href="mailto:support@woodprep.eu">support@woodprep.eu</a></footer>
+</body>
+</html>

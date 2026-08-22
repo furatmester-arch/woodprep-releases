@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How to create panel cutting maps from an AutoCAD drawing: board size, saw kerf and trim allowance set to your own machine, with waste and material utilisation calculated per board.">
+<link rel="canonical" href="https://woodprep.eu/how-to-create-panel-cutting-maps-autocad.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://woodprep.eu/how-to-create-panel-cutting-maps-autocad.html">
+<meta property="og:title" content="How to Create Panel Cutting Maps From AutoCAD">
+<meta property="og:description" content="Cutting maps generated from the parts in your drawing, with your own board size, saw kerf and trim — plus waste and utilisation figures.">
+<title>How to Create Panel Cutting Maps From AutoCAD | WoodPrep</title>
+<link rel="stylesheet" href="howto.css">
+</head>
+<body>
+<div class="header">
+  <a href="index.html" class="logo">Wood<span>Prep</span></a>
+  <div class="crumb"><a href="index.html">Home</a> &nbsp;›&nbsp; How to</div>
+  <h1>How to Create Panel Cutting Maps From AutoCAD</h1>
+  <p class="sub">Turning the parts in your drawing into a sheet layout — with your own board size, blade and trim.</p>
+</div>
+
+<div class="container">
+
+  <p class="lead">A cutting list tells you what parts you need. It does not tell you how many boards to buy, or how to get those parts out of them. That step — the layout — is usually done in separate software, which means exporting, re-importing, and keeping two things in sync.</p>
+
+  <h2>Why the layout normally happens somewhere else</h2>
+
+  <p>Cutting optimization is its own category of software, and it expects a list as input: part sizes, quantities, material. So the workflow becomes draw → list → export → optimize → print, with a handover at every arrow. Each handover is a place where the data can drift out of date.</p>
+
+  <p>For a workshop that already has the parts drawn in AutoCAD, that is a lot of moving between programs to answer a fairly simple question: how many sheets, and how do I cut them.</p>
+
+  <h2>Generate the maps from the drawing itself</h2>
+
+  <p>The <code>PANELCUT</code> module reads the parts on a chosen layer of the drawing and lays them out into cutting maps. There is no export step, because the source is the drawing you already have.</p>
+
+  <p>What matters is that it uses <strong>your</strong> numbers, not generic ones:</p>
+
+  <ul class="plain">
+    <li>The board size you actually buy</li>
+    <li>Your saw blade thickness (kerf)</li>
+    <li>The trim allowance you take off the board edges</li>
+  </ul>
+
+  <p>A layout calculated with the wrong kerf looks fine on paper and comes up short at the saw — which is why these are settings, not assumptions.</p>
+
+  <div class="vid">
+    <video src="panelcut-setup.mp4" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)"></video>
+    <div class="vid-cap">Setting the board size, saw kerf and trim allowance to match the machine. Hover to play, click to enlarge.</div>
+  </div>
+
+  <h2>Waste and utilisation, before you cut</h2>
+
+  <p>Every board is reported with its offcut waste and its material utilisation. That number is useful twice: it tells you how many sheets to order, and it tells you what the job actually costs in material — before you have committed to anything.</p>
+
+  <div class="vid">
+    <video src="panelcut-maps.mp4" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)"></video>
+    <div class="vid-cap">Cutting maps generated from the parts on the selected layer.</div>
+  </div>
+
+  <h2>Printed for the office and for the saw</h2>
+
+  <p>The summary sheet goes to the office — sheet count, waste, utilisation. The cutting maps go to the shop floor, each board drawn with its parts positioned on it, so the operator has a picture rather than a list of numbers.</p>
+
+  <div class="callout amber">
+    <h3>Panel Cutting is an add-on</h3>
+    <p>This module is not part of the plans — it attaches to whichever subscription you already have, for €30 per machine per month, with no plan upgrade needed. It is also not included in the 14-day trial; the videos above show it running on a real drawing. <a href="panelcut.html" style="color:var(--amber);">See the module page →</a></p>
+  </div>
+
+  <h2>What you end up with</h2>
+
+  <ul class="plain check">
+    <li>Cutting maps generated from the drawing, with no export step</li>
+    <li>Layout calculated with your board size, kerf and trim</li>
+    <li>Waste and utilisation figures per board</li>
+    <li>Printable summary for the office and maps for the saw</li>
+  </ul>
+
+  <div class="cta">
+    <h3>See what it does on a real drawing</h3>
+    <p>The module page has the full walkthrough, with videos of every step.</p>
+    <a href="panelcut.html">Panel Cutting module</a>
+  </div>
+
+  <div class="related">
+    <div class="related-label">Related guides</div>
+    <div class="related-grid">
+      <a href="how-to-create-cutting-list-autocad.html">How to Create a Cutting List From an AutoCAD Drawing</a>
+      <a href="how-to-add-edge-banding-autocad.html">How to Add Edge Banding Data to Parts in AutoCAD</a>
+      <a href="how-to-export-autocad-parts-to-excel.html">How to Export AutoCAD Parts to Excel</a>
+      <a href="how-to-detect-identical-mirrored-parts-autocad.html">How to Detect Identical and Mirrored Parts in AutoCAD</a>
+    </div>
+  </div>
+
+</div>
+
+<div id="vlb" onclick="if(event.target===this)closeLb()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;">
+  <button onclick="closeLb()" style="position:absolute;top:16px;right:22px;background:none;border:none;color:#fff;font-size:2.4rem;line-height:1;cursor:pointer;opacity:0.7;" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.7">&times;</button>
+  <video id="vlb-v" controls style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;outline:none;background:#000;"></video>
+  <img id="vlb-i" style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;">
+</div>
+<script>
+function openLb(src){var v=document.getElementById('vlb-v'),i=document.getElementById('vlb-i');
+if(/\.(png|jpe?g|webp|gif)$/i.test(src)){i.src=src;i.style.display='block';v.style.display='none';}
+else{v.src=src;v.style.display='block';i.style.display='none';try{var p=v.play();if(p)p.catch(function(){});}catch(e){}}
+document.getElementById('vlb').style.display='flex';}
+function closeLb(){var v=document.getElementById('vlb-v'),i=document.getElementById('vlb-i');
+document.getElementById('vlb').style.display='none';v.pause();v.removeAttribute('src');v.load();i.removeAttribute('src');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+</script>
+<footer>woodprep.eu &nbsp;·&nbsp; <a href="mailto:support@woodprep.eu">support@woodprep.eu</a></footer>
+</body>
+</html>

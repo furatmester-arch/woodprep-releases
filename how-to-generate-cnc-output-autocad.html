@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How to generate CNC output from an AutoCAD drawing: machine programs written directly from the 3D parts, including the hole pattern, with optional DXF export alongside.">
+<link rel="canonical" href="https://woodprep.eu/how-to-generate-cnc-output-autocad.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://woodprep.eu/how-to-generate-cnc-output-autocad.html">
+<meta property="og:title" content="How to Generate CNC Output From AutoCAD">
+<meta property="og:description" content="Machine programs written straight from the 3D parts — hole pattern included — with optional DXF export alongside.">
+<title>How to Generate CNC Output From AutoCAD | WoodPrep</title>
+<link rel="stylesheet" href="howto.css">
+</head>
+<body>
+<div class="header">
+  <a href="index.html" class="logo">Wood<span>Prep</span></a>
+  <div class="crumb"><a href="index.html">Home</a> &nbsp;›&nbsp; How to</div>
+  <h1>How to Generate CNC Output From AutoCAD</h1>
+  <p class="sub">Going from the 3D model to machine-ready programs without redrawing the parts in CAM software.</p>
+</div>
+
+<div class="container">
+
+  <p class="lead">The drilling is already in your model. Every hinge cup, every shelf pin, every dowel sits at a known position on a known face. Getting that into the machine, though, usually means opening a separate CAM program and describing the part all over again.</p>
+
+  <h2>The gap between the model and the machine</h2>
+
+  <p>AutoCAD models geometry; it does not write machine programs. The standard route is to export something — a DXF, a list, sometimes just a printed drawing — and rebuild the part in the machine's own software, positioning the holes by hand.</p>
+
+  <p>For a one-off that is acceptable. For a kitchen with sixty parts, it is a second full day of work, and every re-entered coordinate is a chance to put a hole 32&nbsp;mm from where it belongs.</p>
+
+  <h2>Write the program from the part itself</h2>
+
+  <p>The <code>EE26</code> command processes a selected part and writes the machine program directly: size, grain direction, edge banding and the complete hole pattern, in the format your machine reads — BPP for Biesse Skipper and Rover, or SCM format. The same run appends the part to <code>cnc_import.txt</code>, so the cutting list stays in step with the machine files.</p>
+
+  <p>Run it through <code>CABINET</code> and it happens for every part of the carcass in one pass, rather than part by part.</p>
+
+  <div class="vid">
+    <video src="ee26.mp4" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)"></video>
+    <div class="vid-cap">EE26 on a shaped part: machine program written from the model, with the DXF folder created alongside. Hover to play, click to enlarge.</div>
+  </div>
+
+  <h2>DXF alongside the machine files</h2>
+
+  <p>Some parts need a contour, not just drilling — and some downstream software simply prefers DXF. Type <code>dxf</code> in the part comment and a DXF folder is created next to the machine program folders, with the part exported there as well.</p>
+
+  <p>The result is that the CNC files and the DXF drawings end up side by side, from the same run, without a second pass over the parts.</p>
+
+  <h2>Step by step</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Model the part with its drilling</h4>
+        <p>The holes in the 3D model are the source — no separate hole schedule to maintain.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Run EE26, or CABINET for the whole carcass</h4>
+        <p>Each part is measured, its production data recorded, and its machine program written.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Add <code>dxf</code> to the comment if you need it</h4>
+        <p>The DXF folder appears next to the machine folders, with the part exported as DXF too.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <h4>Send the folder to the machine</h4>
+        <p>The programs are already in the machine's format — nothing to convert on the way.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>What you end up with</h2>
+
+  <ul class="plain check">
+    <li>Machine programs written from the model, drilling included</li>
+    <li>Biesse (Skipper, Rover) and SCM formats supported</li>
+    <li>Optional DXF export in the same run</li>
+    <li><code>cnc_import.txt</code> kept in step, so the cutting list matches the machine files</li>
+  </ul>
+
+  <div class="callout">
+    <h3>Which plan</h3>
+    <p>Direct CNC output is part of the <strong>Enterprise</strong> plan, because the machine format has to be matched to your specific machine during setup. <a href="plan-enterprise.html" style="color:var(--cnc);">See the Enterprise command guide →</a></p>
+  </div>
+
+  <div class="cta">
+    <h3>Talk to us about your machine</h3>
+    <p>Enterprise setup includes compatibility testing on your machine before activation.</p>
+    <a href="plan-enterprise.html">See what Enterprise includes</a>
+  </div>
+
+  <div class="related">
+    <div class="related-label">Related guides</div>
+    <div class="related-grid">
+      <a href="how-to-generate-biesse-bpp-autocad.html">How to Generate a Biesse BPP Program From AutoCAD</a>
+      <a href="how-to-detect-identical-mirrored-parts-autocad.html">How to Detect Identical and Mirrored Parts in AutoCAD</a>
+      <a href="how-to-create-cutting-list-autocad.html">How to Create a Cutting List From an AutoCAD Drawing</a>
+      <a href="how-to-export-autocad-parts-to-excel.html">How to Export AutoCAD Parts to Excel</a>
+    </div>
+  </div>
+
+</div>
+
+<div id="vlb" onclick="if(event.target===this)closeLb()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;">
+  <button onclick="closeLb()" style="position:absolute;top:16px;right:22px;background:none;border:none;color:#fff;font-size:2.4rem;line-height:1;cursor:pointer;opacity:0.7;" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.7">&times;</button>
+  <video id="vlb-v" controls style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;outline:none;background:#000;"></video>
+  <img id="vlb-i" style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;">
+</div>
+<script>
+function openLb(src){var v=document.getElementById('vlb-v'),i=document.getElementById('vlb-i');
+if(/\.(png|jpe?g|webp|gif)$/i.test(src)){i.src=src;i.style.display='block';v.style.display='none';}
+else{v.src=src;v.style.display='block';i.style.display='none';try{var p=v.play();if(p)p.catch(function(){});}catch(e){}}
+document.getElementById('vlb').style.display='flex';}
+function closeLb(){var v=document.getElementById('vlb-v'),i=document.getElementById('vlb-i');
+document.getElementById('vlb').style.display='none';v.pause();v.removeAttribute('src');v.load();i.removeAttribute('src');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+</script>
+<footer>woodprep.eu &nbsp;·&nbsp; <a href="mailto:support@woodprep.eu">support@woodprep.eu</a></footer>
+</body>
+</html>

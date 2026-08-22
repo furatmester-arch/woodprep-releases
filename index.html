@@ -253,6 +253,24 @@
         }
         .plan-btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
+        /* ── GUIDES ──────────────────────────────────────────────────────── */
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 10px;
+        }
+        .guides-grid a {
+            display: block; background: var(--bg2);
+            border: 1px solid var(--border); border-radius: 9px;
+            padding: 15px 18px; font-size: 0.88rem;
+            color: var(--text); text-decoration: none;
+            transition: border-color 0.2s, background 0.2s, transform 0.2s;
+        }
+        .guides-grid a:hover {
+            border-color: var(--accent); background: #1a1a30;
+            transform: translateY(-2px);
+        }
+
         /* ── ADD-ON MODULES ──────────────────────────────────────────────── */
         .addon-section { margin-top: 60px; }
         .addon-head { text-align: center; }
@@ -1065,6 +1083,26 @@
         </div>
         </details>
 
+    </div>
+</section>
+
+<!-- GUIDES -->
+<section id="guides">
+    <div class="container">
+        <h2 class="section-title">How to guides</h2>
+        <p class="section-sub">Short, practical walkthroughs — each one with video from a real drawing.</p>
+        <div class="guides-grid">
+            <a href="how-to-export-autocad-parts-to-excel.html">How to Export AutoCAD Parts to Excel</a>
+            <a href="how-to-create-cutting-list-autocad.html">How to Create a Cutting List From an AutoCAD Drawing</a>
+            <a href="how-to-create-hardware-list-autocad.html">How to Create a Hardware List From an AutoCAD Drawing</a>
+            <a href="how-to-add-edge-banding-autocad.html">How to Add Edge Banding Data to Parts in AutoCAD</a>
+            <a href="how-to-detect-identical-mirrored-parts-autocad.html">How to Detect Identical and Mirrored Parts in AutoCAD</a>
+            <a href="how-to-design-cabinet-blum-560f-autocad.html">How to Design a Cabinet in AutoCAD With Blum 560F Drawers</a>
+            <a href="how-to-generate-cabinet-from-floor-plan-autocad.html">How to Generate a Cabinet From a Floor Plan in AutoCAD</a>
+            <a href="how-to-create-panel-cutting-maps-autocad.html">How to Create Panel Cutting Maps From AutoCAD</a>
+            <a href="how-to-generate-cnc-output-autocad.html">How to Generate CNC Output From AutoCAD</a>
+            <a href="how-to-generate-biesse-bpp-autocad.html">How to Generate a Biesse BPP Program From AutoCAD</a>
+        </div>
     </div>
 </section>
 

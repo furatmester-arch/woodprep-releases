@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How to create a cutting list from an AutoCAD drawing: every board part collected from the model with sizes, quantities and edge banding, imported into Excel in one step.">
+<link rel="canonical" href="https://woodprep.eu/how-to-create-cutting-list-autocad.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://woodprep.eu/how-to-create-cutting-list-autocad.html">
+<meta property="og:title" content="How to Create a Cutting List From an AutoCAD Drawing">
+<meta property="og:description" content="Every board part collected from the model with sizes, quantities and edge banding — imported into Excel in one step.">
+<title>How to Create a Cutting List From an AutoCAD Drawing | WoodPrep</title>
+<link rel="stylesheet" href="howto.css">
+</head>
+<body>
+<div class="header">
+  <a href="index.html" class="logo">Wood<span>Prep</span></a>
+  <div class="crumb"><a href="index.html">Home</a> &nbsp;›&nbsp; How to</div>
+  <h1>How to Create a Cutting List From an AutoCAD Drawing</h1>
+  <p class="sub">Collecting every board part from the model — with sizes, quantities and banding — without missing one.</p>
+</div>
+
+<div class="container">
+
+  <p class="lead">A cutting list is only useful if it is complete. One forgotten shelf means a second trip to the saw, a second setup, and a part that arrives after the cabinet was supposed to be assembled. The hard part is not writing the list — it is being certain that nothing was left out.</p>
+
+  <h2>Why the manual list is never quite finished</h2>
+
+  <p>Working through a carcass by eye, part by part, is fine for a single cabinet. Across a kitchen run it stops being reliable: the parts you can see get listed, the divider hidden behind a door does not, and nobody spots the gap until the panels are already cut.</p>
+
+  <p>Then the design changes. A drawer becomes two, and the list made yesterday is silently out of date — but it looks exactly as finished as it did before.</p>
+
+  <h2>Let one command walk the whole carcass</h2>
+
+  <p>The <code>CABINET</code> command processes every cabinet part in the drawing in a single pass. It cannot skip a part, because it is not choosing — it is going through all of them. Parts on hardware (<code>VAS_</code>) layers are ignored automatically, so the hinges and slides do not end up in the board list.</p>
+
+  <p>Each part is passed through the same dialog you would use individually, so you can still set the description, quantity, edge banding and grain direction — you are just not the one keeping track of what has been done.</p>
+
+  <div class="vid">
+    <video src="cabinet.mp4" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)"></video>
+    <div class="vid-cap">One command walking every part of the carcass — hardware layers skipped automatically. Hover to play, click to enlarge.</div>
+  </div>
+
+  <h2>Identical parts counted, not repeated</h2>
+
+  <p>Within the batch, identical parts are detected by dimensions and hole pattern and grouped with the quantity filled in. Left–right mirror pairs are recognised as pairs rather than duplicates. Eleven identical shelves become one line with a quantity of eleven — you fill it in once.</p>
+
+  <h2>Into Excel</h2>
+
+  <p>When the batch is done, open the companion workbook and click <em>Import Parts</em>. The complete list appears with sizes, quantities and banding, ready to price, to send to a supplier, or to feed into cutting optimization.</p>
+
+  <div class="vid">
+    <video src="kalk-material.mp4" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)"></video>
+    <div class="vid-cap">Collecting the board parts and importing the finished cutting list into Excel.</div>
+  </div>
+
+  <h2>What you end up with</h2>
+
+  <ul class="plain check">
+    <li>Every board part in the drawing, because the command does not skip</li>
+    <li>Sizes read from the geometry, not measured</li>
+    <li>Identical parts grouped with quantities; mirror pairs kept as pairs</li>
+    <li>Hardware kept out of the board list automatically</li>
+    <li>An Excel sheet you can act on immediately</li>
+  </ul>
+
+  <p>Change the design and run it again — regenerating the list takes a moment, so an out-of-date list stops being something you have to worry about.</p>
+
+  <div class="cta">
+    <h3>Try it on your own drawing</h3>
+    <p>14-day free trial, no credit card. If it works for you, subscribe — if not, just don't.</p>
+    <a href="index.html#demo">Download the free trial</a>
+  </div>
+
+  <div class="related">
+    <div class="related-label">Related guides</div>
+    <div class="related-grid">
+      <a href="how-to-export-autocad-parts-to-excel.html">How to Export AutoCAD Parts to Excel</a>
+      <a href="how-to-detect-identical-mirrored-parts-autocad.html">How to Detect Identical and Mirrored Parts in AutoCAD</a>
+      <a href="how-to-add-edge-banding-autocad.html">How to Add Edge Banding Data to Parts in AutoCAD</a>
+      <a href="how-to-create-panel-cutting-maps-autocad.html">How to Create Panel Cutting Maps From AutoCAD</a>
+    </div>
+  </div>
+
+</div>
+
+<div id="vlb" onclick="if(event.target===this)closeLb()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;">
+  <button onclick="closeLb()" style="position:absolute;top:16px;right:22px;background:none;border:none;color:#fff;font-size:2.4rem;line-height:1;cursor:pointer;opacity:0.7;" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.7">&times;</button>
+  <video id="vlb-v" controls style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;outline:none;background:#000;"></video>
+  <img id="vlb-i" style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;">
+</div>
+<script>
+function openLb(src){var v=document.getElementById('vlb-v'),i=document.getElementById('vlb-i');
+if(/\.(png|jpe?g|webp|gif)$/i.test(src)){i.src=src;i.style.display='block';v.style.display='none';}
+else{v.src=src;v.style.display='block';i.style.display='none';try{var p=v.play();if(p)p.catch(function(){});}catch(e){}}
+document.getElementById('vlb').style.display='flex';}
+function closeLb(){var v=document.getElementById('vlb-v'),i=document.getElementById('vlb-i');
+document.getElementById('vlb').style.display='none';v.pause();v.removeAttribute('src');v.load();i.removeAttribute('src');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+</script>
+<footer>woodprep.eu &nbsp;·&nbsp; <a href="mailto:support@woodprep.eu">support@woodprep.eu</a></footer>
+</body>
+</html>

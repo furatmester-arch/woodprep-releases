@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How to generate a Biesse BPP program from an AutoCAD drawing: BPP files for Rover and Skipper written straight from the 3D parts, with the hole pattern taken from the model.">
+<link rel="canonical" href="https://woodprep.eu/how-to-generate-biesse-bpp-autocad.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://woodprep.eu/how-to-generate-biesse-bpp-autocad.html">
+<meta property="og:title" content="How to Generate a Biesse BPP Program From AutoCAD">
+<meta property="og:description" content="BPP files for Biesse Rover and Skipper written straight from the AutoCAD model — hole pattern included, no re-entry in CAM.">
+<title>How to Generate a Biesse BPP Program From AutoCAD | WoodPrep</title>
+<link rel="stylesheet" href="howto.css">
+</head>
+<body>
+<div class="header">
+  <a href="index.html" class="logo">Wood<span>Prep</span></a>
+  <div class="crumb"><a href="index.html">Home</a> &nbsp;›&nbsp; How to</div>
+  <h1>How to Generate a Biesse BPP Program From AutoCAD</h1>
+  <p class="sub">Writing BPP files for Rover and Skipper from the parts you already modelled.</p>
+</div>
+
+<div class="container">
+
+  <p class="lead">If you run a Biesse machine, the BPP file is the last step before the part gets made. Writing it usually means opening the machine's software and rebuilding a part that already exists — in full, in 3D, in your AutoCAD drawing.</p>
+
+  <h2>What normally happens between drawing and machine</h2>
+
+  <p>The part is modelled in AutoCAD with all its drilling. Then someone opens the CAM software, creates a new part, types the dimensions, and places the holes again by coordinate. The information was complete before that started; it was simply in a format the machine could not read.</p>
+
+  <p>It is slow, and it is exactly the kind of repetitive transcription where a 32&nbsp;mm spacing quietly becomes 37&nbsp;mm on one panel out of sixty.</p>
+
+  <h2>Write the BPP directly</h2>
+
+  <p>The <code>EE26</code> command reads the selected part and writes the <strong>BPP program</strong> for Biesse Skipper or Rover: size, grain direction, edge banding and the full hole pattern, taken from the model itself. The same run appends the part to <code>cnc_import.txt</code>, so the cutting list and the machine files come from one source and stay consistent.</p>
+
+  <p>For a whole carcass, <code>CABINET</code> runs it on every part in a single pass — sixty parts become sixty programs without sixty manual entries.</p>
+
+  <div class="vid">
+    <video src="ee26.mp4" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)"></video>
+    <div class="vid-cap">Machine program written from the model, with the DXF folder created next to it. Hover to play, click to enlarge.</div>
+  </div>
+
+  <h2>Mirror pairs mean fewer programs</h2>
+
+  <p>Cabinet sides and door pairs are mirror images of each other. Because WoodPrep recognises those pairs by dimensions <em>and</em> hole pattern, a mirrored pair is handled as a pair rather than as two unrelated parts — fewer programs to manage on the machine, and fewer opportunities to load the wrong one.</p>
+
+  <h2>SCM as well</h2>
+
+  <p>The same command also writes SCM format, so a workshop running both brands does not need a different route for each. The machine format is matched to your specific machine during setup.</p>
+
+  <div class="callout">
+    <h3>Which plan</h3>
+    <p>Direct CNC output — Biesse BPP and SCM — is part of the <strong>Enterprise</strong> plan. Enterprise activation includes compatibility testing on your machine first, because machine configurations differ. <a href="plan-enterprise.html" style="color:var(--cnc);">See the Enterprise command guide →</a></p>
+  </div>
+
+  <h2>What you end up with</h2>
+
+  <ul class="plain check">
+    <li>BPP programs for Biesse Rover and Skipper, written from the model</li>
+    <li>Hole pattern taken from the drawing, not re-entered by coordinate</li>
+    <li>SCM format from the same command</li>
+    <li>Optional DXF export in the same run — type <code>dxf</code> in the part comment</li>
+    <li><code>cnc_import.txt</code> generated alongside, keeping the cutting list in step</li>
+  </ul>
+
+  <div class="cta">
+    <h3>Talk to us about your machine</h3>
+    <p>Enterprise setup includes compatibility testing on your Biesse or SCM machine before activation.</p>
+    <a href="plan-enterprise.html">See what Enterprise includes</a>
+  </div>
+
+  <div class="related">
+    <div class="related-label">Related guides</div>
+    <div class="related-grid">
+      <a href="how-to-generate-cnc-output-autocad.html">How to Generate CNC Output From AutoCAD</a>
+      <a href="how-to-detect-identical-mirrored-parts-autocad.html">How to Detect Identical and Mirrored Parts in AutoCAD</a>
+      <a href="how-to-create-cutting-list-autocad.html">How to Create a Cutting List From an AutoCAD Drawing</a>
+      <a href="how-to-export-autocad-parts-to-excel.html">How to Export AutoCAD Parts to Excel</a>
+    </div>
+  </div>
+
+</div>
+
+<div id="vlb" onclick="if(event.target===this)closeLb()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;">
+  <button onclick="closeLb()" style="position:absolute;top:16px;right:22px;background:none;border:none;color:#fff;font-size:2.4rem;line-height:1;cursor:pointer;opacity:0.7;" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.7">&times;</button>
+  <video id="vlb-v" controls style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;outline:none;background:#000;"></video>
+  <img id="vlb-i" style="display:none;max-width:92vw;max-height:88vh;border-radius:8px;">
+</div>
+<script>
+function openLb(src){var v=document.getElementById('vlb-v'),i=document.getElementById('vlb-i');
+if(/\.(png|jpe?g|webp|gif)$/i.test(src)){i.src=src;i.style.display='block';v.style.display='none';}
+else{v.src=src;v.style.display='block';i.style.display='none';try{var p=v.play();if(p)p.catch(function(){});}catch(e){}}
+document.getElementById('vlb').style.display='flex';}
+function closeLb(){var v=document.getElementById('vlb-v'),i=document.getElementById('vlb-i');
+document.getElementById('vlb').style.display='none';v.pause();v.removeAttribute('src');v.load();i.removeAttribute('src');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+</script>
+<footer>woodprep.eu &nbsp;·&nbsp; <a href="mailto:support@woodprep.eu">support@woodprep.eu</a></footer>
+</body>
+</html>
