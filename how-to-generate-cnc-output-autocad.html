@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="How to generate CNC output from an AutoCAD drawing: machine programs written directly from the 3D parts, including the hole pattern, with optional DXF export alongside.">
+<meta name="description" content="How to generate CNC output from an AutoCAD drawing. Not a separate CAM package: WoodPrep runs inside AutoCAD and writes the machine program from the 3D part, hole pattern included, with optional DXF export. AutoCAD to CNC for furniture and cabinet work.">
 <link rel="canonical" href="https://woodprep.eu/how-to-generate-cnc-output-autocad.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://woodprep.eu/how-to-generate-cnc-output-autocad.html">
@@ -29,6 +29,14 @@
   <p>AutoCAD models geometry; it does not write machine programs. The standard route is to export something — a DXF, a list, sometimes just a printed drawing — and rebuild the part in the machine's own software, positioning the holes by hand.</p>
 
   <p>For a one-off that is acceptable. For a kitchen with sixty parts, it is a second full day of work, and every re-entered coordinate is a chance to put a hole 32&nbsp;mm from where it belongs.</p>
+
+  <h2>Where this sits among CNC software</h2>
+
+  <p>WoodPrep is not a standalone <strong>CNC programming software</strong>. It runs inside AutoCAD, where the part already exists, and writes the machine program from there.</p>
+
+  <p>If you are looking for <strong>furniture CNC software</strong> or <strong>cabinet CNC software</strong>, the usual answer is a separate CAM package — something to buy, to learn, and to keep in sync with your CAD. For a workshop that does not draw in CAD at all, that makes sense. But if the cabinet is already modelled in AutoCAD, describing it a second time in another program is work you have done once already.</p>
+
+  <p>Most <strong>woodworking CNC software</strong> starts from an empty part and asks you to build it up. WoodPrep goes the other way: <strong>AutoCAD to CNC</strong> straight from the DWG you have. Nothing new to learn, and nothing to keep in sync — the drawing stays the single source, and the machine program comes out of it.</p>
 
   <h2>Write the program from the part itself</h2>
 

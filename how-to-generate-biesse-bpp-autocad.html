@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="How to generate a Biesse BPP program from an AutoCAD drawing: BPP files for Rover and Skipper written straight from the 3D parts, with the hole pattern taken from the model.">
+<meta name="description" content="How to generate a Biesse BPP program from an AutoCAD drawing. Not another CAM package alongside your Biesse CNC software: BPP files for Rover and Skipper written straight from the 3D part, hole pattern included.">
 <link rel="canonical" href="https://woodprep.eu/how-to-generate-biesse-bpp-autocad.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://woodprep.eu/how-to-generate-biesse-bpp-autocad.html">
@@ -29,6 +29,10 @@
   <p>The part is modelled in AutoCAD with all its drilling. Then someone opens the CAM software, creates a new part, types the dimensions, and places the holes again by coordinate. The information was complete before that started; it was simply in a format the machine could not read.</p>
 
   <p>It is slow, and it is exactly the kind of repetitive transcription where a 32&nbsp;mm spacing quietly becomes 37&nbsp;mm on one panel out of sixty.</p>
+
+  <h3>This is not another CAM package</h3>
+
+  <p>Most <strong>Biesse CNC software</strong> discussions end up being about which CAM system to buy alongside your CAD. WoodPrep is not that: it does not replace bSolid or Biesse Works, and there is nothing new to learn. It runs inside AutoCAD and writes the BPP file from the part you already modelled — <strong>AutoCAD to CNC</strong> in one step, with the drawing staying the single source.</p>
 
   <h2>Write the BPP directly</h2>
 
