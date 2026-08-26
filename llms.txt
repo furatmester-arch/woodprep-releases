@@ -24,10 +24,12 @@ Furniture and cabinet manufacturers, kitchen makers, and shopfitters who already
 
 ## Plans
 
-- [Basic](https://woodprep.eu/plan-basic.html): Excel cutting and hardware lists, bounding size, joint finalization, back panel extraction. No batch processing.
-- [Starter](https://woodprep.eu/plan-starter.html): adds batch cabinet processing, identical part detection, and mirror pair detection.
-- [Professional](https://woodprep.eu/plan-professional.html): adds parametric cabinet design — door cabinets, Blum 560F drawer cabinets, and generation from floor plans.
-- [Enterprise](https://woodprep.eu/plan-enterprise.html): adds direct CNC machine output for Biesse Rover, Biesse Skipper, and SCM.
+All prices are per machine, per month.
+
+- [Basic](https://woodprep.eu/plan-basic.html) — **€50/month**: Excel cutting and hardware lists, bounding size, joint finalization, back panel extraction. No batch processing.
+- [Starter](https://woodprep.eu/plan-starter.html) — **€75/month**: adds batch cabinet processing, identical part detection, and mirror pair detection.
+- [Professional](https://woodprep.eu/plan-professional.html) — **€95/month**: adds parametric cabinet design — door cabinets, Blum 560F drawer cabinets, and generation from floor plans.
+- [Enterprise](https://woodprep.eu/plan-enterprise.html) — **€140/month**: adds direct CNC machine output for Biesse Rover, Biesse Skipper, and SCM.
 
 ## Add-on modules
 
