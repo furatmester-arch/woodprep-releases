@@ -1253,7 +1253,16 @@
 </div>
 
 <script>
+    // ── Letöltés-mérés ──────────────────────────────────────────────
+    // A popup megnyitása és a tényleges ZIP-letöltés két külön esemény.
+    // Korábban csak a popup nyitása volt mérve (és az is csak a Google
+    // Ads felé), ezért nem lehetett megkülönböztetni a kettőt: aki
+    // megnyitotta és bezárta, ugyanúgy konverziónak számított, mint aki
+    // valóban letöltötte. Itt tároljuk, melyik csomag popupja van nyitva.
+    var wpCurrentPlan = '';
+
     function openEmailPopup(dlFile, planName) {
+        wpCurrentPlan = planName || '';
         var blk = document.getElementById('dlBlock');
         if (dlFile) {
             document.getElementById('dlLink').setAttribute('href', dlFile);
@@ -1268,6 +1277,8 @@
         }
         document.getElementById('emailPopup').classList.add('open');
         gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
+        // GA4: a popup megnyílt — ehhez képest mérjük a tényleges letöltést
+        gtag('event', 'trial_popup_open', { 'plan': wpCurrentPlan || 'contact' });
     }
     function closeEmailPopup() {
         document.getElementById('emailPopup').classList.remove('open');
@@ -1284,6 +1295,19 @@
     }
     document.getElementById('emailPopup').addEventListener('click', function(e) {
         if (e.target === this) closeEmailPopup();
+    });
+
+    // ── GA4: tényleges ZIP-letöltés ─────────────────────────────────
+    // Kattintás a popup letöltés-gombjára. EZ az igazi szám: hányan
+    // viszik el ténylegesen a fájlt, és melyik csomagot. A `download`
+    // attribútum miatt az oldal nem navigál el, így az esemény biztosan
+    // elmegy, mielőtt a letöltés indul.
+    document.getElementById('dlLink').addEventListener('click', function () {
+        var href = this.getAttribute('href') || '';
+        gtag('event', 'trial_download', {
+            'plan': wpCurrentPlan || 'unknown',
+            'file_name': href.split('/').pop()
+        });
     });
 
     // Professional form
