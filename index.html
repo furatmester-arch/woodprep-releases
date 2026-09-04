@@ -855,7 +855,7 @@
                     <li class="no">Cabinet design tools</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="#" onclick="openEmailPopup('WoodPrep_Basic_14nap_v1.4.zip','Basic'); return false;" class="plan-btn plan-btn-secondary">Start 14-day Trial</a>
+                <a href="#" onclick="openTrialForm('Basic'); return false;" class="plan-btn plan-btn-secondary">Request 14-day Trial</a>
             </div>
 
             <!-- STARTER -->
@@ -878,7 +878,7 @@
                     <li class="no">Cabinet design tools</li>
                     <li class="no">CNC program generation</li>
                 </ul>
-                <a href="#" onclick="openEmailPopup('WoodPrep_Standard_14nap_v1.4.zip','Starter'); return false;" class="plan-btn plan-btn-primary">Start 14-day Trial</a>
+                <a href="#" onclick="openTrialForm('Starter'); return false;" class="plan-btn plan-btn-primary">Request 14-day Trial</a>
             </div>
 
             <!-- PRO -->
@@ -1116,26 +1116,26 @@
     <div class="container">
         <div class="demo-box">
             <h2>Try it free for 14 days</h2>
-            <p>Download the plugin, install it, and test every feature free for 14 days — no credit card required. If it works for you, subscribe. If not, just don't.</p>
+            <p>Tell us who you are and we'll email you the download link — usually the same day. Then test every feature free for 14 days, no credit card required. If it works for you, subscribe. If not, just don't.</p>
             <div class="demo-steps">
                 <div class="demo-step">
                     <div class="demo-step-num">1</div>
-                    Download &amp; unzip
+                    Request access
                 </div>
                 <div class="demo-step">
                     <div class="demo-step-num">2</div>
-                    Run Install.cmd
+                    We email you the link
                 </div>
                 <div class="demo-step">
                     <div class="demo-step-num">3</div>
-                    Start AutoCAD
+                    Install &amp; start AutoCAD
                 </div>
                 <div class="demo-step">
                     <div class="demo-step-num">4</div>
                     Register — 14 days free
                 </div>
             </div>
-            <a href="#" onclick="openEmailPopup('WoodPrep_Standard_14nap_v1.4.zip','Starter'); return false;" class="btn-primary" style="display:inline-block; margin-bottom:14px;">Download free trial</a>
+            <a href="#" onclick="openTrialForm('Starter'); return false;" class="btn-primary" style="display:inline-block; margin-bottom:14px;">Request 14-day trial</a>
             <p style="font-size:0.78rem; margin-top:4px; margin-bottom:0;">
                 Requires AutoCAD 2025 or 2026 · The plugin loads itself — no NETLOAD needed
             </p>
@@ -1175,6 +1175,42 @@
 </footer>
 
 <!-- EMAIL POPUP -->
+<!-- TRIAL REQUEST FORM (Basic / Starter) -->
+<div class="cf-overlay" id="trialForm">
+    <div class="cf-box pro">
+        <div class="cf-header">
+            <div>
+                <div class="cf-title" id="trial-title">WoodPrep Starter</div>
+                <div class="cf-subtitle">Request a 14-day trial</div>
+            </div>
+            <button class="cf-close" onclick="closeTrialForm()">×</button>
+        </div>
+        <div id="trialFormBody">
+            <div class="cf-field">
+                <label class="cf-label">Your name <em class="cf-req">*</em></label>
+                <input class="cf-input" id="trial-name" type="text" placeholder="John Smith">
+            </div>
+            <div class="cf-field">
+                <label class="cf-label">Email <em class="cf-req">*</em></label>
+                <input class="cf-input" id="trial-email" type="email" placeholder="you@example.com">
+            </div>
+            <div class="cf-field">
+                <label class="cf-label">Company <span class="cf-opt">(optional)</span></label>
+                <input class="cf-input" id="trial-company" type="text" placeholder="Leave empty if you work on your own">
+            </div>
+            <div class="cf-field">
+                <label class="cf-label">How many people work in your shop? <span class="cf-opt">(optional)</span></label>
+                <input class="cf-input" id="trial-size" type="text" placeholder="e.g. 1, 5, 20…">
+            </div>
+            <div class="cf-field">
+                <label class="cf-label">Notes <span class="cf-opt">(optional)</span></label>
+                <textarea class="cf-textarea" id="trial-notes" placeholder="What do you need to get out of your AutoCAD drawings?"></textarea>
+            </div>
+            <button class="cf-submit" onclick="submitTrialForm()">Request download link →</button>
+        </div>
+    </div>
+</div>
+
 <!-- PROFESSIONAL CONTACT FORM -->
 <div class="cf-overlay" id="proForm">
     <div class="cf-box pro">
@@ -1238,11 +1274,6 @@
 <div class="email-popup-overlay" id="emailPopup">
     <div class="email-popup">
         <h3 id="popupTitle">Contact us</h3>
-        <div class="dl-block" id="dlBlock">
-            <a href="#" id="dlLink" class="btn-dl" download>Download 14-day trial</a>
-            <div class="dl-note">Windows · AutoCAD 2025 or 2026 · ZIP</div>
-            <div class="dl-sep">or write to us</div>
-        </div>
         <p id="popupText">Copy the email address below and send us a message.</p>
         <div class="email-display">support@woodprep.eu</div>
         <div class="email-popup-btns">
@@ -1253,32 +1284,22 @@
 </div>
 
 <script>
-    // ── Letöltés-mérés ──────────────────────────────────────────────
-    // A popup megnyitása és a tényleges ZIP-letöltés két külön esemény.
-    // Korábban csak a popup nyitása volt mérve (és az is csak a Google
-    // Ads felé), ezért nem lehetett megkülönböztetni a kettőt: aki
-    // megnyitotta és bezárta, ugyanúgy konverziónak számított, mint aki
-    // valóban letöltötte. Itt tároljuk, melyik csomag popupja van nyitva.
+    // ── Kérelem-alapú próbaverzió ───────────────────────────────────
+    // 2026-09-04: megszűnt a közvetlen ZIP-letöltés. A látogató űrlapot
+    // tölt ki, a kérelem a Formspree-n át e-mailben megérkezik, és a
+    // letöltési linket kézzel küldjük el jóváhagyás után. A fájlok
+    // kitalálhatatlan néven vannak a /dl/ mappában, és semmi nem linkel
+    // rájuk — így a gomb eltüntetése tényleg lezárja a letöltést.
+    // Itt tároljuk, melyik csomag űrlapja van nyitva.
     var wpCurrentPlan = '';
 
-    function openEmailPopup(dlFile, planName) {
-        wpCurrentPlan = planName || '';
-        var blk = document.getElementById('dlBlock');
-        if (dlFile) {
-            document.getElementById('dlLink').setAttribute('href', dlFile);
-            document.getElementById('dlLink').textContent = planName ? ('Download WoodPrep ' + planName) : 'Download 14-day trial';
-            blk.classList.add('show');
-            document.getElementById('popupTitle').textContent = 'Start your 14-day trial';
-            document.getElementById('popupText').textContent = 'Questions before you start? Write to us:';
-        } else {
-            blk.classList.remove('show');
-            document.getElementById('popupTitle').textContent = 'Contact us';
-            document.getElementById('popupText').textContent = 'Copy the email address below and send us a message.';
-        }
+    // ── Kapcsolat-popup (csak e-mail cím, letöltés már nincs benne) ──
+    function openEmailPopup() {
+        document.getElementById('popupTitle').textContent = 'Contact us';
+        document.getElementById('popupText').textContent = 'Copy the email address below and send us a message.';
         document.getElementById('emailPopup').classList.add('open');
         gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
-        // GA4: a popup megnyílt — ehhez képest mérjük a tényleges letöltést
-        gtag('event', 'trial_popup_open', { 'plan': wpCurrentPlan || 'contact' });
+        gtag('event', 'trial_popup_open', { 'plan': 'contact' });
     }
     function closeEmailPopup() {
         document.getElementById('emailPopup').classList.remove('open');
@@ -1297,17 +1318,45 @@
         if (e.target === this) closeEmailPopup();
     });
 
-    // ── GA4: tényleges ZIP-letöltés ─────────────────────────────────
-    // Kattintás a popup letöltés-gombjára. EZ az igazi szám: hányan
-    // viszik el ténylegesen a fájlt, és melyik csomagot. A `download`
-    // attribútum miatt az oldal nem navigál el, így az esemény biztosan
-    // elmegy, mielőtt a letöltés indul.
-    document.getElementById('dlLink').addEventListener('click', function () {
-        var href = this.getAttribute('href') || '';
-        gtag('event', 'trial_download', {
-            'plan': wpCurrentPlan || 'unknown',
-            'file_name': href.split('/').pop()
+    // ── Próbaverzió-kérelem (Basic / Starter) ───────────────────────
+    // A Professional/Enterprise űrlapok mintájára, ugyanarra a
+    // Formspree címre. A cégnév itt SZÁNDÉKOSAN nem kötelező: az eddigi
+    // egyetlen valódi vevő magánemberként, saját munkához vette meg.
+    function openTrialForm(planName) {
+        wpCurrentPlan = planName || 'Starter';
+        document.getElementById('trial-title').textContent = 'WoodPrep ' + wpCurrentPlan;
+        document.getElementById('trialForm').classList.add('open');
+        gtag('event', 'trial_popup_open', { 'plan': wpCurrentPlan });
+    }
+    function closeTrialForm() {
+        document.getElementById('trialForm').classList.remove('open');
+    }
+    function submitTrialForm() {
+        var name    = document.getElementById('trial-name').value.trim();
+        var email   = document.getElementById('trial-email').value.trim();
+        var company = document.getElementById('trial-company').value.trim();
+        var size    = document.getElementById('trial-size').value.trim();
+        var notes   = document.getElementById('trial-notes').value.trim();
+        if (!name || !email) {
+            document.getElementById('trial-name').style.borderColor  = name  ? '' : 'rgba(255,80,80,0.5)';
+            document.getElementById('trial-email').style.borderColor = email ? '' : 'rgba(255,80,80,0.5)';
+            return;
+        }
+        fetch('https://formspree.io/f/xwvgapqo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                plan: wpCurrentPlan, name: name, email: email,
+                company: company, shop_size: size, notes: notes
+            })
+        }).then(function() {
+            document.getElementById('trialFormBody').innerHTML = '<div class="cf-success"><div class="cf-tick">✓</div><strong>Request sent!</strong><p>We\'ll email you the download link — usually the same day.</p></div>';
+            gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
+            gtag('event', 'trial_request', { 'plan': wpCurrentPlan });
         });
+    }
+    document.getElementById('trialForm').addEventListener('click', function(e) {
+        if (e.target === this) closeTrialForm();
     });
 
     // Professional form
