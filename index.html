@@ -1287,9 +1287,11 @@
     // ── Kérelem-alapú próbaverzió ───────────────────────────────────
     // 2026-09-04: megszűnt a közvetlen ZIP-letöltés. A látogató űrlapot
     // tölt ki, a kérelem a Formspree-n át e-mailben megérkezik, és a
-    // letöltési linket kézzel küldjük el jóváhagyás után. A fájlok
-    // kitalálhatatlan néven vannak a /dl/ mappában, és semmi nem linkel
-    // rájuk — így a gomb eltüntetése tényleg lezárja a letöltést.
+    // letöltési linket kézzel küldjük el jóváhagyás után.
+    // 2026-10-01: a ZIP-ek már EGYÁLTALÁN nincsenek fent a weboldalon —
+    // az eredetik a `source\repos\feltöltés` mappában vannak, és csak
+    // akkor kerülnek fel (kitalálhatatlan néven, a /dl/ mappába), ha
+    // konkrét érdeklődő van. Utána megint le.
     // Itt tároljuk, melyik csomag űrlapja van nyitva.
     var wpCurrentPlan = '';
 
