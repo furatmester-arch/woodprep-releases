@@ -136,6 +136,23 @@
             margin-bottom: 52px; font-size: 1rem;
         }
 
+        /* ── FEJLESZTÉS ALATTI FIGYELMEZTETÉS (az árazás fölött) ─────────── */
+        /* Azért kell, mert az oldalon jelenleg NINCS vásárlási út: nincs
+           fizetési gomb, minden kérelem-űrlapon és kézi e-mailen megy.
+           Az Autodesk felé is így nyilatkoztunk az ADN-jelentkezésnél
+           („no purchases can be made"), tehát a látványnak is ezt kell
+           tükröznie. Ha a termék egyszer ténylegesen megvásárolható lesz,
+           ez a blokk egyben törölhető — az árak maradhatnak. */
+        .dev-notice {
+            max-width: 720px; margin: -24px auto 44px;
+            background: rgba(77,184,255,0.08);
+            border: 1px solid rgba(77,184,255,0.28);
+            border-radius: 10px; padding: 14px 20px;
+            text-align: center; font-size: 0.9rem;
+            line-height: 1.55; color: var(--muted);
+        }
+        .dev-notice strong { color: var(--accent); font-weight: 600; }
+
         /* ── FEATURES ────────────────────────────────────────────────────── */
         .features-grid {
             display: grid;
@@ -836,6 +853,11 @@
     <div class="container">
         <h2 class="section-title">Simple pricing</h2>
         <p class="section-sub">All plans include a 14-day free trial · No credit card required · Cancel anytime</p>
+        <div class="dev-notice">
+            <strong>WoodPrep is currently in development.</strong>
+            The pricing below is indicative — the product is not yet available for purchase
+            through this website. Request a trial to try it on your own drawings.
+        </div>
         <div class="pricing-grid">
 
             <!-- BASIC -->
@@ -942,23 +964,12 @@
             Enterprise requires compatibility testing on your machine before activation. <a href="#" onclick="openEmailPopup(); return false;" style="color:var(--accent);">Contact us first.</a>
         </p>
 
-        <!-- ADD-ON MODULES -->
-        <div class="addon-section">
-            <div class="addon-head"><span class="addon-label">Add-ons</span></div>
-            <p class="addon-sub">Not included in any plan — add separately to the subscription you already have.</p>
-            <div class="addon-card">
-                <div class="addon-card-left">
-                    <div class="addon-name">PANELCUT</div>
-                    <div class="addon-title">Panel Cutting Optimization</div>
-                    <div class="addon-desc">Cutting maps generated straight from your drawing — with your own board size, saw kerf and trim allowance, plus waste and material utilisation figures. Works with Basic, Starter, Professional and Enterprise alike.</div>
-                </div>
-                <div class="addon-right">
-                    <div class="addon-price"><span>+</span>€30</div>
-                    <div class="addon-unit">per machine / month<br>on top of your plan</div>
-                    <a href="panelcut.html" class="addon-btn">See details</a>
-                </div>
-            </div>
-        </div>
+        <!-- ADD-ON MODULES — 2026-10-11-én levéve a főoldalról.
+             A PANELCUT modult egyelőre nem hirdetjük: bonyolítja az
+             ajánlatot, és ez hozta a megkeresések egy részét. A
+             panelcut.html megmarad, mert az AutoCAD parancs hibaüzenete
+             mutat rá. Visszatételkor ez a blokk és a .addon-* stílusok
+             változatlanul használhatók. -->
 
         <!-- VIDEO SECTION -->
         <div class="video-grid">
@@ -987,19 +998,6 @@
                 </div>
                 <h4>Parametric cabinet generator</h4>
                 <p>A complete carcass from parameters — doors, hinges, shelf pins and minifix connectors positioned automatically.</p>
-            </div>
-            <div class="video-card">
-                <div class="video-thumb video-hover" data-video>
-                    <video muted loop playsinline preload="metadata">
-                        <source src="panelcut-maps.mp4#t=0.1" type="video/mp4">
-                    </video>
-                    <div class="video-overlay">
-                        <div class="video-play">▶</div>
-                        <div class="video-label">Hover to play</div>
-                    </div>
-                </div>
-                <h4>Panel cutting optimization</h4>
-                <p>Cutting maps straight from the drawing, with waste and utilisation figures. Available as an add-on to any plan.</p>
             </div>
         </div>
 
