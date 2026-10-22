@@ -1114,7 +1114,7 @@
     <div class="container">
         <div class="demo-box">
             <h2>Try it free for 14 days</h2>
-            <p>Tell us who you are and we'll email you the download link — usually the same day. Then test every feature free for 14 days, no credit card required. If it works for you, subscribe. If not, just don't.</p>
+            <p>Tell us who you are and the download starts straight away. Then test every feature free for 14 days, no credit card required. If it works for you, subscribe. If not, just don't.</p>
             <div class="demo-steps">
                 <div class="demo-step">
                     <div class="demo-step-num">1</div>
@@ -1122,7 +1122,7 @@
                 </div>
                 <div class="demo-step">
                     <div class="demo-step-num">2</div>
-                    We email you the link
+                    Download straight away
                 </div>
                 <div class="demo-step">
                     <div class="demo-step-num">3</div>
@@ -1331,6 +1331,11 @@
     function closeTrialForm() {
         document.getElementById('trialForm').classList.remove('open');
     }
+    // ── A próbaverzió csomagja ──────────────────────────────────────
+    // Kitalálhatatlan néven a /dl/ mappában. Az oldalon SEHOL nem
+    // szerepel link rá — csak az űrlap kitöltése után jelenik meg.
+    var WP_TRIAL_FILE = 'dl/wp-starter-d2484d71f094306c.zip';
+
     function submitTrialForm() {
         var name    = document.getElementById('trial-name').value.trim();
         var email   = document.getElementById('trial-email').value.trim();
@@ -1342,6 +1347,30 @@
             document.getElementById('trial-email').style.borderColor = email ? '' : 'rgba(255,80,80,0.5)';
             return;
         }
+
+        // ── A letöltés AZONNAL megjelenik ───────────────────────────
+        // 2026-10-22: korábban e-mailben küldtük a linket kézzel. Négy
+        // kérelemből nulla letöltés lett — a várakozás ölte meg. Ezért
+        // NEM várunk a Formspree válaszára sem: ha az elakad, a
+        // látogató akkor is megkapja, amiért jött. Az értesítés
+        // másodlagos, a letöltés az elsődleges.
+        document.getElementById('trialFormBody').innerHTML =
+            '<div class="cf-success">' +
+              '<div class="cf-tick">&#10003;</div>' +
+              '<strong>Your download is ready</strong>' +
+              '<p>Requires AutoCAD 2025, 2026 or 2027 (64-bit, Windows).</p>' +
+              '<a class="cf-submit" href="' + WP_TRIAL_FILE + '" download ' +
+                 'onclick="wpTrialDownloaded()" ' +
+                 'style="display:block;text-align:center;text-decoration:none;margin:18px 0 0;">' +
+                 'Download the 14-day trial</a>' +
+              '<p style="margin-top:14px;">Extract the zip and run Install.cmd, then start ' +
+              'AutoCAD. If anything does not work, write to support@woodprep.eu and we will help.</p>' +
+            '</div>';
+
+        gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
+        gtag('event', 'trial_request', { 'plan': wpCurrentPlan });
+
+        // ── A kérelem a háttérben megy el, értesítésnek ─────────────
         fetch('https://formspree.io/f/xwvgapqo', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1349,10 +1378,14 @@
                 plan: wpCurrentPlan, name: name, email: email,
                 company: company, shop_size: size, notes: notes
             })
-        }).then(function() {
-            document.getElementById('trialFormBody').innerHTML = '<div class="cf-success"><div class="cf-tick">✓</div><strong>Request sent!</strong><p>We\'ll email you the download link — usually the same day.</p></div>';
-            gtag('event', 'conversion', {'send_to': 'AW-18341941007/I3PHCJrnr9YcEI-ej6pE'});
-            gtag('event', 'trial_request', { 'plan': wpCurrentPlan });
+        }).catch(function () { /* a letöltést nem befolyásolja */ });
+    }
+
+    // GA4: a látogató tényleg rákattintott a letöltésre
+    function wpTrialDownloaded() {
+        gtag('event', 'trial_download', {
+            'plan': wpCurrentPlan,
+            'file_name': WP_TRIAL_FILE.split('/').pop()
         });
     }
     document.getElementById('trialForm').addEventListener('click', function(e) {
