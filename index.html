@@ -1138,7 +1138,7 @@
             </div>
             <a href="#" onclick="openTrialForm('Starter'); return false;" class="btn-primary" style="display:inline-block; margin-bottom:14px;">Request 14-day trial</a>
             <p style="font-size:0.78rem; margin-top:4px; margin-bottom:0;">
-                Requires <strong>full AutoCAD 2025, 2026 or 2027</strong> (Windows) · <strong>Not AutoCAD LT</strong> · The plugin loads itself — no NETLOAD needed
+                Requires <strong>full AutoCAD 2025, 2026 or 2027</strong> (Windows) · <strong>Not AutoCAD LT or Mac</strong> · The plugin loads itself — no NETLOAD needed
             </p>
             <p style="font-size:0.78rem; margin-top:10px; margin-bottom:0; color:var(--muted);">
                 Prefer not to run an installer? The zip includes manual instructions — it's a single folder copy.
@@ -1189,7 +1189,7 @@
         <div id="trialFormBody">
             <div class="cf-note">
                 WoodPrep is a plug-in that runs <strong>inside full AutoCAD 2025, 2026 or 2027</strong> (Windows).
-                It does not work in AutoCAD LT or older versions, and it is not a standalone program.
+                It does not work in AutoCAD LT, AutoCAD for Mac or older versions, and it is not a standalone program.
             </div>
             <div class="cf-field">
                 <label class="cf-label">Your name <em class="cf-req">*</em></label>
@@ -1206,6 +1206,7 @@
                     <option value="2025-2027">AutoCAD 2025, 2026 or 2027</option>
                     <option value="2024-or-older">AutoCAD 2024 or older</option>
                     <option value="LT">AutoCAD LT (any version)</option>
+                    <option value="mac">AutoCAD for Mac</option>
                     <option value="no-autocad">I don't use AutoCAD</option>
                     <option value="not-sure">Not sure</option>
                 </select>
@@ -1392,6 +1393,8 @@
                              'It will not load in AutoCAD 2024 or older versions.',
             'LT':            '<strong>AutoCAD LT cannot run plug-ins</strong> (this is an Autodesk limitation), ' +
                              'so WoodPrep will not work in it. It needs full AutoCAD 2025 or newer.',
+            'mac':           '<strong>AutoCAD for Mac cannot run plug-ins</strong> like WoodPrep. ' +
+                             'It needs full AutoCAD 2025 or newer on Windows.',
             'no-autocad':    'WoodPrep is <strong>not a standalone program</strong> — it is a plug-in that ' +
                              'runs inside full AutoCAD 2025 or newer.'
         };
@@ -1402,7 +1405,7 @@
                   '<strong>Sorry — WoodPrep will not run on your setup</strong>' +
                   '<p>' + blocked[autocad] + '</p>' +
                   '<p style="margin-top:14px;">We have received your request. When you have ' +
-                  'AutoCAD 2025 or newer, write to support@woodprep.eu and we will help you start the trial.</p>' +
+                  'full AutoCAD 2025 or newer on Windows, write to support@woodprep.eu and we will help you start the trial.</p>' +
                 '</div>';
             return;
         }
@@ -1419,8 +1422,8 @@
               '<strong>Your download is ready</strong>' +
               (autocad === 'not-sure'
                 ? '<p>Please check first: in AutoCAD open <strong>Help → About</strong>. ' +
-                  'It must say AutoCAD 2025, 2026 or 2027 — <strong>not LT</strong>.</p>'
-                : '<p>Requires AutoCAD 2025, 2026 or 2027 (64-bit, Windows).</p>') +
+                  'It must say AutoCAD 2025, 2026 or 2027 — <strong>not LT, not Mac</strong>.</p>'
+                : '<p>Requires AutoCAD 2025, 2026 or 2027 on Windows (not Mac).</p>') +
               '<a class="cf-submit" href="' + WP_TRIAL_FILE + '" download ' +
                  'onclick="wpTrialDownloaded()" ' +
                  'style="display:block;text-align:center;text-decoration:none;margin:18px 0 0;">' +
