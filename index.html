@@ -1204,7 +1204,8 @@
                 <select class="cf-input" id="trial-autocad">
                     <option value="">— please choose —</option>
                     <option value="2025-2027">AutoCAD 2025, 2026 or 2027</option>
-                    <option value="2024-or-older">AutoCAD 2024 or older</option>
+                    <option value="2021-2024">AutoCAD 2021, 2022, 2023 or 2024</option>
+                    <option value="2020-or-older">AutoCAD 2020 or older</option>
                     <option value="LT">AutoCAD LT (any version)</option>
                     <option value="mac">AutoCAD for Mac</option>
                     <option value="no-autocad">I don't use AutoCAD</option>
@@ -1389,8 +1390,8 @@
         // régi AutoCAD-et használ, annak letölt, telepít, és semmi nem
         // jelenik meg — szó nélkül feladja. Inkább mondjuk meg előre.
         var blocked = {
-            '2024-or-older': 'WoodPrep needs <strong>AutoCAD 2025 or newer</strong>. ' +
-                             'It will not load in AutoCAD 2024 or older versions.',
+            '2020-or-older': 'WoodPrep needs <strong>AutoCAD 2021 or newer</strong>. ' +
+                             'It will not load in AutoCAD 2020 or older versions.',
             'LT':            '<strong>AutoCAD LT cannot run plug-ins</strong> (this is an Autodesk limitation), ' +
                              'so WoodPrep will not work in it. It needs full AutoCAD 2025 or newer.',
             'mac':           '<strong>AutoCAD for Mac cannot run plug-ins</strong> like WoodPrep. ' +
@@ -1398,6 +1399,22 @@
             'no-autocad':    'WoodPrep is <strong>not a standalone program</strong> — it is a plug-in that ' +
                              'runs inside full AutoCAD 2025 or newer.'
         };
+        // ── AutoCAD 2021–2024 → a net48 változat még nincs fent ─────
+        // 2026-10-24: a csomag elkészült, de még nem töltjük fel. Addig
+        // nincs letöltés, csak ígéret — a kérelem a Formspree-n át
+        // megérkezik, a linket kézzel küldjük, amint kész.
+        if (autocad === '2021-2024') {
+            document.getElementById('trialFormBody').innerHTML =
+                '<div class="cf-success">' +
+                  '<div class="cf-tick">&#10003;</div>' +
+                  '<strong>WoodPrep for AutoCAD 2021–2024 is coming very soon</strong>' +
+                  '<p>We have received your request. As soon as the version for your AutoCAD is ready, ' +
+                  'we will e-mail you the download link to <strong>' +
+                  email.replace(/[&<>"]/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; }) +
+                  '</strong>.</p>' +
+                '</div>';
+            return;
+        }
         if (blocked[autocad]) {
             document.getElementById('trialFormBody').innerHTML =
                 '<div class="cf-success">' +
