@@ -1138,7 +1138,7 @@
             </div>
             <a href="#" onclick="openTrialForm('Starter'); return false;" class="btn-primary" style="display:inline-block; margin-bottom:14px;">Request 14-day trial</a>
             <p style="font-size:0.78rem; margin-top:4px; margin-bottom:0;">
-                Requires <strong>full AutoCAD 2025, 2026 or 2027</strong> (Windows) · <strong>Not AutoCAD LT or Mac</strong> · The plugin loads itself — no NETLOAD needed
+                Requires <strong>full AutoCAD 2021–2027</strong> (Windows) · <strong>Not AutoCAD LT or Mac</strong> · The plugin loads itself — no NETLOAD needed
             </p>
             <p style="font-size:0.78rem; margin-top:10px; margin-bottom:0; color:var(--muted);">
                 Prefer not to run an installer? The zip includes manual instructions — it's a single folder copy.
@@ -1188,8 +1188,8 @@
         </div>
         <div id="trialFormBody">
             <div class="cf-note">
-                WoodPrep is a plug-in that runs <strong>inside full AutoCAD 2025, 2026 or 2027</strong> (Windows).
-                It does not work in AutoCAD LT, AutoCAD for Mac or older versions, and it is not a standalone program.
+                WoodPrep is a plug-in that runs <strong>inside full AutoCAD 2021–2027 on Windows</strong>.
+                Not AutoCAD LT, not AutoCAD for Mac, not a standalone program.
             </div>
             <div class="cf-field">
                 <label class="cf-label">Your name <em class="cf-req">*</em></label>
@@ -1203,13 +1203,8 @@
                 <label class="cf-label">Which AutoCAD do you use? <em class="cf-req">*</em></label>
                 <select class="cf-input" id="trial-autocad">
                     <option value="">— please choose —</option>
-                    <option value="2025-2027">AutoCAD 2025, 2026 or 2027</option>
-                    <option value="2021-2024">AutoCAD 2021, 2022, 2023 or 2024</option>
-                    <option value="2020-or-older">AutoCAD 2020 or older</option>
-                    <option value="LT">AutoCAD LT (any version)</option>
-                    <option value="mac">AutoCAD for Mac</option>
-                    <option value="no-autocad">I don't use AutoCAD</option>
-                    <option value="not-sure">Not sure</option>
+                    <option value="2021-2024">AutoCAD 2021–2024</option>
+                    <option value="2025-2027">AutoCAD 2025–2027</option>
                 </select>
             </div>
             <div class="cf-field">
@@ -1374,8 +1369,8 @@
         gtag('event', 'trial_request', { 'plan': wpCurrentPlan, 'autocad': autocad });
 
         // ── A kérelem a háttérben megy el, értesítésnek ─────────────
-        // Az AutoCAD-választ is elküldjük: így a levélből látszik, ki
-        // esett ki LT / régi verzió miatt.
+        // Az AutoCAD-választ is elküldjük: így a levélből látszik,
+        // melyik csomag kell neki.
         fetch('https://formspree.io/f/xwvgapqo', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1385,20 +1380,9 @@
             })
         }).catch(function () { /* a letöltést nem befolyásolja */ });
 
-        // ── Nem futó AutoCAD → nincs letöltés, őszinte üzenet ───────
-        // 2026-10-23: 5 kérelemből egy aktiválás sem lett. Aki LT-t vagy
-        // régi AutoCAD-et használ, annak letölt, telepít, és semmi nem
-        // jelenik meg — szó nélkül feladja. Inkább mondjuk meg előre.
-        var blocked = {
-            '2020-or-older': 'WoodPrep needs <strong>AutoCAD 2021 or newer</strong>. ' +
-                             'It will not load in AutoCAD 2020 or older versions.',
-            'LT':            '<strong>AutoCAD LT cannot run plug-ins</strong> (this is an Autodesk limitation), ' +
-                             'so WoodPrep will not work in it. It needs full AutoCAD 2025 or newer.',
-            'mac':           '<strong>AutoCAD for Mac cannot run plug-ins</strong> like WoodPrep. ' +
-                             'It needs full AutoCAD 2025 or newer on Windows.',
-            'no-autocad':    'WoodPrep is <strong>not a standalone program</strong> — it is a plug-in that ' +
-                             'runs inside full AutoCAD 2025 or newer.'
-        };
+        // 2026-10-24: csak két választás (2021–2024 / 2025–2027). Az LT,
+        // a Mac és az önálló program kizárását az űrlap tetején lévő
+        // szöveg mondja el — a lista nem ismétli.
         // ── AutoCAD 2021–2024 → a net48 változat még nincs fent ─────
         // 2026-10-24: a csomag elkészült, de még nem töltjük fel. Addig
         // nincs letöltés, csak ígéret — a kérelem a Formspree-n át
@@ -1415,17 +1399,6 @@
                 '</div>';
             return;
         }
-        if (blocked[autocad]) {
-            document.getElementById('trialFormBody').innerHTML =
-                '<div class="cf-success">' +
-                  '<div class="cf-tick">&#9888;</div>' +
-                  '<strong>Sorry — WoodPrep will not run on your setup</strong>' +
-                  '<p>' + blocked[autocad] + '</p>' +
-                  '<p style="margin-top:14px;">We have received your request. When you have ' +
-                  'full AutoCAD 2025 or newer on Windows, write to support@woodprep.eu and we will help you start the trial.</p>' +
-                '</div>';
-            return;
-        }
 
         // ── A letöltés AZONNAL megjelenik ───────────────────────────
         // 2026-10-22: korábban e-mailben küldtük a linket kézzel. Négy
@@ -1437,10 +1410,7 @@
             '<div class="cf-success">' +
               '<div class="cf-tick">&#10003;</div>' +
               '<strong>Your download is ready</strong>' +
-              (autocad === 'not-sure'
-                ? '<p>Please check first: in AutoCAD open <strong>Help → About</strong>. ' +
-                  'It must say AutoCAD 2025, 2026 or 2027 — <strong>not LT, not Mac</strong>.</p>'
-                : '<p>Requires AutoCAD 2025, 2026 or 2027 on Windows (not Mac).</p>') +
+              '<p>For full AutoCAD 2025–2027 on Windows.</p>' +
               '<a class="cf-submit" href="' + WP_TRIAL_FILE + '" download ' +
                  'onclick="wpTrialDownloaded()" ' +
                  'style="display:block;text-align:center;text-decoration:none;margin:18px 0 0;">' +
