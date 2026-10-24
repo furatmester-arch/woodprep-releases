@@ -2,5 +2,8 @@
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": ["/sitemap.xml", "/robots.txt", "/*.xml", "/*.txt"]
+  },
+  "mimeTypes": {
+    ".mp4": "video/mp4"
   }
 }
