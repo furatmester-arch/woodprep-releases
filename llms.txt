@@ -2,9 +2,17 @@
 
 > AutoCAD plugin for furniture and cabinet manufacturers. It turns existing AutoCAD 3D drawings into production-ready output: Excel cutting lists, material and hardware summaries, and CNC programs for Biesse (Skipper, Rover) and SCM machines — without redrawing anything in separate CAM software.
 
-WoodPrep runs inside AutoCAD on Windows and is licensed per machine as a monthly subscription. Plans start at €50/month; the Enterprise plan with direct CNC output is €140/month. Every plan includes a 14-day free trial with no credit card required.
+WoodPrep runs inside full AutoCAD 2021–2027 on Windows and is licensed per machine as a monthly subscription. Plans start at €50/month; the Enterprise plan with direct CNC output has custom pricing. Every plan includes a 14-day free trial with no credit card required.
 
 The core idea: a furniture maker who already designs in AutoCAD should not have to re-enter part data into a separate cutting-optimization or CAM program. WoodPrep reads the solids in the drawing and writes the production files directly.
+
+## Requirements
+
+- Full AutoCAD 2021–2027 on Windows.
+- Not AutoCAD LT (Autodesk does not allow plug-ins in LT) and not AutoCAD for Mac.
+- Not a standalone program — it runs inside AutoCAD.
+- CNC output (Enterprise) requires AutoCAD 2025–2027.
+- The 14-day free trial works on AutoCAD 2021–2027: fill in the short form on the [home page](https://woodprep.eu/#demo), choose your AutoCAD version, and the matching download appears immediately.
 
 ## What it does
 
@@ -29,7 +37,7 @@ All prices are per machine, per month.
 - [Basic](https://woodprep.eu/plan-basic.html) — **€50/month**: Excel cutting and hardware lists, bounding size, joint finalization, back panel extraction. No batch processing.
 - [Starter](https://woodprep.eu/plan-starter.html) — **€75/month**: adds batch cabinet processing, identical part detection, and mirror pair detection.
 - [Professional](https://woodprep.eu/plan-professional.html) — **€95/month**: adds parametric cabinet design — door cabinets, Blum 560F drawer cabinets, and generation from floor plans.
-- [Enterprise](https://woodprep.eu/plan-enterprise.html) — **€140/month**: adds direct CNC machine output for Biesse Rover, Biesse Skipper, and SCM.
+- [Enterprise](https://woodprep.eu/plan-enterprise.html) — **custom pricing**: adds direct CNC machine output for Biesse Rover, Biesse Skipper, and SCM.
 
 ## Add-on modules
 

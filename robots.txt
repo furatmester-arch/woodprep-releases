@@ -1,32 +1,43 @@
+# /dl/ holds the trial downloads: they are handed out by the form on the home page, not by search results.
 User-agent: *
 Allow: /
+Disallow: /dl/
 
 # AI assistants and answer engines — explicitly welcome
 User-agent: GPTBot
 Allow: /
+Disallow: /dl/
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /dl/
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /dl/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /dl/
 
 User-agent: Claude-User
 Allow: /
+Disallow: /dl/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /dl/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /dl/
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /dl/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /dl/
 
 Sitemap: https://woodprep.eu/sitemap.xml
