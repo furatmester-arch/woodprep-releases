@@ -1,6 +1,6 @@
 # WoodPrep
 
-> AutoCAD plugin for furniture and cabinet manufacturers. It turns existing AutoCAD 3D drawings into production-ready output: Excel cutting lists, material and hardware summaries, and CNC programs for Biesse (Skipper, Rover) and SCM machines — without redrawing anything in separate CAM software.
+> AutoCAD plugin for furniture and cabinet manufacturers. It turns existing AutoCAD 3D drawings into production-ready output: Excel cutting lists, material and hardware summaries, and CNC programs for Biesse (Skipper, Rover), SCM and Homag machines — without redrawing anything in separate CAM software.
 
 WoodPrep runs inside full AutoCAD 2021–2027 on Windows and is licensed per machine as a monthly subscription. Plans start at €50/month; the Enterprise plan with direct CNC output has custom pricing. Every plan includes a 14-day free trial with no credit card required.
 
@@ -23,12 +23,12 @@ The core idea: a furniture maker who already designs in AutoCAD should not have 
 - **Identical part and mirror pair detection** — matches parts by both dimensions and hole pattern, groups them, and fills in quantities. Mirror detection handles left/right pairs such as cabinet sides and door pairs.
 - **Parametric cabinet generation** — builds complete carcasses from parameters: doors (overlay or inset, left or right swing), drawers sized automatically for Blum 560F undermount slides with 16 mm or 18 mm drawer boxes, auto-positioned hinges, shelf pins, minifix connectors, and open shelf units with curved arched sides.
 - **Generate from floor plan** — reads room dimensions from an existing floor plan drawing and generates carcass geometry.
-- **CNC program output (Enterprise)** — writes BPP files for Biesse Skipper and Rover, or SCM format, including the hole pattern, alongside the cutting list.
+- **CNC program output (Enterprise)** — writes BPP files for Biesse Skipper and Rover, SCM format, or .mpr programs for Homag that open in woodWOP, including the hole pattern, alongside the cutting list.
 - **Geometry helpers** — boolean joint finalization, back panel recess subtraction by layer, bounding size readout, and revealing hidden parts.
 
 ## Who it is for
 
-Furniture and cabinet manufacturers, kitchen makers, and shopfitters who already model in AutoCAD and want to skip manual data entry between design and production. Especially relevant for shops running Biesse or SCM CNC machinery, and for anyone currently retyping part lists into cutting-optimization software by hand.
+Furniture and cabinet manufacturers, kitchen makers, and shopfitters who already model in AutoCAD and want to skip manual data entry between design and production. Especially relevant for shops running Biesse, SCM or Homag CNC machinery, and for anyone currently retyping part lists into cutting-optimization software by hand.
 
 ## Plans
 
@@ -37,7 +37,7 @@ All prices are per machine, per month.
 - [Basic](https://woodprep.eu/plan-basic.html) — **€50/month**: Excel cutting and hardware lists, bounding size, show hidden parts. No batch processing, no joint finalization or back panel extraction, no CNC output.
 - [Starter](https://woodprep.eu/plan-starter.html) — **€75/month**: adds batch cabinet processing, identical part detection, mirror pair detection, joint finalization, and back panel extraction.
 - [Professional](https://woodprep.eu/plan-professional.html) — **€95/month**: adds parametric cabinet design — door cabinets, Blum 560F drawer cabinets, and generation from floor plans.
-- [Enterprise](https://woodprep.eu/plan-enterprise.html) — **custom pricing**: adds direct CNC machine output for Biesse Rover, Biesse Skipper, and SCM.
+- [Enterprise](https://woodprep.eu/plan-enterprise.html) — **custom pricing**: adds direct CNC machine output for Biesse Rover, Biesse Skipper, SCM, and Homag (.mpr for woodWOP). Every machine is configured and tested during setup.
 
 ## Add-on modules
 
