@@ -1349,7 +1349,14 @@
     // ── A próbaverzió csomagja ──────────────────────────────────────
     // Kitalálhatatlan néven a /dl/ mappában. Az oldalon SEHOL nem
     // szerepel link rá — csak az űrlap kitöltése után jelenik meg.
-    var WP_TRIAL_FILE = 'dl/wp-starter-d2484d71f094306c.zip';
+    // Két csomag: a 2025–2027-es (net8) és a 2021–2024-es (net48,
+    // source\repos\AutoCAD2024\Bundle). Hogy melyiket kapja, azt az
+    // AutoCAD-választás dönti el.
+    var WP_TRIAL_FILES = {
+        '2025-2027': 'dl/wp-starter-d2484d71f094306c.zip',
+        '2021-2024': 'dl/wp-starter-2024-d8aa9af06fb42450.zip'
+    };
+    var wpTrialFile = '';
 
     function submitTrialForm() {
         var name    = document.getElementById('trial-name').value.trim();
@@ -1383,22 +1390,10 @@
         // 2026-10-24: csak két választás (2021–2024 / 2025–2027). Az LT,
         // a Mac és az önálló program kizárását az űrlap tetején lévő
         // szöveg mondja el — a lista nem ismétli.
-        // ── AutoCAD 2021–2024 → a net48 változat még nincs fent ─────
-        // 2026-10-24: a csomag elkészült, de még nem töltjük fel. Addig
-        // nincs letöltés, csak ígéret — a kérelem a Formspree-n át
-        // megérkezik, a linket kézzel küldjük, amint kész.
-        if (autocad === '2021-2024') {
-            document.getElementById('trialFormBody').innerHTML =
-                '<div class="cf-success">' +
-                  '<div class="cf-tick">&#10003;</div>' +
-                  '<strong>WoodPrep for AutoCAD 2021–2024 is coming very soon</strong>' +
-                  '<p>We have received your request. As soon as the version for your AutoCAD is ready, ' +
-                  'we will e-mail you the download link to <strong>' +
-                  email.replace(/[&<>"]/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; }) +
-                  '</strong>.</p>' +
-                '</div>';
-            return;
-        }
+        // 2026-10-25: a 2021–2024-es csomag is fent van, mindkét
+        // választás azonnal letöltést kap.
+        wpTrialFile = WP_TRIAL_FILES[autocad];
+        var range   = autocad === '2021-2024' ? '2021–2024' : '2025–2027';
 
         // ── A letöltés AZONNAL megjelenik ───────────────────────────
         // 2026-10-22: korábban e-mailben küldtük a linket kézzel. Négy
@@ -1410,8 +1405,8 @@
             '<div class="cf-success">' +
               '<div class="cf-tick">&#10003;</div>' +
               '<strong>Your download is ready</strong>' +
-              '<p>For full AutoCAD 2025–2027 on Windows.</p>' +
-              '<a class="cf-submit" href="' + WP_TRIAL_FILE + '" download ' +
+              '<p>For full AutoCAD ' + range + ' on Windows.</p>' +
+              '<a class="cf-submit" href="' + wpTrialFile + '" download ' +
                  'onclick="wpTrialDownloaded()" ' +
                  'style="display:block;text-align:center;text-decoration:none;margin:18px 0 0;">' +
                  'Download the 14-day trial</a>' +
@@ -1424,7 +1419,7 @@
     function wpTrialDownloaded() {
         gtag('event', 'trial_download', {
             'plan': wpCurrentPlan,
-            'file_name': WP_TRIAL_FILE.split('/').pop()
+            'file_name': wpTrialFile.split('/').pop()
         });
     }
     document.getElementById('trialForm').addEventListener('click', function(e) {
