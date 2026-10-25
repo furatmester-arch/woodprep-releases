@@ -46,7 +46,7 @@
 
   <h2>Write the BPP directly</h2>
 
-  <p>The <code>EE26</code> command reads the selected part and writes the <strong>BPP program</strong> for Biesse Skipper or Rover: size, grain direction, edge banding and the full hole pattern, taken from the model itself. The same run appends the part to <code>cnc_import.txt</code>, so the cutting list and the machine files come from one source and stay consistent.</p>
+  <p>The <code>EE26</code> command reads the selected part and writes the <strong>BPP program</strong> for Biesse Skipper or Rover: size, grain direction, edge banding and the full hole pattern, taken from the model itself. The same run adds the part to the cutting list, so the cutting list and the machine files come from one source and stay consistent.</p>
 
   <p>For a whole carcass, <code>CABINET</code> runs it on every part in a single pass — sixty parts become sixty programs without sixty manual entries.</p>
 
@@ -70,7 +70,7 @@
     <li>Hole pattern taken from the drawing, not re-entered by coordinate</li>
     <li>SCM format from the same command</li>
     <li>Optional DXF export in the same run — type <code>dxf</code> in the part comment</li>
-    <li><code>cnc_import.txt</code> generated alongside, keeping the cutting list in step</li>
+    <li>Cutting list generated alongside, in step with the machine files</li>
   </ul>
 
   <div class="cta">

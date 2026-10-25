@@ -144,8 +144,8 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
       <div class="cmd-card-inner">
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">CABINET</span><span class="badge yes">Included</span></div>
-          <div class="cmd-title">Batch Carcass Processing → cnc_import.txt + CNC files</div>
-          <div class="cmd-desc">Iterates through every part of the carcass and runs EE26 on each one — no part can be missed. Simultaneously writes <strong>cnc_import.txt</strong> (for Excel import) and generates the CNC program file for each part. When all parts are done, open the Excel companion workbook and click <em>Import Parts</em>.</div>
+          <div class="cmd-title">Batch Carcass Processing → cutting list + CNC files</div>
+          <div class="cmd-desc">Iterates through every part of the carcass and runs EE26 on each one — no part can be missed. Simultaneously writes the cutting list (for Excel import) and generates the CNC program file for each part. When all parts are done, open the Excel companion workbook and click <em>Import Parts</em>.</div>
         </div>
         <div class="cmd-video"><video src="cabinet.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)" style="width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;"></video></div>
       </div>
@@ -242,8 +242,8 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
       <div class="cmd-card-inner">
         <div class="cmd-info">
           <div class="cmd-head"><span class="cmd-name">EE26</span><span class="badge cnc">CNC output</span></div>
-          <div class="cmd-title">Full Part Data → CNC file + cnc_import.txt</div>
-          <div class="cmd-desc">Processes a single selected part: records size, grain direction, edgebanding, and hole pattern — then writes the CNC program file (BPP for Biesse Skipper/Rover, or SCM format) and appends the line to <strong>cnc_import.txt</strong>. Type <code style="font-size:0.8em;color:var(--cnc)">dxf</code> in the part comment and a DXF folder is created next to the machine program folders, with the part exported as DXF as well. Use CABINET to run this on every part automatically.</div>
+          <div class="cmd-title">Full Part Data → CNC file + cutting list</div>
+          <div class="cmd-desc">Processes a single selected part: records size, grain direction, edgebanding, and hole pattern — then writes the CNC program file (BPP for Biesse Skipper/Rover, or SCM format) and adds the part to the cutting list. Type <code style="font-size:0.8em;color:var(--cnc)">dxf</code> in the part comment and a DXF folder is created next to the machine program folders, with the part exported as DXF as well. Use CABINET to run this on every part automatically.</div>
         </div>
       </div>
     </div>

@@ -50,7 +50,7 @@
 
   <h2>Write the program from the part itself</h2>
 
-  <p>The <code>EE26</code> command processes a selected part and writes the machine program directly: size, grain direction, edge banding and the complete hole pattern, in the format your machine reads — BPP for Biesse Skipper and Rover, or SCM format. The same run appends the part to <code>cnc_import.txt</code>, so the cutting list stays in step with the machine files.</p>
+  <p>The <code>EE26</code> command processes a selected part and writes the machine program directly: size, grain direction, edge banding and the complete hole pattern, in the format your machine reads — BPP for Biesse Skipper and Rover, or SCM format. The same run adds the part to the cutting list, so the cutting list stays in step with the machine files.</p>
 
   <p>Run it through <code>CABINET</code> and it happens for every part of the carcass in one pass, rather than part by part.</p>
 
@@ -99,7 +99,7 @@
     <li>Machine programs written from the model, drilling included</li>
     <li>Biesse (Skipper, Rover) and SCM formats supported</li>
     <li>Optional DXF export in the same run</li>
-    <li><code>cnc_import.txt</code> kept in step, so the cutting list matches the machine files</li>
+    <li>Cutting list kept in step with the machine files</li>
   </ul>
 
   <div class="callout">
