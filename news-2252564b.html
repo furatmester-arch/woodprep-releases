@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Rejtett oldal: csak link alapján, kézzel küldjük komoly érdeklődőknek.
+     NEM szerepel a sitemap.xml-ben, az llms.txt-ben, és sehonnan nem
+     linkeljük. A robots.txt-be se írjuk bele, mert azzal a címét árulnánk el.
+     A noindex miatt a keresők és az AI-robotok akkor sem veszik fel, ha
+     valahol rábukkannak. -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="description" content="What is new in WoodPrep: features just released and in development, with short demo videos.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What's new in WoodPrep">
+<meta property="og:description" content="Features just released and in development, with short demo videos.">
+<meta property="og:image" content="https://woodprep.eu/og-image.png">
+<title>What's new in WoodPrep</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f0f1a;--bg2:#16162a;--bg-new:#1a150c;--accent:#4db8ff;--new:#f5a623;--text:#e8e8f0;--muted:#8888aa;--border:rgba(255,255,255,0.08);--border-new:rgba(245,166,35,0.18);--vbg:#0c0c18;--vbg-new:#120e06}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.header{padding:36px 48px 28px;border-bottom:1px solid var(--border)}
+.logo{font-size:0.95rem;font-weight:800;color:#fff}.logo span{color:var(--accent)}
+.header h1{font-size:1.6rem;font-weight:800;margin-top:14px;letter-spacing:-0.4px}
+.header h1 em{color:var(--new);font-style:normal}
+.header p{color:var(--muted);font-size:0.88rem;margin-top:5px;max-width:640px}
+.private{display:inline-block;margin-top:14px;font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--new);border:1px solid var(--border-new);background:rgba(245,166,35,0.06);border-radius:7px;padding:3px 10px}
+
+.container{max-width:960px;padding:44px 48px 80px}
+.group{margin-bottom:52px}
+.group-label{font-size:0.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--new);padding-bottom:10px;border-bottom:1px solid var(--border-new);margin-bottom:20px}
+.cmd-card{background:var(--bg-new);border:1px solid var(--border-new);border-radius:10px;overflow:hidden;margin-bottom:12px}
+.cmd-card-inner{display:grid;grid-template-columns:1fr 300px}
+.cmd-info{padding:22px 24px}
+.cmd-head{display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.cmd-name{font-family:'Courier New',monospace;font-size:0.92rem;font-weight:700;color:var(--new)}
+.badge{font-size:0.62rem;font-weight:700;padding:2px 9px;border-radius:7px}
+.badge.new{background:rgba(245,166,35,0.12);color:var(--new);border:1px solid rgba(245,166,35,0.25)}
+.badge.soon{background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid var(--border)}
+.date{font-size:0.7rem;color:var(--muted);margin-left:auto}
+.cmd-title{color:var(--text);font-size:0.95rem;font-weight:600;margin-bottom:6px}
+.cmd-desc{color:var(--muted);font-size:0.83rem;line-height:1.6}
+.cmd-video{border-left:1px solid var(--border-new);background:var(--vbg-new);display:flex;align-items:center;justify-content:center;min-height:170px}
+.vph{display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0.35;pointer-events:none}
+.vph-icon{width:40px;height:40px;border:2px solid var(--muted);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.vph-icon svg{width:14px;height:14px;fill:var(--muted);margin-left:2px}
+.vph span{font-size:0.66rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.cta{margin-top:8px;padding:22px 24px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);font-size:0.86rem;color:var(--muted)}
+.cta strong{color:var(--text)}
+.cta a{color:var(--accent);text-decoration:none}
+
+footer{padding:24px 48px;border-top:1px solid var(--border);font-size:0.77rem;color:var(--muted)}
+footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--accent)}
+@media(max-width:640px){
+  .header,.container,footer{padding-left:20px;padding-right:20px}
+  .cmd-card-inner{grid-template-columns:1fr}
+  .cmd-video{border-left:none;border-top:1px solid var(--border-new);min-height:190px}
+  .date{margin-left:0}
+}
+</style>
+<!-- Google tag (gtag.js) — marad, hogy lássuk, megnyitották-e a küldött linket -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C4NVNBK62F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C4NVNBK62F');
+</script>
+</head>
+<body>
+<div class="header">
+  <a href="index.html" class="logo" style="text-decoration:none;">Wood<span>Prep</span></a>
+  <h1>What's new — <em>Preview</em></h1>
+  <p>New commands that have just been released or are about to be. Each one comes with a short video so you can see it working on a real drawing.</p>
+  <span class="private">Shared privately · not public yet</span>
+</div>
+
+<div class="container">
+
+  <!-- Videó hozzáadása: a <div class="cmd-video">…</div> belsejében a
+       placeholder (vph) helyére ez kerül, a fájlnévvel:
+       <video src="FAJLNEV.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)" style="width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;"></video> -->
+
+  <div class="group">
+    <div class="group-label">New in WoodPrep</div>
+
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">CORP26</span><span class="badge new">New</span><span class="date">October 2026</span></div>
+          <div class="cmd-title">Cabinet Designer — the new cabinet generator</div>
+          <div class="cmd-desc">Design a complete carcass from one panel: set the dimensions and the construction, and the parts, hole patterns and part names are generated and checked automatically before anything is drawn. The finished cabinet is placed as a grouped model, ready for the cutting list and CNC output.</div>
+        </div>
+        <div class="cmd-video"><video src="corp26.mp4#t=0.1" preload="metadata" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0.1" onclick="openLb('corp26.mp4')" style="width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;"></video></div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">ROBBANT</span><span class="badge new">New</span><span class="date">October 2026</span></div>
+          <div class="cmd-title">Exploded View with Grain Direction and Edge Banding</div>
+          <div class="cmd-desc">Creates an exploded copy of the cabinet next to the model, with every part labelled by name, edge banding shown in colour and grain direction marked. The original model is not touched. Ideal for the workshop, for assembly and for checking the parts before production.</div>
+        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Video coming</span></div></div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">DXF</span><span class="badge new">New</span><span class="date">October 2026</span></div>
+          <div class="cmd-title">DXF Export for Special Parts</div>
+          <div class="cmd-desc">Exports parts as DXF directly from the 3D model — for curved and shaped parts, or for any machine and service that works from DXF. The files are written into their own folder next to the machine programs.</div>
+        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Video coming</span></div></div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">ELZARAS</span><span class="badge new">New</span><span class="date">October 2026</span></div>
+          <div class="cmd-title">Automatic Edge Banding</div>
+          <div class="cmd-desc">Assigns edge banding to every part of the cabinet in one step and shows it in colour on the model, so you can check it at a glance. Identical parts are grouped, and the result goes straight into the cutting list.</div>
+        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Video coming</span></div></div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="badge soon">Coming soon</span></div>
+          <div class="cmd-title">Next feature</div>
+          <div class="cmd-desc">Placeholder for the next new command.</div>
+        </div>
+        <div class="cmd-video"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></div><span>Video coming</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <strong>Interested in one of these?</strong> Write to <a href="mailto:support@woodprep.eu">support@woodprep.eu</a> — we can show it on your own drawing and tell you which plan it will be part of.
+  </div>
+
+</div>
+<div id="vlb" onclick="if(event.target===this)closeLb()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;">
+  <button onclick="closeLb()" style="position:absolute;top:16px;right:22px;background:none;border:none;color:#fff;font-size:2.4rem;line-height:1;cursor:pointer;opacity:0.7;" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.7">×</button>
+  <video id="vlb-v" controls style="max-width:92vw;max-height:88vh;border-radius:8px;outline:none;background:#000;"></video>
+</div>
+<script>
+function openLb(src){var v=document.getElementById('vlb-v');v.src=src;document.getElementById('vlb').style.display='flex';try{var p=v.play();if(p)p.catch(function(){});}catch(e){}}
+function closeLb(){var v=document.getElementById('vlb-v');document.getElementById('vlb').style.display='none';v.pause();v.removeAttribute('src');v.load();}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+</script>
+<footer>woodprep.eu &nbsp;·&nbsp; <a href="mailto:support@woodprep.eu">support@woodprep.eu</a></footer>
+</body>
+</html>
