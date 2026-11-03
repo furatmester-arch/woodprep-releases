@@ -40,6 +40,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .badge{font-size:0.62rem;font-weight:700;padding:2px 9px;border-radius:7px}
 .badge.yes{background:rgba(77,184,255,0.1);color:var(--accent);border:1px solid rgba(77,184,255,0.2)}
 .badge.batch{background:rgba(245,166,35,0.1);color:var(--amber);border:1px solid rgba(245,166,35,0.2)}
+.badge.addon{background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid rgba(255,255,255,0.15)}
 .cmd-title{color:var(--text);font-size:0.95rem;font-weight:600;margin-bottom:6px}
 .cmd-desc{color:var(--muted);font-size:0.83rem;line-height:1.6}
 .cmd-video{border-left:1px solid var(--border);background:var(--vbg);display:flex;align-items:center;justify-content:center;transition:background 0.2s}
@@ -210,6 +211,46 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
           <div class="cmd-desc">Reveals all hidden objects in the current drawing at once.</div>
         </div>
         <div class="cmd-video"><video src="showalle26.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0" onclick="openLb(this.src)" style="width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;"></video></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Workbook, licence &amp; support</div>
+    <div class="cmd-card simple" id="woodprep_excel">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">WOODPREP_EXCEL</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Excel Companion Workbook</div>
+          <div class="cmd-desc">Writes the companion Excel workbook into the folder of the current drawing and opens it, so the DWG and its cutting list stay together. Save the drawing first. If a workbook already exists in that folder, you are asked whether to replace it or open the existing one, so your own changes are never lost.</div>
+        </div>
+      </div>
+    </div>
+    <div class="cmd-card simple" id="woodprep_info">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">WOODPREP_INFO</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">License &amp; Language Settings</div>
+          <div class="cmd-desc">Shows the licence status, the remaining days of your trial or subscription, the registered client name and the machine ID. You can also switch the interface language between English and Hungarian here.</div>
+        </div>
+      </div>
+    </div>
+    <div class="cmd-card simple" id="woodprep_feedback">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">WOODPREP_FEEDBACK</span><span class="badge yes">Included</span></div>
+          <div class="cmd-title">Send Feedback</div>
+          <div class="cmd-desc">Opens a short form to send a question, a bug report or a suggestion directly to the WoodPrep team. You can also write to <a href="mailto:support@woodprep.eu" style="color:var(--accent)">support@woodprep.eu</a>.</div>
+        </div>
+      </div>
+    </div>
+    <div class="cmd-card simple" id="lapszabas">
+      <div class="cmd-card-inner">
+        <div class="cmd-info">
+          <div class="cmd-head"><span class="cmd-name">PANELCUT</span><span class="badge addon">Add-on module</span></div>
+          <div class="cmd-title">Panel Cutting Optimisation</div>
+          <div class="cmd-desc">Optimised nesting of parts on full boards. This is a separately licensed add-on and is not included in the Starter plan. Without the module, the button opens an information window where you can request it; once enabled for your machine, the command starts right away.</div>
+        </div>
       </div>
     </div>
   </div>
