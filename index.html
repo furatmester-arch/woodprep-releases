@@ -523,6 +523,7 @@
             background: var(--bg3); border: 1px solid var(--border);
             border-radius: 14px; padding: 32px 36px;
             max-width: 460px; width: 100%;
+            max-height: calc(100vh - 40px); overflow-y: auto;
         }
         .cf-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 22px; }
         .cf-title { font-size: 1.1rem; font-weight: 700; }
@@ -558,6 +559,14 @@
         .cf-success .cf-tick { font-size: 2.2rem; margin-bottom: 10px; }
         .cf-success strong { font-size: 1rem; display: block; margin-bottom: 6px; }
         .cf-success p { font-size: 0.84rem; color: var(--muted); }
+        /* Telepítési útmutató a letöltés gomb alatt (NETLOAD-videó + lépések) */
+        .dl-howto { text-align: left; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
+        .dl-howto-title { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+        .dl-howto video { display: block; width: 100%; border-radius: 8px; border: 1px solid var(--border); background: #000; }
+        .dl-howto ol { margin: 14px 0 10px 18px; font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+        .dl-howto li { margin-bottom: 5px; }
+        .dl-howto b { color: var(--text); font-weight: 600; word-break: break-word; }
+        .dl-howto p { font-size: 0.8rem; }
 
         /* ── QUICK WINS STRIP ───────────────────────────────────────────── */
         .quickwins {
@@ -760,7 +769,7 @@
         <div class="qw-icon">⚡</div>
         <div class="qw-text">
             <strong>Installs in minutes</strong>
-            <span>Copy one file — runs inside AutoCAD</span>
+            <span>NETLOAD one file — runs inside AutoCAD</span>
         </div>
     </div>
     <div class="qw-item">
@@ -1143,10 +1152,10 @@
             </div>
             <a href="#" onclick="openTrialForm('Starter'); return false;" class="btn-primary" style="display:inline-block; margin-bottom:14px;">Request 14-day trial</a>
             <p style="font-size:0.78rem; margin-top:4px; margin-bottom:0;">
-                Requires <strong>full AutoCAD 2021–2027</strong> (Windows) · <strong>Not AutoCAD LT or Mac</strong> · The plugin loads itself — no NETLOAD needed
+                Requires <strong>full AutoCAD 2021–2027</strong> (Windows) · <strong>Not AutoCAD LT or Mac</strong>
             </p>
             <p style="font-size:0.78rem; margin-top:10px; margin-bottom:0; color:var(--muted);">
-                Prefer not to run an installer? The zip includes manual instructions — it's a single folder copy.
+                Installs with NETLOAD — no installer to run. A 2-minute video shows every step right after download.
             </p>
             <p style="font-size:0.78rem; margin-top:12px; margin-bottom:0;">
                 <a href="test443.zip" style="color:var(--muted); text-decoration:underline;" download>Connection problem? Test port 443 →</a>
@@ -1399,6 +1408,9 @@
         // választás azonnal letöltést kap.
         wpTrialFile = WP_TRIAL_FILES[autocad];
         var range   = autocad === '2021-2024' ? '2021–2024' : '2025–2027';
+        // A zip mappái és DLL-jei (feltöltés\v1.6.3_netload) — a lépésekben ezek szerepelnek
+        var dlFolder = autocad === '2021-2024' ? 'AutoCAD_2021-2024' : 'AutoCAD_2025-2027';
+        var dlFile   = autocad === '2021-2024' ? '02_Standard_14day_Desk_2024.dll' : 'WoodPrep.dll';
 
         // ── A letöltés AZONNAL megjelenik ───────────────────────────
         // 2026-10-22: korábban e-mailben küldtük a linket kézzel. Négy
@@ -1415,9 +1427,26 @@
                  'onclick="wpTrialDownloaded()" ' +
                  'style="display:block;text-align:center;text-decoration:none;margin:18px 0 0;">' +
                  'Download the 14-day trial</a>' +
-              '<p style="margin-top:14px;">Extract the zip and run Install.cmd, then start ' +
-              'AutoCAD. If anything does not work, write to support@woodprep.eu and we will help.</p>' +
+              // 2026-11-11: a zip NETLOAD-os (két mappa, két DLL), Install.cmd
+              // nincs benne — a régi szöveg miatt a letöltők elakadtak.
+              '<div class="dl-howto">' +
+                '<div class="dl-howto-title">How to install — watch the 2-minute video</div>' +
+                '<video src="netload.mp4" controls playsinline preload="metadata" onplay="wpInstallVideo()"></video>' +
+                '<ol>' +
+                  '<li>Right-click the zip → <b>Properties</b> → tick <b>Unblock</b> → OK</li>' +
+                  '<li>Extract it to a folder you keep, e.g. <b>C:\\WoodPrep</b></li>' +
+                  '<li>In AutoCAD type <b>NETLOAD</b> → open the folder <b>' + dlFolder + '</b> → pick <b>' + dlFile + '</b> → <b>Always Load</b></li>' +
+                  '<li>The WoodPrep tab appears → register → the code arrives by email (check spam too)</li>' +
+                  '<li>To load it at every start: type <b>APPLOAD</b> → Startup Suite → <b>Contents…</b> → Add the same DLL</li>' +
+                '</ol>' +
+                '<p>Stuck? Write to support@woodprep.eu — we reply quickly.</p>' +
+              '</div>' +
             '</div>';
+    }
+
+    // GA4: elindította a telepítési videót
+    function wpInstallVideo() {
+        gtag('event', 'install_video_play', { 'plan': wpCurrentPlan });
     }
 
     // GA4: a látogató tényleg rákattintott a letöltésre
