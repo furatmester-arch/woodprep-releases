@@ -136,7 +136,6 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
       <!-- 5. A beépítés fotói -->
       <div class="layer l-photo" data-l="photo">
         <img src="story/konyha-1-korpuszok.jpg" alt="Kitchen carcasses installed">
-        <img src="story/konyha-2-munkalap.jpg" alt="Worktop, hob and oven installed">
         <img src="story/konyha-3-kesz.jpg" alt="The finished kitchen with LED plinth light">
         <img src="story/konyha-4-sziget.jpg" alt="The whole kitchen with the island, in daily use">
         <span class="tag" id="photoTag">The real kitchen</span>
@@ -247,7 +246,7 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
 
   const photos = [...L.photo.querySelectorAll('img')];
   const photoTag = document.getElementById('photoTag');
-  const photoCaps = ['Real kitchen · carcasses in place', 'Real kitchen · worktop and appliances in',
+  const photoCaps = ['Real kitchen · carcasses in place',
                      'Real kitchen · finished', 'Real kitchen · in daily use'];
 
   function update() {
