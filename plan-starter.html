@@ -58,6 +58,9 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .upgrade-tags span{font-family:'Courier New',monospace;font-size:0.75rem;font-weight:700;padding:3px 10px;border-radius:6px;background:rgba(77,184,255,0.07);color:var(--accent);border:1px solid rgba(77,184,255,0.15)}
 .upgrade-link{display:inline-block;font-size:0.85rem;font-weight:700;color:var(--accent);text-decoration:none}
 .upgrade-link:hover{text-decoration:underline}
+.story-card{display:block;text-decoration:none;border-color:rgba(255,210,63,0.35);background:linear-gradient(135deg,rgba(255,210,63,0.08),var(--bg2) 60%)}
+.story-card .upgrade-label{color:#ffd23f}
+.story-card:hover{border-color:rgba(255,210,63,0.7)}
 
 footer{padding:24px 48px;border-top:1px solid var(--border);font-size:0.77rem;color:var(--muted)}
 footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--accent)}
@@ -264,6 +267,14 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
     </div>
     <a href="plan-professional.html" class="upgrade-link">See Professional Guide →</a>
   </div>
+
+  <!-- 2026-11-15: a görgetős történet-oldal (egy valódi konyha a vázlattól a kész konyháig) -->
+  <a href="story.html" class="upgrade story-card">
+    <div class="upgrade-label">See it on a real kitchen</div>
+    <div class="upgrade-title">From a sketch to a finished kitchen — scroll through it</div>
+    <div class="upgrade-sub">One real kitchen: the drawing, every part in 3D, a cabinet processed part by part, the cutting list, and the finished room.</div>
+    <span class="upgrade-link">Watch the story →</span>
+  </a>
 
 </div>
 <div id="vlb" onclick="if(event.target===this)closeLb()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;">

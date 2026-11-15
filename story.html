@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Próbaoldal (2026-11-15): görgetésre kibomló történet egy VALÓDI konyhán
+     (a user 2018-as munkája): kézi elölnézet-vázlat → AutoCAD 3D → szétrobbantva →
+     szekrény kijelölése → EE26 → Excel → a beépítés fotói. Előbb a woodprep.hu-n
+     próbáljuk ki, ha bevált, átkerül a woodprep.eu-ra. Egyelőre csak angol, noindex.
+     Képek: story/ (forrás: source\repos\wp_konyha). -->
+<meta name="robots" content="noindex, nofollow">
+<title>WoodPrep – from sketch to finished kitchen</title>
+<style>
+:root{
+  --bg:#0f0f1a; --bg2:#16162a; --text:#e8e8f0; --muted:#8888aa;
+  --accent:#4db8ff; --green:#1ed282; --border:rgba(255,255,255,0.08);
+  --paper:#f3ecdc; --pencil:#3f3f4d;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+a{color:var(--accent)}
+
+nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;
+    padding:14px 32px;background:rgba(15,15,26,0.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.logo{font-weight:800;font-size:1.05rem}.logo span{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:#000;font-weight:700;padding:10px 22px;border-radius:8px;text-decoration:none}
+
+.intro{min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px;
+       background:radial-gradient(ellipse at 50% 0%,#1a2a4a 0%,var(--bg) 70%)}
+.intro h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.15;max-width:860px}
+.intro h1 span{color:var(--accent)}
+.intro p{color:var(--muted);margin-top:16px;max-width:560px}
+.scroll-hint{margin-top:44px;color:var(--muted);font-size:0.85rem;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+
+/* ── A TÖRTÉNET ─────────────────────────────────────────────────────── */
+.story{position:relative;height:700vh}
+.stage{position:sticky;top:57px;height:calc(100vh - 57px);display:grid;grid-template-columns:minmax(260px,2fr) 3fr;
+       gap:48px;align-items:center;max-width:1300px;margin:0 auto;padding:0 40px}
+.steps{list-style:none;position:relative}
+.steps li{padding:14px 0 14px 54px;position:relative;opacity:0.28;transition:opacity .4s, transform .4s}
+.steps li.on{opacity:1;transform:translateX(6px)}
+.steps li .n{position:absolute;left:0;top:12px;width:36px;height:36px;border-radius:50%;border:2px solid var(--muted);
+             display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;color:var(--muted)}
+.steps li.on .n{border-color:var(--accent);color:var(--accent);background:rgba(77,184,255,0.1)}
+.steps li.done .n{border-color:var(--green);color:var(--green)}
+.steps h3{font-size:1.15rem}
+.steps p{color:var(--muted);font-size:0.9rem;margin-top:2px}
+.bar{height:3px;background:var(--border);border-radius:2px;margin-top:22px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--green))}
+
+.visual{position:relative;height:min(68vh,560px);border-radius:16px;border:1px solid var(--border);background:var(--bg2);overflow:hidden}
+.layer{position:absolute;inset:0;opacity:0;transition:opacity .5s;display:flex;align-items:center;justify-content:center}
+.layer.on{opacity:1}
+.layer > svg{width:100%;height:100%}
+.tag{position:absolute;left:16px;top:14px;font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+     color:var(--muted);background:rgba(0,0,0,0.35);padding:4px 10px;border-radius:6px;z-index:2}
+
+.l-sketch{background:var(--paper)}
+.l-sketch .tag{color:#7a6f58;background:rgba(0,0,0,0.05)}
+.l-acad{background:#212830}
+.l-acad img{width:100%;height:100%;object-fit:contain;transform:scale(calc(0.92 + var(--z,0) * 0.08));transition:transform .2s linear}
+.l-pick{background:#212830}
+.l-pick .pick{position:absolute;inset:0;width:100%;height:100%;transition:opacity .3s}
+.l-pick img{position:absolute;inset:18px;width:calc(100% - 36px);height:calc(100% - 36px);object-fit:contain;opacity:0}
+.l-pick .ee26pop{filter:drop-shadow(0 20px 40px rgba(0,0,0,.6))}
+.l-pick .excel{background:#fff;border-radius:6px;transition:opacity .35s}
+.l-photo{background:#0b0b12}
+.l-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .35s}
+
+.after{padding:90px 24px;text-align:center}
+.after h2{font-size:clamp(1.6rem,3.5vw,2.4rem)}
+.after p{color:var(--muted);margin:12px auto 28px;max-width:520px}
+
+@media (max-width:860px){
+  .story{height:600vh}
+  .stage{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:12px 16px;align-items:start}
+  .steps li{display:none;padding-left:46px;opacity:1}
+  .steps li.on{display:block;transform:none}
+  .visual{height:52vh;order:-1}
+  nav{padding:12px 16px}
+}
+</style>
+</head>
+<body>
+<nav><div class="logo">Wood<span>Prep</span></div><a class="btn" href="#try">Try free</a></nav>
+
+<section class="intro">
+  <h1>From a sketch to a <span>finished kitchen</span> — without retyping a single size</h1>
+  <p>Scroll down and follow one real kitchen all the way from the drawing board to the finished room.</p>
+  <div class="scroll-hint">▼ scroll</div>
+</section>
+
+<section class="story" id="story">
+  <div class="stage">
+    <div>
+      <ol class="steps" id="steps">
+        <li><span class="n">1</span><h3>It starts with a sketch</h3><p>A front view with the main sizes — the way every kitchen begins.</p></li>
+        <li><span class="n">2</span><h3>Every part drawn in AutoCAD</h3><p>Sides, tops, backs, shelves, fronts — each panel is a real 3D part, in the CAD you already know.</p></li>
+        <li><span class="n">3</span><h3>…and they come together</h3><p>The parts fit into cabinets, the cabinets into the kitchen. This is the real design.</p></li>
+        <li><span class="n">4</span><h3>Select a cabinet — get CNC + cutting list</h3><p>WoodPrep finds every part of it: size, grain, edge banding, holes. Then the Excel cutting list.</p></li>
+        <li><span class="n">5</span><h3>It goes together perfectly</h3><p>This kitchen was built exactly this way. Nothing missing, nothing drilled wrong.</p></li>
+      </ol>
+      <div class="bar"><i id="bar"></i></div>
+    </div>
+
+    <div class="visual" id="visual">
+      <!-- 1. A valódi konyha elölnézete, kézi stílusban „rajzolódik" (a 07 rajz.png alapján) -->
+      <div class="layer l-sketch" data-l="sketch">
+        <svg id="sketch" viewBox="0 -45 780 750"></svg>
+        <span class="tag">Sketch · front view</span>
+      </div>
+      <!-- 2. AutoCAD 3D -->
+      <div class="layer l-acad" data-l="acad">
+        <img src="story/konyha-acad-3d.png" alt="The same kitchen drawn in 3D in AutoCAD">
+        <span class="tag">AutoCAD · assembled</span>
+      </div>
+      <!-- 3. Szétrobbantva (ROBBANT) -->
+      <div class="layer l-acad" data-l="boom">
+        <img src="story/konyha-acad-robbant.png" alt="The same kitchen exploded into its parts in AutoCAD">
+        <span class="tag">AutoCAD · every part in 3D</span>
+      </div>
+      <!-- 4. Kör a jobb felső kétajtós szekrény köré → abból kinyílik az EE26 → Excel.
+           Az EE26-kép ennek a szekrénynek a jobb oldallapja (az ügyfélnév kitakarva). -->
+      <div class="layer l-pick" data-l="pick">
+        <svg class="pick" viewBox="0 0 1030 857" preserveAspectRatio="xMidYMid meet">
+          <image href="story/konyha-acad-3d.png" width="1030" height="857"/>
+          <ellipse id="pickRing" cx="866" cy="268" rx="168" ry="122" transform="rotate(16 866 268)"
+                   fill="none" stroke="#ffd23f" stroke-width="7" stroke-linecap="round"/>
+        </svg>
+        <img class="ee26pop" src="story/konyha-ee26.png" alt="The WoodPrep part window: size, grain, edge banding, holes, Save + BPP">
+        <img class="excel" src="story/konyha-excel.png" alt="The Excel cutting list of the kitchen">
+        <span class="tag" id="pickTag">Select a cabinet in the drawing</span>
+      </div>
+      <!-- 5. A beépítés fotói -->
+      <div class="layer l-photo" data-l="photo">
+        <img src="story/konyha-1-korpuszok.jpg" alt="Kitchen carcasses installed">
+        <img src="story/konyha-2-munkalap.jpg" alt="Worktop, hob and oven installed">
+        <img src="story/konyha-3-kesz.jpg" alt="The finished kitchen with LED plinth light">
+        <img src="story/konyha-4-sziget.jpg" alt="The whole kitchen with the island, in daily use">
+        <span class="tag" id="photoTag">The real kitchen</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="after" id="try">
+  <h2>Try it on your own drawing</h2>
+  <p>14-day free trial · no credit card · works inside the CAD you already use.</p>
+  <a class="btn" href="index.html#demo">Get the 14-day trial →</a>
+</section>
+
+<script>
+(function () {
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, parent) => {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  };
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const ease = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+
+  // ── 1. A konyha elölnézete ceruzával ─────────────────────────────────
+  // A koordináták a „07 rajz.png" (AutoCAD elölnézet) pixelei. Sorrend = rajzolási
+  // sorrend: felső szekrénysor → alsó sor → méretvonalak.
+  const sk = document.getElementById('sketch');
+  let seed = 11;
+  const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280 - 0.5;
+  const pencil = (x1, y1, x2, y2) => {          // enyhén remegő ceruzavonal
+    const j = Math.min(3, Math.hypot(x2 - x1, y2 - y1) / 60);
+    const mx = (x1 + x2) / 2 + rnd() * j, my = (y1 + y2) / 2 + rnd() * j;
+    return `M${x1 + rnd()},${y1 + rnd()} Q${mx},${my} ${x2 + rnd()},${y2 + rnd()}`;
+  };
+  const rect = (x1, y1, x2, y2) => [[x1,y1,x2,y1],[x2,y1,x2,y2],[x2,y2,x1,y2],[x1,y2,x1,y1]];
+  const lines = [
+    // felső szekrénysor
+    ...rect(158, 61, 636, 316),
+    [158, 303, 555, 303], [555, 303, 555, 316],
+    [346, 61, 346, 303],
+    [158, 141, 484, 141], [158, 221, 534, 221],
+    [484, 61, 484, 210], [484, 210, 636, 210],
+    [534, 221, 534, 303], [545, 210, 545, 303],
+    [212, 120, 292, 120], [400, 120, 480, 120],
+    [212, 201, 292, 201], [400, 201, 480, 201],
+    [212, 282, 292, 282], [400, 282, 480, 282],
+    // alsó sor: munkalap, korpusz, lábazat
+    ...rect(38, 452, 636, 462),
+    [40, 462, 40, 650], [632, 462, 632, 650], [40, 650, 632, 650],
+    [75, 650, 75, 674], [75, 674, 505, 674], [505, 650, 505, 674],
+    // nyitott polcos rész
+    [70, 462, 70, 650], [180, 462, 180, 650],
+    [70, 516, 180, 516], [70, 557, 180, 557], [70, 602, 180, 602],
+    // ajtók
+    [203, 462, 203, 650], [299, 462, 299, 650], [337, 462, 337, 650],
+    [210, 484, 290, 484], [318, 486, 318, 563],
+    // sütő + fiók
+    [337, 494, 487, 494], ...rect(352, 520, 468, 595),
+    [337, 607, 487, 607], [371, 628, 450, 628],
+    [487, 462, 487, 650], [498, 462, 498, 650],
+    // méretvonalak
+    [158, 22, 158, 58], [636, 22, 636, 58], [158, 28, 636, 28],
+    [640, 61, 724, 61], [640, 316, 724, 316], [718, 61, 718, 316],
+    [636, 316, 636, 452],
+    [645, 452, 724, 452], [645, 674, 724, 674], [718, 452, 718, 674],
+    [560, 63, 560, 208]
+  ];
+  const paths = lines.map(l => {
+    const isDim = l === lines[lines.length - 1] || (l[0] === 718) || (l[1] === 28) || (l[1] === 22) || (l[0] === 640) || (l[0] === 645);
+    const p = el('path', {d: pencil(...l), fill: 'none', stroke: 'var(--pencil)', 'stroke-width': isDim ? 1.4 : 2.2,
+                          'stroke-linecap': 'round', opacity: isDim ? 0.75 : 1}, sk);
+    const len = p.getTotalLength(); p.style.strokeDasharray = len; p.style.strokeDashoffset = len;
+    p._len = len; return p;
+  });
+  const hand = 'Segoe Print, Comic Sans MS, cursive';
+  const texts = [
+    [397, 20, '1930', 0], [712, 190, '1030', -90], [712, 565, '900', -90], [552, 138, '595,5', -90]
+  ].map(([x, y, s, rot]) => {
+    const t = el('text', {x, y, fill: 'var(--pencil)', 'font-family': hand, 'font-size': 17, 'text-anchor': 'middle',
+                          transform: rot ? `rotate(${rot} ${x} ${y})` : ''}, sk);
+    t.textContent = s; t.style.opacity = 0; return t;
+  });
+  function drawSketch(t) {
+    const n = paths.length;
+    paths.forEach((p, i) => p.style.strokeDashoffset = p._len * (1 - clamp(t * (n + 6) - i, 0, 1)));
+    texts.forEach((tx, i) => tx.style.opacity = clamp((t - 0.78) * 8 - i * 0.4, 0, 1));
+  }
+
+  // ── Görgetés → melyik lépés, azon belül hol tartunk ──────────────────
+  const story = document.getElementById('story');
+  const stepEls = [...document.querySelectorAll('#steps li')];
+  const layer = name => document.querySelector(`.layer[data-l="${name}"]`);
+  const L = {sketch: layer('sketch'), acad: layer('acad'), boom: layer('boom'), pick: layer('pick'), photo: layer('photo')};
+  // a user kérése (2026-11-15): vázlat → alkatrészek szétszedve → egybe → kijelölés → fotók
+  const stepLayer = ['sketch', 'boom', 'acad', 'pick', 'photo'];
+  const bar = document.getElementById('bar');
+
+  const pickSvg = L.pick.querySelector('.pick');
+  const pickRing = document.getElementById('pickRing');
+  const ringLen = pickRing.getTotalLength();
+  pickRing.style.strokeDasharray = ringLen;
+  const ee26 = L.pick.querySelector('.ee26pop');
+  const excel = L.pick.querySelector('.excel');
+  const pickTag = document.getElementById('pickTag');
+
+  const photos = [...L.photo.querySelectorAll('img')];
+  const photoTag = document.getElementById('photoTag');
+  const photoCaps = ['Real kitchen · carcasses in place', 'Real kitchen · worktop and appliances in',
+                     'Real kitchen · finished', 'Real kitchen · in daily use'];
+
+  function update() {
+    const r = story.getBoundingClientRect();
+    const total = story.offsetHeight - innerHeight;
+    const p = clamp(-r.top / total, 0, 0.9999);
+    const step = Math.floor(p * stepLayer.length), local = p * stepLayer.length - step;
+
+    stepEls.forEach((li, i) => { li.classList.toggle('on', i === step); li.classList.toggle('done', i < step); });
+    for (const k in L) L[k].classList.toggle('on', k === stepLayer[step]);
+    bar.style.width = (p * 100).toFixed(1) + '%';
+
+    if (step === 0) drawSketch(clamp(local * 1.1, 0, 1));
+    if (step === 1) L.boom.style.setProperty('--z', clamp(local, 0, 1).toFixed(3));
+    if (step === 2) L.acad.style.setProperty('--z', clamp(local, 0, 1).toFixed(3));
+    // „…and they come together": a szétszedett kép görgetésre átúszik az összerakottba
+    L.boom.style.opacity = step === 2 ? (1 - ease(clamp(local / 0.45, 0, 1))).toFixed(3) : '';
+    L.boom.style.zIndex = step === 2 ? 1 : '';
+    if (step === 3) {
+      // a) kör rajzolódik a szekrény köré
+      pickRing.style.strokeDashoffset = ringLen * (1 - ease(clamp(local / 0.3, 0, 1)));
+      // b) a kör közepéből kinyílik az EE26-ablak
+      const pop = ease(clamp((local - 0.3) / 0.22, 0, 1));
+      const lr = L.pick.getBoundingClientRect(), rr = pickRing.getBoundingClientRect();
+      ee26.style.transformOrigin = (rr.left + rr.width / 2 - lr.left - 18) + 'px ' + (rr.top + rr.height / 2 - lr.top - 18) + 'px';
+      ee26.style.transform = 'scale(' + (0.08 + 0.92 * pop) + ')';
+      // c) végül az Excel
+      const xl = local >= 0.65;
+      ee26.style.opacity = xl ? 0 : pop;
+      excel.style.opacity = xl ? 1 : 0;
+      pickSvg.style.opacity = xl ? 0 : 1 - 0.65 * pop;
+      pickTag.textContent = xl ? 'The Excel cutting list · 23 parts, edge banding included'
+                          : pop > 0.05 ? 'Part by part · right side 600 × 600, 28 holes → Save + BPP'
+                          : 'Select a cabinet in the drawing';
+    }
+    if (step === 4) {
+      const k = Math.min(photos.length - 1, Math.floor(local * photos.length));
+      photos.forEach((im, i) => im.style.opacity = i === k ? 1 : 0);
+      photoTag.textContent = photoCaps[k];
+    }
+  }
+  addEventListener('scroll', update, {passive: true});
+  addEventListener('resize', update);
+  update();
+})();
+</script>
+</body>
+</html>
