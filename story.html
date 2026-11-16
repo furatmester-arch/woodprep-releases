@@ -112,7 +112,7 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
         <li><span class="n">2</span><h3>Your kitchen in AutoCAD</h3><p>In the CAD you already know, with the WoodPrep tab. One cabinet is still missing — the wall unit on the right.</p></li>
         <li><span class="n">3</span><h3>Type the sizes — that's all</h3><p>Width, height, depth. Doors, hinges, shelves in the same window. No drawing.</p></li>
         <li><span class="n">4</span><h3>Place — and it's there</h3><p>The complete cabinet appears in the drawing: every panel, every hole, every hinge position.</p></li>
-        <li><span class="n">5</span><h3>Select it — get CNC + cutting list</h3><p>WoodPrep walks every part: size, grain, edge banding, holes. Then the Excel cutting list.</p></li>
+        <li><span class="n">5</span><h3>Select it — get CNC + cutting list</h3><p>Names and edge banding come from CORP26. For CNC, WoodPrep walks every part so you can turn it to suit your own machine. Then the Excel cutting list.</p></li>
         <li><span class="n">6</span><h3>It goes together perfectly</h3><p>This kitchen was built exactly this way. Nothing missing, nothing drilled wrong.</p></li>
       </ol>
       <div class="bar"><i id="bar"></i></div>
@@ -380,9 +380,9 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
       xlFull.style.clipPath = 'inset(0 0 ' + (Math.max(0, 402 - 236 - rows * 24) / 402 * 100).toFixed(2) + '% 0)';
       pickSvg.style.opacity = ph === 0 ? 1 - 0.65 * pop : 0;
       pickTag.textContent = ph === 4 ? (xlT < 0.3 ? 'The empty cutting list · click Import Parts' : 'Cutting list of this cabinet · 7 rows, edge banding included')
-                          : ph === 3 ? 'Saved parts vanish from the drawing — nothing gets skipped'
-                          : ph === 2 ? 'Name + edge banding: 2 = 2 mm ABS on all four edges → Save + BPP'
-                          : ph === 1 ? 'Part by part · both doors found as a mirror pair, quantity 2'
+                          : ph === 3 ? 'CNC for your machine · every hole in place → Save + BPP · saved parts vanish'
+                          : ph === 2 ? 'Both doors as a mirror pair, quantity 2 · 2 mm ABS on all four edges'
+                          : ph === 1 ? 'Part by part · rotate each panel to fit your machine’s drills'
                           : pop > 0.05 ? 'Find identical parts + mirror pairs → Select the parts'
                           : 'Select the cabinet in the drawing';
     }
