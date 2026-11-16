@@ -71,7 +71,11 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
 .l-pick img.proc{inset:6px;width:calc(100% - 12px);height:calc(100% - 12px)}
 .l-pick .ee26pop{filter:drop-shadow(0 20px 40px rgba(0,0,0,.6))}
 .l-pick .excel{background:#fff;border-radius:6px;transition:opacity .35s}
-.l-pick img.wide{height:auto;top:50%;bottom:auto;transform:translateY(-50%)}
+.l-pick .xlbox{position:absolute;left:18px;right:18px;top:50%;transform:translateY(-50%);opacity:0;background:#fff;border-radius:6px;transition:opacity .35s}
+.l-pick .xlbox img{position:relative;inset:auto;display:block;width:100%;height:auto;opacity:1}
+.l-pick .xlbox img.xlfull{position:absolute;left:0;top:0;clip-path:inset(0 0 41.3% 0)}
+.xlclick{position:absolute;left:63.6%;top:-1.5%;width:14.9%;height:14.5%;border:3px solid #ffd23f;border-radius:12px;
+     opacity:0;transform:scale(1.6);transition:opacity .25s, transform .25s;box-shadow:0 0 18px rgba(255,210,63,.6)}
 .l-pick .proc{transition:opacity .35s}
 .l-photo{background:#0b0b12}
 .l-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .35s}
@@ -169,13 +173,17 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
         <!-- 2026-11-16: CABINET-beállítás (006) → feldolgozás: az ajtók sárgán, EE26 (007)
              → név + élzárás „2" (008) → Excel. A 007/008 fejlécéből az ügyfélnév kitakarva. -->
         <!-- „végleges" (2026-11-16 este): 011 = CABINET „upper cabinet" → 007 → 008 → 012 (a mentett
-             lapok eltűnnek a rajzból) → 013 (csak ennek a szekrénynek az Excelje) → a teljes konyha -->
+             lapok eltűnnek a rajzból) → 013 (csak ennek a szekrénynek az Excelje) -->
         <img class="ee26pop" src="story/cabinet-beallitas-felso.png" alt="CABINET settings: module name, find identical parts, mirror pairs, select the parts">
         <img class="proc" src="story/feldolgozas-1.png" alt="Processing: both doors highlighted as a mirror pair, the WoodPrep part window">
         <img class="proc" src="story/feldolgozas-2.png" alt="Part name and edge banding entered: 2 mm ABS on all four edges">
         <img class="proc" src="story/feldolgozas-elfogyo.png" alt="Saved parts disappear from the drawing: only the vertical divider of the cabinet is left">
-        <img class="excel wide" src="story/szekreny-excel.png" alt="The Excel cutting list of this cabinet: 7 rows with edge banding">
-        <img class="excel" src="story/konyha-excel.png" alt="The Excel cutting list of the whole kitchen">
+        <!-- üres szabásjegyzék → kattintás az Import Parts gombra → a sorok egyenként betöltődnek -->
+        <div class="excel xlbox">
+          <img src="story/szekreny-excel-ures.png" alt="The empty WoodPrep cutting list in Excel">
+          <img class="xlfull" src="story/szekreny-excel.png" alt="The Excel cutting list of this cabinet: 7 rows with edge banding">
+          <span class="xlclick"></span>
+        </div>
         <span class="tag" id="pickTag">Select a cabinet in the drawing</span>
       </div>
       <!-- 5. A beépítés fotói -->
@@ -296,6 +304,7 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
   pickRing.style.strokeDasharray = ringLen;
   const ee26 = L.pick.querySelector('.ee26pop');
   const excels = [...L.pick.querySelectorAll('.excel')];
+  const xlFull = L.pick.querySelector('.xlfull'), xlClick = L.pick.querySelector('.xlclick');
   const ribbons = [...L.miss.querySelectorAll('.ribbon')], missTag = document.getElementById('missTag');
   const procs = [...L.pick.querySelectorAll('.proc')];
   const pickTag = document.getElementById('pickTag');
@@ -357,14 +366,20 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
       ee26.style.transformOrigin = (rr.left + rr.width / 2 - lr.left - 18) + 'px ' + (rr.top + rr.height / 2 - lr.top - 18) + 'px';
       ee26.style.transform = 'scale(' + (0.08 + 0.92 * pop) + ')';
       // c) feldolgozás: ajtók sárgán, név + élzárás, a mentett lapok eltűnnek (0.28–0.7),
-      // d) Excel: csak ez a szekrény (0.7–0.86), aztán a teljes konyha (0.86–)
-      const ph = [0.28, 0.42, 0.56, 0.7, 0.86].filter(t => local >= t).length;
+      // d) Excel: csak ez a szekrény (0.76–); a teljes konyha (magyar) kivéve
+      const ph = [0.28, 0.44, 0.6, 0.76].filter(t => local >= t).length;
       ee26.style.opacity = ph === 0 ? pop : 0;
       procs.forEach((im, i) => im.style.opacity = ph === i + 1 ? 1 : 0);
       excels.forEach((im, i) => im.style.opacity = ph === i + 4 ? 1 : 0);
+      // Excel: az üres listán kör az Import Parts gombra (0.76–0.84), kattintás, a 7 sor egyenként betöltődik
+      const xlT = clamp((local - 0.76) / 0.2, 0, 1);
+      const clickOn = xlT > 0.05 && xlT < 0.5;
+      xlClick.style.opacity = clickOn ? 1 : 0;
+      xlClick.style.transform = clickOn ? (xlT > 0.3 ? 'scale(0.92)' : 'scale(1)') : 'scale(1.6)';
+      const rows = Math.min(7, Math.floor(clamp((xlT - 0.3) / 0.6, 0, 1) * 7.99));
+      xlFull.style.clipPath = 'inset(0 0 ' + (Math.max(0, 402 - 236 - rows * 24) / 402 * 100).toFixed(2) + '% 0)';
       pickSvg.style.opacity = ph === 0 ? 1 - 0.65 * pop : 0;
-      pickTag.textContent = ph === 5 ? '…and the whole kitchen: 23 rows, from the same drawing'
-                          : ph === 4 ? 'Cutting list of this cabinet · 7 rows, edge banding included'
+      pickTag.textContent = ph === 4 ? (xlT < 0.3 ? 'The empty cutting list · click Import Parts' : 'Cutting list of this cabinet · 7 rows, edge banding included')
                           : ph === 3 ? 'Saved parts vanish from the drawing — nothing gets skipped'
                           : ph === 2 ? 'Name + edge banding: 2 = 2 mm ABS on all four edges → Save + BPP'
                           : ph === 1 ? 'Part by part · both doors found as a mirror pair, quantity 2'
