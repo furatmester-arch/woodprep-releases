@@ -743,10 +743,12 @@
   .visual{height:52vh;order:-1}
 }
 /* 2026-11-19: a főoldal a történettel indul — rövid fejléc, utána a történet, utána a „Who are you?" */
-.hero.hero-short{min-height:auto;padding:64px 24px 20px}
-.hero.hero-short p{margin-bottom:28px}
+.hero.hero-short{min-height:auto;padding:26px 24px 4px}
+.hero.hero-short .hero-badge{margin-bottom:12px}
+.hero.hero-short h1{font-size:clamp(1.7rem,3.6vw,2.6rem);margin-bottom:14px;max-width:none}
+.hero.hero-short p{margin-bottom:16px}
 .hero.who{min-height:auto;padding-top:40px;background:none}
-.wps-hint{margin-top:30px;color:var(--muted);font-size:0.85rem;animation:wpsbob 1.8s ease-in-out infinite}
+.wps-hint{margin-top:14px;color:var(--muted);font-size:0.85rem;animation:wpsbob 1.8s ease-in-out infinite}
 .wps-skip{display:inline-block;margin-top:10px;font-size:0.82rem;color:var(--muted);text-decoration:underline}
 @keyframes wpsbob{50%{transform:translateY(8px)}}
     </style>
@@ -778,9 +780,9 @@
 <!-- HERO (2026-11-19: rövid fejléc, utána rögtön a görgetős történet egy valódi konyhán) -->
 <section class="hero hero-short">
     <div class="hero-badge">AutoCAD Plugin</div>
-    <h1>From AutoCAD drawing to <span>production</span><br>in minutes</h1>
+    <h1>From AutoCAD drawing to <span>production</span> in minutes</h1>
     <p style="font-size:0.82rem; color:var(--accent); letter-spacing:0.4px; margin-bottom:4px; margin-top:-12px;">Keep using AutoCAD. WoodPrep simply adds production automation.</p>
-    <p style="font-size:0.88rem; color:var(--muted); margin-bottom:28px; margin-top:6px;">Works with existing AutoCAD drawings. No redrawing required.</p>
+    <p style="font-size:0.88rem; color:var(--muted); margin-bottom:18px; margin-top:4px;">Works with existing AutoCAD drawings. No redrawing required.</p>
     <div class="hero-btns">
         <a href="#demo" class="btn-primary">Start Free Trial</a>
         <a href="#pricing" class="btn-secondary">View Pricing</a>
