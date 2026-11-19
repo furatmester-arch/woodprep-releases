@@ -35,18 +35,18 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
 @keyframes bob{50%{transform:translateY(8px)}}
 
 /* ── A TÖRTÉNET ─────────────────────────────────────────────────────── */
-.story{position:relative;height:940vh}
+.story{position:relative;height:760vh}
 .stage{position:sticky;top:57px;height:calc(100vh - 57px);display:grid;grid-template-columns:minmax(260px,2fr) 3fr;
        gap:48px;align-items:center;max-width:1300px;margin:0 auto;padding:0 40px}
-.steps{list-style:none;position:relative}
-.steps li{padding:14px 0 14px 54px;position:relative;opacity:0.28;transition:opacity .4s, transform .4s}
-.steps li.on{opacity:1;transform:translateX(6px)}
-.steps li .n{position:absolute;left:0;top:12px;width:36px;height:36px;border-radius:50%;border:2px solid var(--muted);
+.ws-steps{list-style:none;position:relative}
+.ws-steps li{padding:14px 0 14px 54px;position:relative;opacity:0.28;transition:opacity .4s, transform .4s}
+.ws-steps li.on{opacity:1;transform:translateX(6px)}
+.ws-steps li .n{position:absolute;left:0;top:12px;width:36px;height:36px;border-radius:50%;border:2px solid var(--muted);
              display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;color:var(--muted)}
-.steps li.on .n{border-color:var(--accent);color:var(--accent);background:rgba(77,184,255,0.1)}
-.steps li.done .n{border-color:var(--green);color:var(--green)}
-.steps h3{font-size:1.15rem}
-.steps p{color:var(--muted);font-size:0.9rem;margin-top:2px}
+.ws-steps li.on .n{border-color:var(--accent);color:var(--accent);background:rgba(77,184,255,0.1)}
+.ws-steps li.done .n{border-color:var(--green);color:var(--green)}
+.ws-steps h3{font-size:1.15rem}
+.ws-steps p{color:var(--muted);font-size:0.9rem;margin-top:2px}
 .bar{height:3px;background:var(--border);border-radius:2px;margin-top:22px;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--green))}
 
@@ -68,7 +68,6 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
 .l-pick{background:#212830}
 .l-pick .pick{position:absolute;inset:0;width:100%;height:100%;transition:opacity .3s}
 .l-pick img{position:absolute;inset:18px;width:calc(100% - 36px);height:calc(100% - 36px);object-fit:contain;opacity:0}
-.l-pick img.proc{inset:6px;width:calc(100% - 12px);height:calc(100% - 12px)}
 .l-pick .ee26pop{filter:drop-shadow(0 20px 40px rgba(0,0,0,.6))}
 .l-pick .excel{background:#fff;border-radius:6px;transition:opacity .35s}
 .l-pick .xlbox{position:absolute;left:18px;right:18px;top:50%;transform:translateY(-50%);opacity:0;background:#fff;border-radius:6px;transition:opacity .35s}
@@ -76,7 +75,6 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
 .l-pick .xlbox img.xlfull{position:absolute;left:0;top:0;clip-path:inset(0 0 41.3% 0)}
 .xlclick{position:absolute;left:63.6%;top:-1.5%;width:14.9%;height:14.5%;border:3px solid #ffd23f;border-radius:12px;
      opacity:0;transform:scale(1.6);transition:opacity .25s, transform .25s;box-shadow:0 0 18px rgba(255,210,63,.6)}
-.l-pick .proc{transition:opacity .35s}
 .l-photo{background:#0b0b12}
 .l-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .35s}
 
@@ -85,10 +83,10 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
 .after p{color:var(--muted);margin:12px auto 28px;max-width:520px}
 
 @media (max-width:860px){
-  .story{height:800vh}
+  .story{height:680vh}
   .stage{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:14px;padding:12px 16px;align-items:start}
-  .steps li{display:none;padding-left:46px;opacity:1}
-  .steps li.on{display:block;transform:none}
+  .ws-steps li{display:none;padding-left:46px;opacity:1}
+  .ws-steps li.on{display:block;transform:none}
   .visual{height:52vh;order:-1}
   nav{padding:12px 16px}
 }
@@ -107,12 +105,12 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
 <section class="story" id="story">
   <div class="stage">
     <div>
-      <ol class="steps" id="steps">
+      <ol class="ws-steps" id="steps">
         <li><span class="n">1</span><h3>It starts with a sketch</h3><p>A front view with the main sizes — the way every kitchen begins.</p></li>
         <li><span class="n">2</span><h3>Your kitchen in AutoCAD</h3><p>In the CAD you already know, with the WoodPrep tab. One cabinet is still missing — the wall unit on the right.</p></li>
         <li><span class="n">3</span><h3>Type the sizes — that's all</h3><p>Width, height, depth. Doors, hinges, shelves in the same window. No drawing.</p></li>
         <li><span class="n">4</span><h3>Place — and it's there</h3><p>The complete cabinet appears in the drawing: every panel, every hole, every hinge position.</p></li>
-        <li><span class="n">5</span><h3>Select it — get CNC + cutting list</h3><p>Names and edge banding come from CORP26. For CNC, WoodPrep walks every part so you can turn it to suit your own machine. Then the Excel cutting list.</p></li>
+        <li><span class="n">5</span><h3>Select it — get CNC + cutting list</h3><p>WoodPrep makes the CNC program for every part (rotated to fit your machine) and the Excel cutting list.</p></li>
         <li><span class="n">6</span><h3>It goes together perfectly</h3><p>This kitchen was built exactly this way. Nothing missing, nothing drilled wrong.</p></li>
       </ol>
       <div class="bar"><i id="bar"></i></div>
@@ -170,14 +168,7 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
           <ellipse id="pickRing" cx="986" cy="343" rx="205" ry="150" transform="rotate(18 986 343)"
                    fill="none" stroke="#ffd23f" stroke-width="8" stroke-linecap="round"/>
         </svg>
-        <!-- 2026-11-16: CABINET-beállítás (006) → feldolgozás: az ajtók sárgán, EE26 (007)
-             → név + élzárás „2" (008) → Excel. A 007/008 fejlécéből az ügyfélnév kitakarva. -->
-        <!-- „végleges" (2026-11-16 este): 011 = CABINET „upper cabinet" → 007 → 008 → 012 (a mentett
-             lapok eltűnnek a rajzból) → 013 (csak ennek a szekrénynek az Excelje) -->
         <img class="ee26pop" src="story/cabinet-beallitas-felso.png" alt="CABINET settings: module name, find identical parts, mirror pairs, select the parts">
-        <img class="proc" src="story/feldolgozas-1.png" alt="Processing: both doors highlighted as a mirror pair, the WoodPrep part window">
-        <img class="proc" src="story/feldolgozas-2.png" alt="Part name and edge banding entered: 2 mm ABS on all four edges">
-        <img class="proc" src="story/feldolgozas-elfogyo.png" alt="Saved parts disappear from the drawing: only the vertical divider of the cabinet is left">
         <!-- üres szabásjegyzék → kattintás az Import Parts gombra → a sorok egyenként betöltődnek -->
         <div class="excel xlbox">
           <img src="story/szekreny-excel-ures.png" alt="The empty WoodPrep cutting list in Excel">
@@ -306,7 +297,6 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
   const excels = [...L.pick.querySelectorAll('.excel')];
   const xlFull = L.pick.querySelector('.xlfull'), xlClick = L.pick.querySelector('.xlclick');
   const ribbons = [...L.miss.querySelectorAll('.ribbon')], missTag = document.getElementById('missTag');
-  const procs = [...L.pick.querySelectorAll('.proc')];
   const pickTag = document.getElementById('pickTag');
 
   const photos = [...L.photo.querySelectorAll('img')];
@@ -358,31 +348,26 @@ nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
       placeTag.textContent = a < 0.98 ? 'Placing the cabinet…' : 'Done — every panel, hole and hinge in place';
     }
     if (step === 4) {
-      // a) kör rajzolódik a szekrény köré (0–0.14)
-      pickRing.style.strokeDashoffset = ringLen * (1 - ease(clamp(local / 0.14, 0, 1)));
-      // b) a kör közepéből kiugrik a CABINET-beállítás (0.14–0.28)
-      const pop = ease(clamp((local - 0.14) / 0.1, 0, 1));
+      // a) kör rajzolódik a szekrény köré (0–0.16)
+      pickRing.style.strokeDashoffset = ringLen * (1 - ease(clamp(local / 0.16, 0, 1)));
+      // b) a kör közepéből kiugrik a CABINET-beállítás (0.16–0.3)
+      const pop = ease(clamp((local - 0.16) / 0.12, 0, 1));
       const lr = L.pick.getBoundingClientRect(), rr = pickRing.getBoundingClientRect();
       ee26.style.transformOrigin = (rr.left + rr.width / 2 - lr.left - 18) + 'px ' + (rr.top + rr.height / 2 - lr.top - 18) + 'px';
       ee26.style.transform = 'scale(' + (0.08 + 0.92 * pop) + ')';
-      // c) feldolgozás: ajtók sárgán, név + élzárás, a mentett lapok eltűnnek (0.28–0.7),
-      // d) Excel: csak ez a szekrény (0.76–); a teljes konyha (magyar) kivéve
-      const ph = [0.28, 0.44, 0.6, 0.76].filter(t => local >= t).length;
+      // c) 2026-11-19 (a user kérése, rövidebb főoldal): a lapról lapra EE26-képek kimaradtak,
+      //    a CABINET-ablak után rögtön az Excel jön (0.42–): üres lista → Import Parts → 7 sor
+      const ph = local >= 0.42 ? 1 : 0;
       ee26.style.opacity = ph === 0 ? pop : 0;
-      procs.forEach((im, i) => im.style.opacity = ph === i + 1 ? 1 : 0);
-      excels.forEach((im, i) => im.style.opacity = ph === i + 4 ? 1 : 0);
-      // Excel: az üres listán kör az Import Parts gombra (0.76–0.84), kattintás, a 7 sor egyenként betöltődik
-      const xlT = clamp((local - 0.76) / 0.2, 0, 1);
+      excels.forEach(im => im.style.opacity = ph === 1 ? 1 : 0);
+      const xlT = clamp((local - 0.42) / 0.5, 0, 1);
       const clickOn = xlT > 0.05 && xlT < 0.5;
       xlClick.style.opacity = clickOn ? 1 : 0;
       xlClick.style.transform = clickOn ? (xlT > 0.3 ? 'scale(0.92)' : 'scale(1)') : 'scale(1.6)';
       const rows = Math.min(7, Math.floor(clamp((xlT - 0.3) / 0.6, 0, 1) * 7.99));
       xlFull.style.clipPath = 'inset(0 0 ' + (Math.max(0, 402 - 236 - rows * 24) / 402 * 100).toFixed(2) + '% 0)';
       pickSvg.style.opacity = ph === 0 ? 1 - 0.65 * pop : 0;
-      pickTag.textContent = ph === 4 ? (xlT < 0.3 ? 'The empty cutting list · click Import Parts' : 'Cutting list of this cabinet · 7 rows, edge banding included')
-                          : ph === 3 ? 'CNC for your machine · every hole in place → Save + BPP · saved parts vanish'
-                          : ph === 2 ? 'Both doors as a mirror pair, quantity 2 · 2 mm ABS on all four edges'
-                          : ph === 1 ? 'Part by part · rotate each panel to fit your machine’s drills'
+      pickTag.textContent = ph === 1 ? (xlT < 0.3 ? 'CNC saved for every part · now the empty cutting list → Import Parts' : 'Cutting list of this cabinet · 7 rows, edge banding included')
                           : pop > 0.05 ? 'Find identical parts + mirror pairs → Select the parts'
                           : 'Select the cabinet in the drawing';
     }
