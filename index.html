@@ -689,6 +689,18 @@
             .nav-links { display: none; }
             .about-box { padding: 28px 20px; }
         }
+        /* 2026-11-19: a görgetős történet-oldal kártyája (korábban a plan-starter oldalon volt) */
+        .story-band{padding:10px 24px 56px}
+        .story-card{display:flex;align-items:center;gap:22px;max-width:900px;margin:0 auto;padding:22px 26px;border-radius:14px;
+            text-decoration:none;color:var(--text);border:1px solid rgba(255,210,63,0.35);
+            background:linear-gradient(135deg,rgba(255,210,63,0.10),var(--bg2) 60%);transition:border-color .2s, transform .2s}
+        .story-card:hover{border-color:rgba(255,210,63,0.75);transform:translateY(-2px)}
+        .story-card .sc-icon{font-size:2.2rem;flex-shrink:0}
+        .story-card .sc-label{font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#ffd23f}
+        .story-card .sc-title{font-size:1.15rem;font-weight:700;margin:4px 0}
+        .story-card .sc-sub{font-size:0.88rem;color:var(--muted)}
+        .story-card .sc-go{margin-left:auto;flex-shrink:0;font-weight:700;color:#ffd23f;white-space:nowrap}
+        @media (max-width:640px){.story-card{flex-direction:column;align-items:flex-start;gap:10px}.story-card .sc-go{margin-left:0}}
     </style>
 
     <!-- Google tag (gtag.js) -->
@@ -786,6 +798,19 @@
             <span>A plugin, not a new system to learn</span>
         </div>
     </div>
+</div>
+
+<!-- STORY: egy valódi konyha a vázlattól a kész konyháig (story.html) -->
+<div class="story-band">
+    <a href="story.html" class="story-card">
+        <div class="sc-icon">🍳</div>
+        <div>
+            <div class="sc-label">See it on a real kitchen</div>
+            <div class="sc-title">From a sketch to a finished kitchen — scroll through it</div>
+            <div class="sc-sub">One real kitchen: the sketch, a cabinet typed into CORP26, CNC part by part, the cutting list, and the finished room.</div>
+        </div>
+        <span class="sc-go">Watch the story →</span>
+    </a>
 </div>
 
 <!-- FEATURES -->
