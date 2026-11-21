@@ -13,6 +13,7 @@ The core idea: a furniture maker who already designs in AutoCAD should not have 
 - Not a standalone program — it runs inside AutoCAD.
 - CNC output (Enterprise) requires AutoCAD 2025–2027.
 - The 14-day free trial works on AutoCAD 2021–2027: fill in the short form on the [home page](https://woodprep.eu/#demo), choose your AutoCAD version, and the matching download appears immediately.
+- WoodPrep is also published on the official Autodesk Design and Make Marketplace (formerly the Autodesk App Store) as "WoodPrep - Furniture Cutting Lists" — the 14-day Starter trial for AutoCAD 2025–2027: https://marketplace.autodesk.com/apps/8f6be035-323e-41c0-ad4b-d76a0e8717bd
 
 ## What it does
 

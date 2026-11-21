@@ -30,7 +30,8 @@
       "description": "AutoCAD plugin for furniture and cabinet manufacturers: Excel cutting lists, material summaries and CNC programs for Biesse (BPP), SCM, Homag (.mpr for woodWOP) and Felder / Format4 (.f4g, .tcn) generated directly from AutoCAD drawings.",
       "softwareRequirements": "Full AutoCAD 2021–2027 on Windows (not AutoCAD LT, not AutoCAD for Mac). CNC output requires AutoCAD 2025–2027.",
       "offers": { "@type": "AggregateOffer", "lowPrice": "50", "highPrice": "95", "priceCurrency": "EUR" },
-      "url": "https://woodprep.eu/"
+      "url": "https://woodprep.eu/",
+      "sameAs": ["https://marketplace.autodesk.com/apps/8f6be035-323e-41c0-ad4b-d76a0e8717bd"]
     }
     </script>
     <style>
@@ -744,7 +745,12 @@
 }
 /* 2026-11-19: a főoldal a történettel indul — rövid fejléc, utána a történet, utána a „Who are you?" */
 .hero.hero-short{min-height:auto;padding:26px 24px 4px}
-.hero.hero-short .hero-badge{margin-bottom:12px}
+.hero.hero-short .hero-badge{margin-bottom:10px}
+/* 2026-11-21: az Autodesk Marketplace-en publikálva (Starter 14 napos próba, AutoCAD 2025–2027) */
+.mkt-badge{display:inline-block;margin:0 0 14px;padding:5px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;color:#1ed282;background:rgba(30,210,130,0.08);border:1px solid rgba(30,210,130,0.3);text-decoration:none}
+.mkt-badge:hover{border-color:#1ed282}
+.mkt-line{font-size:0.85rem;color:var(--muted);margin-top:-6px;margin-bottom:18px}
+.mkt-line a{color:#1ed282}
 .hero.hero-short h1{font-size:clamp(1.7rem,3.6vw,2.6rem);margin-bottom:14px;max-width:none}
 .hero.hero-short p{margin-bottom:16px}
 .hero.who{min-height:auto;padding-top:40px;background:none}
@@ -780,6 +786,7 @@
 <!-- HERO (2026-11-19: rövid fejléc, utána rögtön a görgetős történet egy valódi konyhán) -->
 <section class="hero hero-short">
     <div class="hero-badge">AutoCAD Plugin</div>
+    <a class="mkt-badge" href="https://marketplace.autodesk.com/apps/8f6be035-323e-41c0-ad4b-d76a0e8717bd" target="_blank" rel="noopener">✓ Available on the Autodesk Design and Make Marketplace</a>
     <h1>From AutoCAD drawing to <span>production</span> in minutes</h1>
     <p style="font-size:0.82rem; color:var(--accent); letter-spacing:0.4px; margin-bottom:4px; margin-top:-12px;">Keep using AutoCAD. WoodPrep simply adds production automation.</p>
     <p style="font-size:0.88rem; color:var(--muted); margin-bottom:18px; margin-top:4px;">Works with existing AutoCAD drawings. No redrawing required.</p>
@@ -1288,6 +1295,7 @@
         <div class="demo-box">
             <h2>Try it free for 14 days</h2>
             <p>Tell us who you are and the download starts straight away. Then test every feature free for 14 days, no credit card required. If it works for you, subscribe. If not, just don't.</p>
+            <p class="mkt-line">Using AutoCAD 2025–2027? You can also install the 14-day Starter trial from the official <a href="https://marketplace.autodesk.com/apps/8f6be035-323e-41c0-ad4b-d76a0e8717bd" target="_blank" rel="noopener">Autodesk Design and Make Marketplace</a>.</p>
             <div class="demo-steps">
                 <div class="demo-step">
                     <div class="demo-step-num">1</div>
